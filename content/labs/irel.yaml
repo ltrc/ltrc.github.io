@@ -1,0 +1,40 @@
+name: "IREL"
+slug: irel
+tagline: "Information Retrieval and Extraction Lab"
+description: "Solving research problems in Information Retrieval, Extraction and Access."
+icon: "irel"
+
+overview:
+  about: |
+    The Information Retrieval and Extraction Lab (iREL) focuses on solving research problems in the areas of Information Retrieval (IR), Extraction (IE) and Access (IA).
+
+    The lab's research spans social media analysis, summarization, semantic search, text generation, and cloud computing. Our research papers have been published at top conferences worldwide including AAAI, ACL, EMNLP, CIKM and more.
+  highlights:
+    - "Information retrieval and semantic search"
+    - "Social media analysis and mining"
+    - "Text summarization and generation"
+    - "Unstructured data analytics"
+    - "AI for Social Good"
+
+research_areas:
+  - title: "Information Retrieval"
+    description: "Research on semantic search, cross-language information retrieval, and personalized information access systems."
+  - title: "Social Media Analysis"
+    description: "Mining and analyzing social media content for insights, trend detection, and sentiment analysis."
+  - title: "Text Summarization"
+    description: "Automatic summarization techniques for generating concise representations of large text documents."
+  - title: "Text Generation"
+    description: "Natural language generation systems for producing coherent and contextually appropriate text."
+
+projects:
+  - title: "Khoj Search Engine"
+    description: "Developed search engine technology, transferred to SETU, an incubated company, and Rediff."
+    status: "Completed"
+  - title: "SubtlAI"
+    description: "Startup founded for Q&A of unstructured data."
+    status: "Active"
+
+publications:
+  - title: "Research publications at AAAI, ACL, EMNLP, CIKM"
+    authors: "iREL Lab Members"
+    venue: "Various"

@@ -1,0 +1,310 @@
+---
+/*
+  Content source: content/labs/<slug>.yaml
+  Required fields: name, slug, tagline, description, overview (about, highlights)
+  Optional fields: icon, image, research_areas[], projects[], publications[], people
+*/
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const entries = await getCollection('labs');
+  const peopleEntries = await getCollection('people');
+  const allMembers = peopleEntries[0].data.members;
+
+  return entries.map((entry) => {
+    const labPeople = allMembers.filter(m => m.labs?.includes(entry.data.name));
+    return {
+      params: { slug: entry.data.slug },
+      props: { data: entry.data, labPeople },
+    };
+  });
+};
+
+const { data, labPeople } = Astro.props;
+
+const labFaculty = labPeople.filter(p => p.type === 'faculty');
+const labStudents = labPeople.filter(p => p.type !== 'faculty' && p.type !== 'staff');
+
+const tabs = [
+  { id: 'overview', label: 'Overview', icon: 'overview' },
+  ...(data.research_areas?.length ? [{ id: 'research', label: 'Research Areas', icon: 'research' }] : []),
+  ...(data.projects?.length ? [{ id: 'projects', label: 'Projects', icon: 'projects' }] : []),
+  ...(data.publications?.length ? [{ id: 'publications', label: 'Publications', icon: 'publications' }] : []),
+  ...(labPeople.length > 0 ? [{ id: 'people', label: 'People', icon: 'people' }] : []),
+];
+---
+
+<Base title={data.name} description={data.description}>
+
+  <!-- Lab Hero -->
+  <section class="lab-hero">
+    <div class="container">
+      <nav class="lab-hero__breadcrumb">
+        <a href="/">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <a href="/labs">Labs</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <span>{data.name}</span>
+      </nav>
+
+      <div class="lab-hero__inner">
+        <div class="lab-hero__content">
+          <h1>{data.name}</h1>
+          <p class="lab-hero__tagline">{data.tagline}</p>
+          <p class="lab-hero__desc">{data.description}</p>
+        </div>
+        {data.image ? (
+          <div class="lab-hero__media">
+            <img src={data.image} alt={data.name} />
+          </div>
+        ) : (
+          <div class="lab-hero__media lab-hero__media--icon">
+            {data.icon === 'mt-nlp' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/>
+                <path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>
+              </svg>
+            )}
+            {data.icon === 'speech' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>
+              </svg>
+            )}
+            {data.icon === 'irel' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+            )}
+            {data.icon === 'anusaaraka' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                <path d="M8 7h6"/><path d="M8 11h8"/>
+              </svg>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <div class="lab-tabs">
+    <div class="lab-tabs__inner container">
+      {tabs.map((tab, i) => (
+        <button class:list={['lab-tab', { 'is-active': i === 0 }]} data-tab={tab.id}>
+          {tab.icon === 'overview' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+            </svg>
+          )}
+          {tab.icon === 'research' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+              <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+            </svg>
+          )}
+          {tab.icon === 'projects' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          )}
+          {tab.icon === 'publications' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+              <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+            </svg>
+          )}
+          {tab.icon === 'people' && (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          )}
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <section class="lab-content">
+    <div class="container">
+      <div class="lab-content__inner">
+        <div>
+          <!-- Overview Tab -->
+          <div class="lab-section is-active" id="tab-overview">
+            <div class="lab-about">
+              <h2>About the Lab</h2>
+              {data.overview.about.split('\n\n').map((para: string) => (
+                <p>{para.trim()}</p>
+              ))}
+              <a href="#" class="btn btn--primary" onclick="document.querySelector('[data-tab=research]')?.click(); return false;">Our Research</a>
+            </div>
+
+            {data.publications && data.publications.length > 0 && (
+              <div class="lab-publications">
+                <div class="lab-publications__header">
+                  <h2>Recent Publications</h2>
+                  <a href="#" class="events__view-all" onclick="document.querySelector('[data-tab=publications]')?.click(); return false;">
+                    View all publications
+                  </a>
+                </div>
+                <div class="lab-publications__list">
+                  {data.publications.slice(0, 3).map((pub) => (
+                    <div class="pub-card">
+                      <div class="pub-card__title">{pub.title}</div>
+                      <div class="pub-card__authors">{pub.authors}</div>
+                      <div class="pub-card__venue">{pub.venue}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Research Areas Tab -->
+          {data.research_areas && (
+            <div class="lab-section" id="tab-research">
+              <div class="lab-about">
+                <h2>Research Areas</h2>
+              </div>
+              <div class="research-list">
+                {data.research_areas.map((area) => (
+                  <div class="research-list__item">
+                    <h3>{area.title}</h3>
+                    <p>{area.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Projects Tab -->
+          {data.projects && (
+            <div class="lab-section" id="tab-projects">
+              <div class="lab-about">
+                <h2>Projects</h2>
+              </div>
+              <div class="projects-list">
+                {data.projects.map((project) => (
+                  <div class="project-card">
+                    <div class="project-card__header">
+                      <h3>{project.title}</h3>
+                      {project.status && (
+                        <span class:list={['project-card__status', { 'project-card__status--active': project.status === 'Active' }]}>
+                          {project.status}
+                        </span>
+                      )}
+                    </div>
+                    <p>{project.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Publications Tab -->
+          {data.publications && (
+            <div class="lab-section" id="tab-publications">
+              <div class="lab-about">
+                <h2>Publications</h2>
+              </div>
+              <div class="lab-publications__list">
+                {data.publications.map((pub) => (
+                  <div class="pub-card">
+                    <div class="pub-card__title">{pub.title}</div>
+                    <div class="pub-card__authors">{pub.authors}</div>
+                    <div class="pub-card__venue">{pub.venue}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- People Tab -->
+          {labPeople.length > 0 && (
+            <div class="lab-section" id="tab-people">
+              {labFaculty.length > 0 && (
+                <>
+                  <div class="lab-about">
+                    <h2>Faculty</h2>
+                  </div>
+                  <div class="people-grid">
+                    {labFaculty.map((person) => (
+                      <div class="person-card">
+                        <div class="person-card__name">
+                          {person.page ? <a href={person.page} target="_blank" rel="noopener noreferrer">{person.name}</a> : person.name}
+                        </div>
+                        <div class="person-card__role">{person.role}</div>
+                        {person.area && <div class="person-card__area">{person.area}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {labStudents.length > 0 && (
+                <>
+                  <div class="lab-about" style="margin-top: 32px;">
+                    <h2>Researchers</h2>
+                  </div>
+                  <div class="people-grid">
+                    {labStudents.map((person) => (
+                      <div class="person-card">
+                        <div class="person-card__name">
+                          {person.page ? <a href={person.page} target="_blank" rel="noopener noreferrer">{person.name}</a> : person.name}
+                        </div>
+                        <div class="person-card__role">{person.role}</div>
+                        {person.area && <div class="person-card__area">{person.area}</div>}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="lab-sidebar">
+          <div class="sidebar-card">
+            <h3>Research Highlights</h3>
+            <div class="sidebar-card__list">
+              {data.overview.highlights.map((highlight) => (
+                <div class="sidebar-card__item">
+                  <div class="sidebar-card__bullet"></div>
+                  <span>{highlight}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const tabs = document.querySelectorAll('.lab-tab');
+    const sections = document.querySelectorAll('.lab-section');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-tab');
+
+        tabs.forEach((t) => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+
+        sections.forEach((s) => s.classList.remove('is-active'));
+        const target = document.getElementById(`tab-${targetId}`);
+        if (target) target.classList.add('is-active');
+      });
+    });
+  </script>
+
+</Base>

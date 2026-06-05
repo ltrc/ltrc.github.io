@@ -1,0 +1,31 @@
+name: "Anusaaraka Lab"
+slug: anusaaraka
+tagline: "Bridging Ancient Wisdom and Modern Technology"
+description: "Machine translation fusing traditional Indian shastras with advanced modern technologies."
+icon: "anusaaraka"
+
+overview:
+  about: |
+    Anusaaraka is a machine translation tool being developed by the Chinmaya International Foundation (CIF), International Institute of Information Technology, Hyderabad (IIIT-H) and University of Hyderabad (Department of Sanskrit Studies).
+
+    Fusion of traditional Indian shastras and advanced modern technologies is what Anusaaraka is all about. The approach draws on Paninian grammar and other Indian linguistic traditions to build language processing systems.
+  highlights:
+    - "Sanskrit computational linguistics"
+    - "Paninian grammar-based language processing"
+    - "Traditional Indian linguistic frameworks"
+    - "Cross-language translation using Indian shastras"
+
+research_areas:
+  - title: "Paninian Grammar"
+    description: "Computational models based on Panini's Ashtadhyayi for morphological analysis and language generation."
+  - title: "Sanskrit Processing"
+    description: "Tools and resources for computational processing of Sanskrit texts and manuscripts."
+  - title: "Language Translation"
+    description: "Machine translation approaches that leverage traditional Indian linguistic theories."
+
+projects:
+  - title: "Anusaaraka Translation System"
+    description: "A machine translation system drawing on Paninian grammar and Indian linguistic traditions, developed in collaboration with CIF and University of Hyderabad."
+    status: "Active"
+
+publications: []

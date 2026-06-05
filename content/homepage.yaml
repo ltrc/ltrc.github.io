@@ -1,0 +1,11 @@
+hero:
+  tag: "LTRC"
+  title: "Advancing Language Technologies"
+  subtitle: "The largest academic centre of speech and language technology in South Asia, conducting research on both basic and applied aspects of language technology."
+  image: "/assets/hero2.svg"
+  cta_buttons:
+    - label: Explore Labs
+      href: /labs
+      primary: true
+    - label: Our Research
+      href: /research

@@ -1,0 +1,78 @@
+name: "Language Technologies Research Centre (LTRC)"
+short_name: "LTRC"
+logo: "/assets/iiit-logo-small.png"
+favicon: "/assets/ltrc-logo.png"
+
+nav:
+  - label: Home
+    href: /
+  - label: Labs
+    href: /labs
+    children:
+      - label: MT-NLP Lab
+        href: /labs/mt-nlp
+      - label: Anusaaraka Lab
+        href: /labs/anusaaraka
+      - label: Speech Processing Lab
+        href: /labs/speech-processing
+      - label: IREL
+        href: /labs/irel
+  - label: Research
+    href: /research
+    children:
+      - label: Publications
+        href: /research/publications
+      - label: Projects
+        href: /research/projects
+  - label: People
+    href: /people
+    children:
+      - label: Faculty
+        href: /people/faculty
+      - label: Staff
+        href: /people/staff
+      - label: PhD Students
+        href: /people/phd
+      - label: MS Students
+        href: /people/ms
+      - label: BTech Students
+        href: /people/btech
+      - label: Alumni
+        href: /people/alumni
+  - label: Events
+    href: /events
+  - label: News
+    href: /news
+
+footer:
+  address_lines:
+    - "Language Technologies Research Centre (LTRC)"
+    - "1st Floor, Kohli Center on Intelligent Systems (KCIS)"
+    - "International Institute of Information Technology, Hyderabad"
+    - "Gachibowli, Hyderabad, Telangana - 500 032"
+    - "India"
+  quick_links:
+    - label: Labs
+      href: /labs
+    - label: People
+      href: /people
+    - label: Publications
+      href: /research/publications
+    - label: Careers
+      href: /careers
+  contact:
+    email: "ltrc.office@iiit.ac.in"
+    phone: "+91-40-6653 1581"
+    fax: "+91-40-6653 1413"
+  socials:
+    - platform: twitter
+      url: https://twitter.com/aboreddev
+    - platform: linkedin
+      url: https://www.linkedin.com/school/iiithofficial/
+    - platform: github
+      url: https://github.com/ltrc
+  bottom_links:
+    - label: Privacy Policy
+      href: /privacy
+    - label: Sitemap
+      href: /sitemap

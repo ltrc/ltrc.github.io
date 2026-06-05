@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const homepageEntries = await getCollection('homepage');
+const homepage = homepageEntries[0].data;
+
+const labs = await getCollection('labs');
+
+const newsEntries = await getCollection('news');
+const recentNews = newsEntries[0].data.items.slice(0, 3);
+
+const peopleEntries = await getCollection('people');
+const allMembers = peopleEntries[0].data.members;
+const facultyCount = allMembers.filter(m => m.type === 'faculty').length;
+const studentCount = allMembers.filter(m => ['phd', 'ms', 'btech'].includes(m.type || '')).length;
+const faculty = allMembers.filter(m => m.type === 'faculty').slice(0, 6);
+
+const eventsEntries = await getCollection('events');
+const upcomingEvents = eventsEntries[0].data.upcoming || [];
+---
+
+<Base title="Home" description="LTRC conducts cutting-edge research in Natural Language Processing, Speech Processing, and Information Retrieval at IIIT Hyderabad.">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          {homepage.hero.tag && <div class="hero__tag">{homepage.hero.tag}</div>}
+          <h1 class="hero__title">{homepage.hero.title}</h1>
+          <p class="hero__subtitle">{homepage.hero.subtitle}</p>
+          <div class="hero__cta">
+            {homepage.hero.cta_buttons.map((btn) => (
+              <a href={btn.href} class:list={['btn', btn.primary ? 'btn--primary' : 'btn--outline']}>
+                {btn.label}
+              </a>
+            ))}
+          </div>
+        </div>
+        {homepage.hero.image && (
+          <div class="hero__image">
+            <img src={homepage.hero.image} alt="" />
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Labs -->
+  <section class="home-section">
+    <div class="container">
+      <div class="home-section__header">
+        <h2>Labs</h2>
+        <a href="/labs" class="events__view-all">All labs</a>
+      </div>
+      {labs.map((lab) => (
+        <div class="home-lab">
+          <h3 class="home-lab__name">
+            <a href={`/labs/${lab.data.slug}`}>{lab.data.name}</a>
+          </h3>
+          <div class="home-lab__tagline">{lab.data.tagline}</div>
+          {lab.data.image && (
+            <img src={lab.data.image} alt={lab.data.name} class="home-lab__image" />
+          )}
+          <p class="home-lab__about">
+            {lab.data.overview.about.split('\n\n')[0]}
+          </p>
+          {lab.data.research_areas && lab.data.research_areas.length > 0 && (
+            <p class="home-lab__areas">
+              {lab.data.research_areas.map(a => a.title).join(' · ')}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="home-section">
+    <div class="container">
+      <div class="home-section__header">
+        <h2>News</h2>
+        <a href="/news" class="events__view-all">All news</a>
+      </div>
+      {recentNews.map((item) => (
+        <div class="home-news-item">
+          <div class="home-news-item__date">
+            {new Date(item.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </div>
+          <div class="home-news-item__title">{item.title}</div>
+          <p class="home-news-item__desc">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- People -->
+  <section class="home-section">
+    <div class="container">
+      <div class="home-section__header">
+        <h2>People</h2>
+        <a href="/people" class="events__view-all">All people</a>
+      </div>
+      <p style="font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 20px;">
+        LTRC has {facultyCount} faculty members and {studentCount} research students working across its labs.
+      </p>
+      <div class="people-grid">
+        {faculty.map((person) => (
+          <div class="person-card">
+            <div class="person-card__name">
+              {person.page ? <a href={person.page} target="_blank" rel="noopener noreferrer">{person.name}</a> : person.name}
+            </div>
+            <div class="person-card__role">{person.role}</div>
+            {person.area && <div class="person-card__area">{person.area}</div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  {upcomingEvents.length > 0 && (
+    <section class="home-section">
+      <div class="container">
+        <div class="home-section__header">
+          <h2>Upcoming Events</h2>
+          <a href="/events" class="events__view-all">All events</a>
+        </div>
+        <div class="events__content">
+          {upcomingEvents.map((event) => (
+            <div class="event-card">
+              <div class="event-card__top">
+                <div class="event-card__date">
+                  <span class="event-card__month">{event.month}</span>
+                  <span class="event-card__day">{event.day}</span>
+                </div>
+                <div class="event-card__info">
+                  <h3>{event.title}</h3>
+                  <p>{event.description}</p>
+                </div>
+              </div>
+              {event.venue && (
+                <p class="event-card__meta">{event.venue}</p>
+              )}
+              {event.link && (
+                <a href={event.link} class="event-card__details" target="_blank" rel="noopener noreferrer">
+                  Learn more
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</Base>

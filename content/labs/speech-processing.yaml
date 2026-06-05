@@ -1,0 +1,48 @@
+name: "Speech Processing Lab"
+slug: speech-processing
+tagline: "Speech and Vision Research"
+description: "Building robust speech systems for recognition, synthesis, and retrieval."
+icon: "speech"
+
+overview:
+  about: |
+    The objective of the Speech and Vision Lab is to conduct goal oriented basic research, addressing fundamental issues involved in building robust speech-to-text systems, natural sounding text-to-speech systems, spoken/audio information retrieval and biometrics using speech and video.
+
+    The lab works on speech processing in wireless environments, speaker recognition, language identification, emotion-aware speech processing, and pathological speech processing.
+  highlights:
+    - "Speech-to-text and text-to-speech systems"
+    - "Speaker and language identification"
+    - "Speech processing in emotion conditions"
+    - "Pathological speech processing"
+    - "Speech-to-speech machine translation"
+
+research_areas:
+  - title: "Speech Recognition"
+    description: "Building robust speech-to-text systems that work across diverse Indian languages, accents, and acoustic environments."
+  - title: "Text-to-Speech Synthesis"
+    description: "Developing natural sounding text-to-speech systems for Indian languages with focus on prosody and naturalness."
+  - title: "Speaker Recognition"
+    description: "Research on biometric identification using speech signals, including speaker verification and identification systems."
+  - title: "Language Identification"
+    description: "Automatic identification of spoken language from audio signals, particularly for Indian languages."
+  - title: "Emotion Recognition"
+    description: "Speech processing in emotion conditions, including emotion detection and emotion-aware speech conversion."
+
+projects:
+  - title: "Stutter Detection Platform"
+    description: "Speech analysis platform created for All India Institute of Speech and Hearing, Mysore for detecting stuttering patterns."
+    status: "Completed"
+  - title: "Speech-to-Speech Translation"
+    description: "Performance measurement platform for broadcast speeches and talks, as part of the Bhashini project."
+    status: "Active"
+
+publications:
+  - title: "Vowel Based Non-Uniform Prosody Modification for Emotion Conversion"
+    authors: "Harikrishna, S. R. Kadiri and A. K. Vuppala"
+    venue: "2016"
+  - title: "Neutral to Anger Speech Conversion Using Non-Uniform Duration Modification"
+    authors: "A. K. Vuppala and S. R. Kadiri"
+    venue: "2014"
+  - title: "Automatic Detection of Breathy Voiced Vowels in Gujarati Speech"
+    authors: "A. K. Vuppala and P. Bhaskararao"
+    venue: "2013"

@@ -1,0 +1,62 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PersonCard from '../../components/PersonCard.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const typeConfig: Record<string, { label: string; description: string }> = {
+    faculty:  { label: 'Faculty', description: 'Faculty members at LTRC, IIIT Hyderabad.' },
+    staff:    { label: 'Staff', description: 'Research scientists, engineers, and staff at LTRC.' },
+    phd:      { label: 'PhD Students', description: 'PhD research scholars at LTRC.' },
+    ms:       { label: 'MS Students', description: 'MS by Research students at LTRC.' },
+    btech:    { label: 'BTech Students', description: 'Undergraduate research students at LTRC.' },
+    alumni:   { label: 'Alumni', description: 'Past students, researchers, and faculty of LTRC.' },
+  };
+
+  const peopleEntries = await getCollection('people');
+  const allMembers = peopleEntries[0].data.members;
+
+  return Object.keys(typeConfig).map((type) => ({
+    params: { type },
+    props: {
+      members: allMembers.filter((m) => m.type === type),
+      config: typeConfig[type],
+    },
+  }));
+};
+
+const { members, config } = Astro.props;
+---
+
+<Base title={config.label} description={config.description}>
+
+  <section class="page-header">
+    <div class="container">
+      <nav class="page-header__breadcrumb">
+        <a href="/">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <a href="/people">People</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <span>{config.label}</span>
+      </nav>
+      <h1>{config.label}</h1>
+      <p>{config.description}</p>
+    </div>
+  </section>
+
+  <section style="padding: 64px 0 80px;">
+    <div class="container">
+      {members.length > 0 ? (
+        <div class="people-grid">
+          {members.map((person: any) => (
+            <PersonCard {...person} />
+          ))}
+        </div>
+      ) : (
+        <p style="color: var(--color-text-secondary);">No members listed in this category yet.</p>
+      )}
+    </div>
+  </section>
+
+</Base>

@@ -1,0 +1,131 @@
+<svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<!-- Left speech bubble -->
+<g transform="translate(30, 40)">
+<g class="anim-float" style="animation-delay: 0s;">
+<rect x="0" y="0" width="130" height="75" rx="14" fill="#6366f1"/>
+<polygon points="18,75 8,95 38,75" fill="#6366f1"/>
+<!-- Abstract text lines -->
+<rect x="14" y="18" width="55" height="7" rx="3.5" fill="#ffffff" opacity="0.9"/>
+<rect x="14" y="33" width="40" height="7" rx="3.5" fill="#ffffff" opacity="0.9"/>
+<rect x="14" y="48" width="70" height="7" rx="3.5" fill="#ffffff" opacity="0.7"/>
+<!-- Asian character abstractions -->
+<rect x="75" y="18" width="14" height="14" rx="2" fill="#ffffff" opacity="0.5"/>
+<rect x="94" y="18" width="14" height="14" rx="2" fill="#ffffff" opacity="0.5"/>
+</g>
+</g>
+
+<!-- Right speech bubble -->
+<g transform="translate(238, 40)">
+<g class="anim-float" style="animation-delay: -1.2s;">
+<rect x="0" y="0" width="130" height="75" rx="14" fill="#f43f5e"/>
+<polygon points="112,75 122,95 92,75" fill="#f43f5e"/>
+<!-- Abstract text lines -->
+<rect x="14" y="18" width="60" height="7" rx="3.5" fill="#ffffff" opacity="0.9"/>
+<rect x="14" y="33" width="45" height="7" rx="3.5" fill="#ffffff" opacity="0.9"/>
+<rect x="14" y="48" width="75" height="7" rx="3.5" fill="#ffffff" opacity="0.7"/>
+<!-- Latin character abstractions -->
+<rect x="80" y="33" width="8" height="7" rx="2" fill="#ffffff" opacity="0.5"/>
+<rect x="93" y="33" width="14" height="7" rx="2" fill="#ffffff" opacity="0.5"/>
+</g>
+</g>
+
+<!-- Center translation engine -->
+<g transform="translate(168, 105)">
+<g class="anim-pulse" style="animation-delay: 0s;">
+<circle cx="32" cy="32" r="32" fill="#0ea5e9" opacity="0.15"/>
+</g>
+<circle cx="32" cy="32" r="24" fill="#0ea5e9"/>
+<!-- Globe lines on center circle -->
+<ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+<line x1="32" y1="8" x2="32" y2="56" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+<line x1="8" y1="32" x2="56" y2="32" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+</g>
+
+<!-- Arrow left to center -->
+<g transform="translate(158, 128)">
+<g class="anim-data" style="animation-delay: 0s;">
+<circle cx="0" cy="7" r="4" fill="#6366f1" opacity="0.9"/>
+</g>
+</g>
+<g transform="translate(145, 128)">
+<g class="anim-data" style="animation-delay: -0.4s;">
+<circle cx="0" cy="7" r="3" fill="#6366f1" opacity="0.6"/>
+</g>
+</g>
+
+<!-- Arrow center to right -->
+<g transform="translate(232, 128)">
+<g class="anim-data" style="animation-delay: -0.2s;">
+<circle cx="0" cy="7" r="4" fill="#f43f5e" opacity="0.9"/>
+</g>
+</g>
+<g transform="translate(245, 128)">
+<g class="anim-data" style="animation-delay: -0.6s;">
+<circle cx="0" cy="7" r="3" fill="#f43f5e" opacity="0.6"/>
+</g>
+</g>
+
+<!-- Connector lines -->
+<line x1="160" y1="135" x2="200" y2="137" stroke="#334155" stroke-width="1.5" opacity="0.2"/>
+<line x1="200" y1="137" x2="240" y2="135" stroke="#334155" stroke-width="1.5" opacity="0.2"/>
+
+<!-- Live indicator bar -->
+<g transform="translate(130, 210)">
+<rect x="0" y="0" width="140" height="36" rx="10" fill="#334155" opacity="0.07"/>
+<!-- Live dot -->
+<g transform="translate(16, 18)">
+<g class="anim-glow">
+<circle cx="0" cy="0" r="5" fill="#0ea5e9"/>
+</g>
+</g>
+<!-- Live label lines -->
+<rect x="28" y="11" width="22" height="6" rx="3" fill="#334155" opacity="0.5"/>
+<!-- Waveform bars -->
+<g transform="translate(65, 18)">
+<g class="anim-bounce" style="animation-delay: 0s;">
+<rect x="0" y="-10" width="6" height="20" rx="3" fill="#6366f1" opacity="0.7"/>
+</g>
+</g>
+<g transform="translate(76, 18)">
+<g class="anim-bounce" style="animation-delay: -0.3s;">
+<rect x="0" y="-7" width="6" height="14" rx="3" fill="#6366f1" opacity="0.7"/>
+</g>
+</g>
+<g transform="translate(87, 18)">
+<g class="anim-bounce" style="animation-delay: -0.6s;">
+<rect x="0" y="-12" width="6" height="24" rx="3" fill="#0ea5e9" opacity="0.9"/>
+</g>
+</g>
+<g transform="translate(98, 18)">
+<g class="anim-bounce" style="animation-delay: -0.9s;">
+<rect x="0" y="-6" width="6" height="12" rx="3" fill="#6366f1" opacity="0.7"/>
+</g>
+</g>
+<g transform="translate(109, 18)">
+<g class="anim-bounce" style="animation-delay: -1.2s;">
+<rect x="0" y="-9" width="6" height="18" rx="3" fill="#f43f5e" opacity="0.8"/>
+</g>
+</g>
+</g>
+
+<!-- Person icon left -->
+<g transform="translate(52, 185)">
+<circle cx="16" cy="8" r="8" fill="#6366f1" opacity="0.85"/>
+<path d="M0 34 C0 24 32 24 32 34" fill="#6366f1" opacity="0.85"/>
+</g>
+
+<!-- Person icon right -->
+<g transform="translate(296, 185)">
+<circle cx="16" cy="8" r="8" fill="#f43f5e" opacity="0.85"/>
+<path d="M0 34 C0 24 32 24 32 34" fill="#f43f5e" opacity="0.85"/>
+</g>
+
+<!-- Rotating gear/ring around center engine -->
+<g transform="translate(168, 105)">
+<g class="anim-rotate" style="transform-origin: 200px 137px;">
+<circle cx="32" cy="32" r="30" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 5" opacity="0.18"/>
+</g>
+</g>
+
+</svg>

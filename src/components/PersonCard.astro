@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  qualification?: string;
+  area?: string;
+  email?: string;
+  page?: string;
+  labs?: string[];
+}
+
+const { name, role, qualification, area, email, page, labs } = Astro.props;
+---
+
+<div class="person-card">
+  <div class="person-card__name">
+    {page ? <a href={page} target="_blank" rel="noopener noreferrer">{name}</a> : name}
+  </div>
+  <div class="person-card__role">{role}</div>
+  {qualification && <div class="person-card__qualification">{qualification}</div>}
+  {area && <div class="person-card__area">{area}</div>}
+  {email && <div class="person-card__email">{email}</div>}
+  {labs && labs.length > 0 && <div class="person-card__lab">{labs.join(', ')}</div>}
+</div>

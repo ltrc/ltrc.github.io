@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const labs = await getCollection('labs');
+---
+
+<Base title="Research" description="Research at LTRC spans machine translation, NLP, speech processing, and information retrieval.">
+
+  <section class="page-header">
+    <div class="container">
+      <nav class="page-header__breadcrumb">
+        <a href="/">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <span>Research</span>
+      </nav>
+      <h1>Research</h1>
+      <p>LTRC conducts research on both basic and applied aspects of language technology across four specialized labs.</p>
+    </div>
+  </section>
+
+  <section class="research-areas" style="padding-top: 64px;">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Research Areas across Labs</h2>
+      </div>
+
+      {labs.map((lab) => (
+        lab.data.research_areas && lab.data.research_areas.length > 0 && (
+          <div style="margin-bottom: 48px;">
+            <h3 style="font-size: 1.25rem; margin-bottom: 16px;">
+              <a href={`/labs/${lab.data.slug}`} style="color: var(--color-primary); border-bottom: 2px solid var(--color-accent); padding-bottom: 2px;">
+                {lab.data.name}
+              </a>
+            </h3>
+            <div class="research-list">
+              {lab.data.research_areas.map((area) => (
+                <div class="research-list__item">
+                  <h3>{area.title}</h3>
+                  <p>{area.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ))}
+
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="/research/publications" class="btn btn--primary">View Publications</a>
+        <a href="/research/projects" class="btn btn--outline" style="margin-left: 12px;">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

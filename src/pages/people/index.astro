@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PersonCard from '../../components/PersonCard.astro';
+
+const peopleEntries = await getCollection('people');
+const allMembers = peopleEntries[0].data.members;
+
+const categories = [
+  { type: 'faculty', label: 'Faculty', href: '/people/faculty' },
+  { type: 'staff', label: 'Staff', href: '/people/staff' },
+  { type: 'phd', label: 'PhD Students', href: '/people/phd' },
+  { type: 'ms', label: 'MS Students', href: '/people/ms' },
+  { type: 'btech', label: 'BTech Students', href: '/people/btech' },
+  { type: 'alumni', label: 'Alumni', href: '/people/alumni' },
+];
+
+const grouped = categories
+  .map((cat) => ({
+    ...cat,
+    members: allMembers.filter((m) => m.type === cat.type),
+  }))
+  .filter((cat) => cat.members.length > 0);
+---
+
+<Base title="People" description="Faculty, researchers, students, and staff at LTRC, IIIT Hyderabad.">
+
+  <section class="page-header">
+    <div class="container">
+      <nav class="page-header__breadcrumb">
+        <a href="/">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <span>People</span>
+      </nav>
+      <h1>People</h1>
+      <p>Faculty, researchers, students, and staff at the Language Technologies Research Centre, IIIT Hyderabad.</p>
+    </div>
+  </section>
+
+  <section style="padding: 64px 0 80px;">
+    <div class="container">
+      <nav class="people-nav">
+        {grouped.map((cat) => (
+          <a href={cat.href} class="people-nav__link">
+            {cat.label}
+            <span class="people-nav__count">{cat.members.length}</span>
+          </a>
+        ))}
+      </nav>
+
+      {grouped.map((cat) => (
+        <div id={cat.type} style="margin-bottom: 48px;">
+          <div class="people-section-header">
+            <h2>{cat.label}</h2>
+            <a href={cat.href} class="events__view-all">View all</a>
+          </div>
+          <div class="people-grid">
+            {cat.members.slice(0, 6).map((person) => (
+              <PersonCard {...person} />
+            ))}
+          </div>
+          {cat.members.length > 6 && (
+            <div style="margin-top: 16px;">
+              <a href={cat.href} style="color: var(--color-accent); font-size: 0.875rem; font-weight: 500;">
+                + {cat.members.length - 6} more
+              </a>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Base>

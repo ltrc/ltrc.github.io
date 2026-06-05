@@ -1,0 +1,48 @@
+heading: "News"
+description: "Latest news and updates from LTRC."
+
+items:
+  - title: "LTRC Launches BhashaVerse Translation Models"
+    date: "2024-12-07"
+    description: "To mark its Silver Jubilee, LTRC launched free-to-download BhashaVerse language resources and machine translation models. The multitask encoder-decoder model can translate across 36 Indian languages including Tulu, Bodo, Bhojpuri, Magahi, and Santhali."
+    category: "Release"
+
+  - title: "LTRC Celebrates Silver Jubilee"
+    date: "2024-12-06"
+    description: "Language Technologies Research Centre celebrated 25 years of completion with a two-day event featuring talks and panel discussions on the vision, mission, evolution and future of language technologies."
+    category: "Event"
+
+  - title: "BhashaVerse LLM Decoder Model Released"
+    date: "2024-12-07"
+    description: "LTRC announced the development of BhashaVerse LLM decoder model for 36 Indian languages for summarisations, Q&A and more. Also released 10 billion Bhashik datasets for Indian language pairs."
+    category: "Release"
+
+  - title: "IIITH Researchers Develop Hinglish NLP Tool"
+    date: "2024-06-15"
+    description: "IIITH researchers developed first-of-its-kind Hinglish code-mixed data NLP tool, advancing capabilities in processing mixed-language text common in Indian social media."
+    category: "Research"
+
+  - title: "IIIT-H Students Shine at World-Class NLP Conference"
+    date: "2024-05-20"
+    description: "Students from LTRC presented multiple research papers at ACL and other top NLP conferences, contributing to advancing the state-of-the-art in machine translation and NLP."
+    category: "Achievement"
+
+  - title: "Speech-to-Speech Translation Platform Launched"
+    date: "2024-03-01"
+    description: "Speech-to-Speech translation and performance measurement platform created for broadcast speeches and talks, as part of the MeiTy-funded National Language Translation Mission (Bhashini)."
+    category: "Project"
+
+  - title: "Stutter Detection Platform for AIISH"
+    date: "2023-09-15"
+    description: "LTRC created a stutter detection platform for the All India Institute of Speech and Hearing, Mysore, applying speech processing research to clinical applications."
+    category: "Project"
+
+  - title: "IndicWiki Project Launch"
+    date: "2023-06-01"
+    description: "IndicWiki project launched to create encyclopaedic content in various Indian languages, leveraging machine translation and NLP technologies developed at LTRC."
+    category: "Project"
+
+  - title: "Swayam Courses Translated into 8 Languages"
+    date: "2022-12-01"
+    description: "80 Swayam courses were transcribed, translated and subtitled into 8 Indian languages, making educational content accessible to a wider audience."
+    category: "Project"

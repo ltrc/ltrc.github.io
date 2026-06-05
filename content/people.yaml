@@ -1,0 +1,232 @@
+heading: "People"
+description: "Faculty, researchers, students, and staff at the Language Technologies Research Centre, IIIT Hyderabad."
+
+members:
+  # ── Faculty ──
+  - name: "Vasudeva Varma"
+    type: faculty
+    role: "Professor & Centre Head"
+    qualification: "Ph.D (University of Hyderabad)"
+    area: "Information Retrieval, Social Media Analysis, Semantic Search, Cloud Computing"
+    email: "vv@iiit.ac.in"
+    page: "https://irel.iiit.ac.in/vasu/bio.html"
+    labs: ["IREL"]
+
+  - name: "Rajeev Sangal"
+    type: faculty
+    role: "Professor"
+    qualification: "Ph.D (University of Pennsylvania)"
+    area: "Natural Language Processing, Artificial Intelligence, Machine Translation, Speech Processing"
+    email: "sangal@iiit.ac.in"
+    page: "https://www.iiit.ac.in/people/faculty/Rajeev.Sangal/"
+    labs: ["MT-NLP Lab", "Anusaaraka Lab"]
+
+  - name: "Dipti Misra Sharma"
+    type: faculty
+    role: "Professor Emeritus"
+    qualification: "Ph.D (University of Delhi)"
+    area: "Machine Translation, Linguistics"
+    email: "dipti@iiit.ac.in"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Ponnurangam Kumaraguru"
+    type: faculty
+    role: "Professor"
+    qualification: "Ph.D (Carnegie Mellon University)"
+    area: "Responsible & Safe AI, Applied Machine Learning, Graph Theory, Data Science, NLP"
+    email: "pk.guru@iiit.ac.in"
+    page: "https://www.iiit.ac.in/faculty/ponnurangam-kumaraguru/"
+    labs: ["IREL"]
+
+  - name: "Radhika Mamidi"
+    type: faculty
+    role: "Associate Professor"
+    qualification: "Ph.D (University of Hyderabad)"
+    area: "Computational Morphology, Machine Translation, Dialog Systems, Pragmatics, Humour Studies"
+    email: "radhika.mamidi@iiit.ac.in"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Rajakrishnan P Rajkumar"
+    type: faculty
+    role: "Associate Professor"
+    qualification: "Ph.D (The Ohio State University)"
+    area: "Computational Linguistics"
+    email: "raja@iiit.ac.in"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Anil Kumar Vuppala"
+    type: faculty
+    role: "Professor"
+    qualification: "Ph.D (IIT Kharagpur)"
+    area: "Speech Recognition, Speaker Recognition, Language Identification, Emotion & Pathological Speech Processing"
+    email: "anil.vuppala@iiit.ac.in"
+    page: "https://sites.google.com/view/welcome-to-anils-world/Home"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Manish Shrivastava"
+    type: faculty
+    role: "Assistant Professor"
+    qualification: "Ph.D (IIT Bombay)"
+    area: "Natural Language Processing, Machine Learning, Machine Translation, NLP for Indian Languages"
+    email: "m.shrivastava@iiit.ac.in"
+    page: "https://www.iiit.ac.in/faculty/manish-shrivastava/"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Parameswari Krishnamurthy"
+    type: faculty
+    role: "Assistant Professor"
+    qualification: "Ph.D (University of Hyderabad)"
+    area: "Computational Linguistics & Machine Translation, Divergence Studies, Computational Morphology, Syntactic and Semantic Parsing"
+    email: "param.krishna@iiit.ac.in"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Chiranjeevi Yarra"
+    type: faculty
+    role: "Assistant Professor"
+    qualification: "Ph.D (IISc, Bangalore)"
+    area: "Speech Processing"
+    email: "chiranjeevi.yarra@iiit.ac.in"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Rahul Mishra"
+    type: faculty
+    role: "Assistant Professor"
+    qualification: "Ph.D (University of Stavanger, Norway)"
+    area: "NLP, Representation Learning, Information Retrieval"
+    email: "rahul.mishra@iiit.ac.in"
+    labs: ["IREL"]
+
+  - name: "Vineet Chaitanya"
+    type: faculty
+    role: "Distinguished Faculty"
+    qualification: "Ph.D (IIT Kanpur)"
+    area: "Language Translation, NLP for Indian Languages, Intellectual Traditions of India, Vedanta"
+    email: "vc@iiit.net"
+    labs: ["Anusaaraka Lab"]
+
+  # ── Adjunct & Visiting Faculty ──
+  - name: "Aditi Mukherjee"
+    type: faculty
+    role: "Visiting Faculty"
+    qualification: "Ph.D (University of Delhi)"
+
+  - name: "Bharat Ram Ambati"
+    type: faculty
+    role: "Adjunct Faculty"
+    qualification: "Ph.D (University of Edinburgh)"
+    area: "Syntactic Parsing, CCG Parsing, Neural Network Models, Speech Recognition and TTS"
+
+  - name: "Kishore S Prahallad"
+    type: faculty
+    role: "Adjunct Faculty"
+    qualification: "Ph.D (Carnegie Mellon University)"
+    area: "Text-to-Speech, Voice Conversion, Speaker Recognition"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Manish Gupta"
+    type: faculty
+    role: "Adjunct Faculty"
+    qualification: "Ph.D (University of Illinois)"
+    area: "Web Mining, Data Mining, Databases, Algorithms"
+    email: "gmanish@microsoft.com"
+    labs: ["IREL"]
+
+  - name: "Niyati Chhaya"
+    type: faculty
+    role: "Adjunct Faculty"
+    qualification: "Ph.D (University of Maryland Baltimore County)"
+    area: "Effective Computing, Computational Linguistics, NLP, Machine Learning"
+
+  - name: "Peter M Scharf"
+    type: faculty
+    role: "Visiting Faculty"
+    qualification: "Ph.D (University of Pennsylvania)"
+    area: "Linguistic and Philosophical Traditions of India"
+    email: "scharf@brown.edu"
+    labs: ["Anusaaraka Lab"]
+
+  - name: "Sandipan Dandapat"
+    type: faculty
+    role: "Adjunct Faculty"
+    qualification: "Ph.D (Dublin City University, Ireland)"
+    area: "Natural Language Processing, Large Language Models, Artificial Intelligence"
+
+  # ── Staff ──
+  - name: "Anil Singh"
+    type: staff
+    role: "Research Scientist/Engineer"
+    email: "anil.singh@iiit.ac.in"
+
+  # ── PhD Students ──
+  - name: "Saumitra Yadav"
+    type: phd
+    role: "Research Scholar"
+    area: "Machine Translation, Low-Resource NLP"
+    labs: ["MT-NLP Lab"]
+    page: "https://researchweb.iiit.ac.in/~saumitra.yadav/"
+
+  - name: "Vandan Mujadia"
+    type: phd
+    role: "Researcher"
+    area: "Machine Translation, BhashaVerse"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Arafat Ahsan"
+    type: phd
+    role: "Researcher"
+    area: "Machine Translation Evaluation"
+    labs: ["MT-NLP Lab"]
+
+  # ── Alumni ──
+  - name: "Prashanth Mannem"
+    type: alumni
+    role: "Past Faculty / Past Lecturer"
+
+  - name: "Sriram Venkatapathy"
+    type: alumni
+    role: "Past Faculty"
+
+  - name: "Prasad Pingali"
+    type: alumni
+    role: "Alumni"
+    area: "CEO, Borderfree Financial"
+
+  - name: "Mounika Marreddy"
+    type: alumni
+    role: "Alumni"
+    area: "Postdoc, University of Bonn"
+
+  - name: "Sai Ganesh"
+    type: alumni
+    role: "Alumni"
+    area: "Sony Research India"
+
+  - name: "Divya Sai Jitta"
+    type: alumni
+    role: "Alumni"
+    area: "Shell"
+
+  - name: "Bhavyajeet Singh"
+    type: alumni
+    role: "Alumni"
+    area: "Microsoft"
+
+  - name: "Siva Reddy"
+    type: alumni
+    role: "Alumni"
+    area: "Assistant Professor, McGill University"
+
+  - name: "Anoop Kunchukuttan"
+    type: alumni
+    role: "Alumni"
+    area: "Microsoft, AI4Bharat"
+
+  - name: "Monojit Choudhury"
+    type: alumni
+    role: "Alumni"
+    area: "MBZUAI"
+
+  - name: "Mitesh Khapra"
+    type: alumni
+    role: "Alumni"
+    area: "Associate Professor, IIT Madras"

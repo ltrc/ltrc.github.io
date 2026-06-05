@@ -1,0 +1,62 @@
+name: "MT-NLP Lab"
+slug: mt-nlp
+tagline: "Machine Translation and Natural Language Processing"
+description: "We work on building intelligent systems that understand, interpret and generate human language."
+icon: "mt-nlp"
+
+overview:
+  about: |
+    The MT-NLP Lab at LTRC, IIIT-H, focuses on a wide range of NLP problems including syntax and parsing, semantics, discourse processing, machine translation, and computational models inspired by linguistics and machine learning.
+
+    We also develop resources and tools for Indian languages and contribute to open-source NLP ecosystem.
+  highlights:
+    - "Developing computational models for Indian languages"
+    - "Semantic parsing and discourse representation"
+    - "Treebank and annotation tool development"
+    - "English to Indian languages machine translation"
+
+research_areas:
+  - title: "Syntax and Parsing"
+    description: "Development of Computational Paninian Grammar (CPG) framework for Indian languages. Using such a framework, treebanks for Indian languages have been developed providing rich testbeds for studying language in actual use."
+  - title: "Semantics and Word Sense Disambiguation"
+    description: "Developing semantic PurposeNet, semantic category assigners, identifying semantic relations in nominals and more."
+  - title: "Discourse Processing"
+    description: "Development of discourse treebank and dialog processing systems for understanding language beyond the sentence level."
+  - title: "Machine Translation"
+    description: "Research on English to Hindi MT as well as MT from one Indian language to another. Led the development of Sampark Machine Translation Systems among 9 Indian languages in 18 directions."
+  - title: "BhashaVerse"
+    description: "A multitask encoder-decoder model that can translate across 36 Indian languages including Tulu, Bodo, Bhojpuri, Magahi, Santhali and more. Supports machine translation evaluation, error identification and automatic post editing."
+
+projects:
+  - title: "Sampark (ILMT)"
+    description: "A multipart machine translation system developed with the combined efforts of 11 institutions under the Indian Language to Indian Language Machine Translation consortium funded by TDIL, Govt. of India."
+    status: "Completed"
+  - title: "BhashaVerse"
+    description: "Multilingual, multi-task encoder-decoder model supporting 36 Indian languages for translation, grammar correction, error identification, and automatic post editing of 10 billion sentence pairs."
+    status: "Active"
+  - title: "Bhashini (National Language Translation Mission)"
+    description: "Speech-to-Speech Machine Translation Project of Indian languages, HiMangY, led by IIITH. A pipeline comprising automatic speech recognition, machine translation and text-to-speech."
+    status: "Active"
+  - title: "IndicWiki"
+    description: "Project to create encyclopaedic content in various Indian languages."
+    status: "Active"
+
+publications:
+  - title: "BhashaVerse: Translation Ecosystem for Indian Subcontinent Languages"
+    authors: "V. Mujadia and D. M. Sharma"
+    venue: "2025"
+  - title: "Segmentation Beyond Defaults: Asymmetrical Byte Pair Encoding for Optimal Machine Translation Performance"
+    authors: "S. Yadav and M. Shrivastava"
+    venue: "WAT 2025"
+  - title: "Pivot Based Evaluation in Low Resource Setting"
+    authors: "A. Mukherjee, S. Yadav and M. Shrivastava"
+    venue: "COLING 2025"
+  - title: "Phrase-Based SMT and Multi-BPE Segmentations for Low-Resource Indian Languages"
+    authors: "S. Yadav and M. Shrivastava"
+    venue: "WMT 2025"
+  - title: "Significance of Chain of Thought in Gender Bias Mitigation for English-Dravidian Machine Translation"
+    authors: "LTRC, IIIT Hyderabad"
+    venue: "2024"
+  - title: "CoST of Breaking the LLMs"
+    authors: "A. Mukherjee, S. Yadav and M. Shrivastava"
+    venue: "WMT 2024"
