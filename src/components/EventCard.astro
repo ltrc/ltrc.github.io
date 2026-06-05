@@ -1,0 +1,33 @@
+---
+interface Props {
+  month: string;
+  day: string;
+  title: string;
+  description: string;
+  subtitle?: string;
+  venue?: string;
+  link?: string;
+}
+
+const { month, day, title, description, subtitle, venue, link } = Astro.props;
+---
+
+<div class="event-card">
+  <div class="event-card__top">
+    <div class="event-card__date">
+      <span class="event-card__month">{month}</span>
+      <span class="event-card__day">{day}</span>
+    </div>
+    <div class="event-card__info">
+      <h3>{title}</h3>
+      {subtitle && <p style="color: var(--color-accent); font-weight: 500; margin-bottom: 4px;">{subtitle}</p>}
+      <p>{description}</p>
+    </div>
+  </div>
+  {venue && <p class="event-card__meta">{venue}</p>}
+  {link && (
+    <a href={link} class="event-card__details" target="_blank" rel="noopener noreferrer">
+      Learn more
+    </a>
+  )}
+</div>

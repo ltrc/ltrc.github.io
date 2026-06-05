@@ -1,32 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PubCard from '../../components/PubCard.astro';
 
 const labs = await getCollection('labs');
-const allPubs = labs.flatMap((lab) =>
-  (lab.data.publications || []).map((pub) => ({
-    ...pub,
-    lab: lab.data.name,
-    labSlug: lab.data.slug,
-  }))
-);
 ---
 
 <Base title="Publications" description="Research publications from LTRC labs at IIIT Hyderabad.">
 
-  <section class="page-header">
-    <div class="container">
-      <nav class="page-header__breadcrumb">
-        <a href="/">Home</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        <a href="/research">Research</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        <span>Publications</span>
-      </nav>
-      <h1>Publications</h1>
-      <p>Selected research publications from LTRC labs. Papers have been published at ACL, EMNLP, NAACL, COLING, AAAI, CIKM and more.</p>
-    </div>
-  </section>
+  <PageHeader
+    title="Publications"
+    description="Selected research publications from LTRC labs. Papers have been published at ACL, EMNLP, NAACL, COLING, AAAI, CIKM and more."
+    breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Research', href: '/research' }, { label: 'Publications' }]}
+  />
 
   <section style="padding: 64px 0 80px;">
     <div class="container">
@@ -38,11 +25,7 @@ const allPubs = labs.flatMap((lab) =>
             </h2>
             <div class="lab-publications__list">
               {lab.data.publications.map((pub) => (
-                <div class="pub-card">
-                  <div class="pub-card__title">{pub.title}</div>
-                  <div class="pub-card__authors">{pub.authors}</div>
-                  <div class="pub-card__venue">{pub.venue}</div>
-                </div>
+                <PubCard {...pub} />
               ))}
             </div>
           </div>

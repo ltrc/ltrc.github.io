@@ -1,25 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 
 const labs = await getCollection('labs');
 ---
 
 <Base title="Projects" description="Research projects at LTRC, IIIT Hyderabad.">
 
-  <section class="page-header">
-    <div class="container">
-      <nav class="page-header__breadcrumb">
-        <a href="/">Home</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        <a href="/research">Research</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        <span>Projects</span>
-      </nav>
-      <h1>Projects</h1>
-      <p>Major research and development projects across LTRC labs.</p>
-    </div>
-  </section>
+  <PageHeader
+    title="Projects"
+    description="Major research and development projects across LTRC labs."
+    breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Research', href: '/research' }, { label: 'Projects' }]}
+  />
 
   <section style="padding: 64px 0 80px;">
     <div class="container">
@@ -31,17 +25,7 @@ const labs = await getCollection('labs');
             </h2>
             <div class="projects-list">
               {lab.data.projects.map((project) => (
-                <div class="project-card">
-                  <div class="project-card__header">
-                    <h3>{project.title}</h3>
-                    {project.status && (
-                      <span class:list={['project-card__status', { 'project-card__status--active': project.status === 'Active' }]}>
-                        {project.status}
-                      </span>
-                    )}
-                  </div>
-                  <p>{project.description}</p>
-                </div>
+                <ProjectCard {...project} />
               ))}
             </div>
           </div>

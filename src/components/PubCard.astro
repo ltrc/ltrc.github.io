@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  authors: string;
+  venue: string;
+}
+
+const { title, authors, venue } = Astro.props;
+---
+
+<div class="pub-card">
+  <div class="pub-card__title">{title}</div>
+  <div class="pub-card__authors">{authors}</div>
+  <div class="pub-card__venue">{venue}</div>
+</div>

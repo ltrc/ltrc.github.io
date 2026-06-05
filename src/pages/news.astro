@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 const newsEntries = await getCollection('news');
 const news = newsEntries[0].data;
@@ -8,17 +9,11 @@ const news = newsEntries[0].data;
 
 <Base title="News" description="Latest news and updates from LTRC, IIIT Hyderabad.">
 
-  <section class="page-header">
-    <div class="container">
-      <nav class="page-header__breadcrumb">
-        <a href="/">Home</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        <span>News</span>
-      </nav>
-      <h1>{news.heading}</h1>
-      <p>{news.description}</p>
-    </div>
-  </section>
+  <PageHeader
+    title={news.heading}
+    description={news.description}
+    breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'News' }]}
+  />
 
   <section style="padding: 64px 0 80px;">
     <div class="container">

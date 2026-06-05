@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import EventCard from '../components/EventCard.astro';
 
 const eventsEntries = await getCollection('events');
 const events = eventsEntries[0].data;
@@ -8,17 +10,11 @@ const events = eventsEntries[0].data;
 
 <Base title="Events" description="Conferences, workshops, summer schools, and talks at LTRC.">
 
-  <section class="page-header">
-    <div class="container">
-      <nav class="page-header__breadcrumb">
-        <a href="/">Home</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        <span>Events</span>
-      </nav>
-      <h1>{events.heading}</h1>
-      <p>{events.description}</p>
-    </div>
-  </section>
+  <PageHeader
+    title={events.heading}
+    description={events.description}
+    breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Events' }]}
+  />
 
   <section style="padding: 64px 0 80px;">
     <div class="container">
@@ -27,25 +23,7 @@ const events = eventsEntries[0].data;
           <h2 style="font-size: 1.375rem; margin-bottom: 24px;">Upcoming Events</h2>
           <div class="events-list">
             {events.upcoming.map((event) => (
-              <div class="event-card" style="margin-bottom: 16px;">
-                <div class="event-card__top">
-                  <div class="event-card__date">
-                    <span class="event-card__month">{event.month}</span>
-                    <span class="event-card__day">{event.day}</span>
-                  </div>
-                  <div class="event-card__info">
-                    <h3>{event.title}</h3>
-                    {event.subtitle && <p style="color: var(--color-accent); font-weight: 500; margin-bottom: 4px;">{event.subtitle}</p>}
-                    <p>{event.description}</p>
-                  </div>
-                </div>
-                {event.venue && <p class="event-card__meta">{event.venue}</p>}
-                {event.link && (
-                  <a href={event.link} class="event-card__details" target="_blank" rel="noopener noreferrer">
-                    Learn more
-                  </a>
-                )}
-              </div>
+              <EventCard {...event} />
             ))}
           </div>
         </>
@@ -56,25 +34,7 @@ const events = eventsEntries[0].data;
           <h2 style="font-size: 1.375rem; margin-bottom: 24px; margin-top: 48px;">Past Events</h2>
           <div class="events-list">
             {events.past.map((event) => (
-              <div class="event-card" style="margin-bottom: 16px;">
-                <div class="event-card__top">
-                  <div class="event-card__date">
-                    <span class="event-card__month">{event.month}</span>
-                    <span class="event-card__day">{event.day}</span>
-                  </div>
-                  <div class="event-card__info">
-                    <h3>{event.title}</h3>
-                    {event.subtitle && <p style="color: var(--color-accent); font-weight: 500; margin-bottom: 4px;">{event.subtitle}</p>}
-                    <p>{event.description}</p>
-                  </div>
-                </div>
-                {event.venue && <p class="event-card__meta">{event.venue}</p>}
-                {event.link && (
-                  <a href={event.link} class="event-card__details" target="_blank" rel="noopener noreferrer">
-                    Learn more
-                  </a>
-                )}
-              </div>
+              <EventCard {...event} />
             ))}
           </div>
         </>

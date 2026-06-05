@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  status?: string;
+}
+
+const { title, description, status } = Astro.props;
+---
+
+<div class="project-card">
+  <div class="project-card__header">
+    <h3>{title}</h3>
+    {status && (
+      <span class:list={['project-card__status', { 'project-card__status--active': status === 'Active' }]}>
+        {status}
+      </span>
+    )}
+  </div>
+  <p>{description}</p>
+</div>

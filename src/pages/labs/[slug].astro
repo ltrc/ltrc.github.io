@@ -7,6 +7,9 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import PubCard from '../../components/PubCard.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const entries = await getCollection('labs');
@@ -157,11 +160,7 @@ const tabs = [
                 </div>
                 <div class="lab-publications__list">
                   {data.publications.slice(0, 3).map((pub) => (
-                    <div class="pub-card">
-                      <div class="pub-card__title">{pub.title}</div>
-                      <div class="pub-card__authors">{pub.authors}</div>
-                      <div class="pub-card__venue">{pub.venue}</div>
-                    </div>
+                    <PubCard {...pub} />
                   ))}
                 </div>
               </div>
@@ -193,17 +192,7 @@ const tabs = [
               </div>
               <div class="projects-list">
                 {data.projects.map((project) => (
-                  <div class="project-card">
-                    <div class="project-card__header">
-                      <h3>{project.title}</h3>
-                      {project.status && (
-                        <span class:list={['project-card__status', { 'project-card__status--active': project.status === 'Active' }]}>
-                          {project.status}
-                        </span>
-                      )}
-                    </div>
-                    <p>{project.description}</p>
-                  </div>
+                  <ProjectCard {...project} />
                 ))}
               </div>
             </div>
@@ -217,11 +206,7 @@ const tabs = [
               </div>
               <div class="lab-publications__list">
                 {data.publications.map((pub) => (
-                  <div class="pub-card">
-                    <div class="pub-card__title">{pub.title}</div>
-                    <div class="pub-card__authors">{pub.authors}</div>
-                    <div class="pub-card__venue">{pub.venue}</div>
-                  </div>
+                  <PubCard {...pub} />
                 ))}
               </div>
             </div>
@@ -237,13 +222,7 @@ const tabs = [
                   </div>
                   <div class="people-grid">
                     {labFaculty.map((person) => (
-                      <div class="person-card">
-                        <div class="person-card__name">
-                          {person.page ? <a href={person.page} target="_blank" rel="noopener noreferrer">{person.name}</a> : person.name}
-                        </div>
-                        <div class="person-card__role">{person.role}</div>
-                        {person.area && <div class="person-card__area">{person.area}</div>}
-                      </div>
+                      <PersonCard {...person} />
                     ))}
                   </div>
                 </>
@@ -256,13 +235,7 @@ const tabs = [
                   </div>
                   <div class="people-grid">
                     {labStudents.map((person) => (
-                      <div class="person-card">
-                        <div class="person-card__name">
-                          {person.page ? <a href={person.page} target="_blank" rel="noopener noreferrer">{person.name}</a> : person.name}
-                        </div>
-                        <div class="person-card__role">{person.role}</div>
-                        {person.area && <div class="person-card__area">{person.area}</div>}
-                      </div>
+                      <PersonCard {...person} />
                     ))}
                   </div>
                 </>
