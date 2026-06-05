@@ -663,6 +663,7 @@ p {
   border-radius: var(--radius-sm);
   overflow: hidden;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .event-card__month {
@@ -673,6 +674,10 @@ p {
   font-weight: 600;
   padding: 3px 8px;
   letter-spacing: 0.03em;
+}
+
+[data-theme="dark"] .event-card__month {
+  color: #0D1117;
 }
 
 .event-card__day {
