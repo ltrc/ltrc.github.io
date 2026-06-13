@@ -8,8 +8,10 @@
 }
 
 :root {
-  --color-primary: #0a2547;
+  --color-primary: #002452;
   --color-primary-light: #1a4d8f;
+  --color-navy-grad-top: #0a3a72;
+  --color-navy-grad-bottom: #001834;
   --color-primary-lighter: #2e6fc4;
   --color-accent: #2e6fc4;
   --color-accent-light: #5b9bd5;
@@ -25,7 +27,7 @@
   --color-border-light: #dce6f3;
   --color-white: #ffffff;
 
-  --color-footer-bg: #0a2547;
+  --color-footer-bg: #002452;
   --color-footer-text: #ffffff;
 
   --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -274,6 +276,96 @@ p {
 
 [data-theme="dark"] .theme-toggle__moon { display: block; }
 [data-theme="dark"] .theme-toggle__sun { display: none; }
+
+/* ── Institute Top Bar ── */
+.topbar {
+  background: #002452;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 42px;
+}
+
+.topbar__home {
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.62);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s;
+}
+
+.topbar__home:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.topbar__socials {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.82);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.topbar__socials a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.topbar__socials svg {
+  width: 13px;
+  height: 13px;
+}
+
+.topbar__contact {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.topbar__contact:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 640px) {
+  .topbar__home {
+    display: none;
+  }
+  .topbar__inner {
+    justify-content: flex-end;
+  }
+}
 
 /* ── Navigation ── */
 .site-header {
@@ -589,7 +681,7 @@ p {
   position: relative;
   background:
     radial-gradient(120% 80% at 100% 0%, rgba(46, 111, 196, 0.45), transparent 60%),
-    linear-gradient(165deg, #0c2a52, #081d3a);
+    linear-gradient(165deg, var(--color-navy-grad-top), var(--color-navy-grad-bottom));
   color: #fff;
   padding: 40px 38px;
   border-radius: 8px 40px 8px 40px;
@@ -1057,7 +1149,7 @@ p {
 .lab-hero {
   background:
     radial-gradient(100% 130% at 100% 0%, rgba(46, 111, 196, 0.42), transparent 55%),
-    linear-gradient(150deg, #0c2a52, #081d3a);
+    linear-gradient(150deg, var(--color-navy-grad-top), var(--color-navy-grad-bottom));
   color: #FFFFFF;
   padding: 44px 0 56px;
 }
@@ -1594,7 +1686,7 @@ p {
 .page-header {
   background:
     radial-gradient(100% 130% at 100% 0%, rgba(46, 111, 196, 0.42), transparent 55%),
-    linear-gradient(150deg, #0c2a52, #081d3a);
+    linear-gradient(150deg, var(--color-navy-grad-top), var(--color-navy-grad-bottom));
   color: #FFFFFF;
   padding: 64px 0 72px;
 }
@@ -2030,7 +2122,7 @@ p {
   flex-wrap: wrap;
   background:
     radial-gradient(120% 140% at 100% 0%, rgba(46, 111, 196, 0.45), transparent 55%),
-    linear-gradient(150deg, #0c2a52, #081d3a);
+    linear-gradient(150deg, var(--color-navy-grad-top), var(--color-navy-grad-bottom));
   color: #fff;
   padding: 56px;
   border-radius: 16px 48px 16px 48px;
