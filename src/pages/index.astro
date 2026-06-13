@@ -62,7 +62,7 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
   <!-- Labs -->
   <section class="home-section home-section--surface">
     <div class="container">
-      <SectionHeader kicker="Research labs" title="Where the work happens" linkHref="/labs" linkLabel="All labs" />
+      <SectionHeader title="Where the work happens" linkHref="/labs" linkLabel="All labs" />
       <div class="lab-cards">
         {labs.map((lab) => (
           <a href={`/labs/${lab.data.slug}`} class="lab-card-home">
@@ -85,7 +85,7 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
   <!-- News -->
   <section class="home-section">
     <div class="container">
-      <SectionHeader kicker="Latest" title="News & updates" linkHref="/news" linkLabel="All news" />
+      <SectionHeader title="News & updates" linkHref="/news" linkLabel="All news" />
       <div class="news-feed">
         {recentNews.map((item) => (
           <a href="/news" class="news-feed__item">
@@ -104,7 +104,7 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
   <!-- People -->
   <section class="home-section home-section--surface">
     <div class="container">
-      <SectionHeader kicker="The people" title="Faculty & researchers" linkHref="/people" linkLabel="All people" />
+      <SectionHeader title="Faculty & researchers" linkHref="/people" linkLabel="All people" />
       <p class="home-section__lead">
         A community of {facultyCount} faculty and {studentCount} research students working across our labs.
       </p>
@@ -126,7 +126,7 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
   {upcomingEvents.length > 0 && (
     <section class="home-section">
       <div class="container">
-        <SectionHeader kicker="What's on" title="Upcoming events" linkHref="/events" linkLabel="All events" />
+        <SectionHeader title="Upcoming events" linkHref="/events" linkLabel="All events" />
         <div class="event-cards">
           {upcomingEvents.map((event) => (
             <article class="event-tile">
@@ -158,7 +158,6 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
     <div class="container">
       <div class="home-cta__panel">
         <div class="home-cta__text">
-          <span class="kicker kicker--light">Join us</span>
           <h2>Interested in language technology?</h2>
           <p>Explore our research, meet the people behind it, or get in touch with the centre.</p>
         </div>

@@ -2143,10 +2143,6 @@ p {
   max-width: 460px;
 }
 
-.kicker--light {
-  color: var(--color-accent-light);
-}
-
 .home-cta__actions {
   display: flex;
   gap: 12px;
