@@ -14,7 +14,7 @@
   --color-navy-grad-bottom: #001834;
   --color-navy: #002452;
   --color-navy-glow: rgba(46, 111, 196, 0.45);
-  --color-institute-teal: #2bb3a4;
+  --color-institute-teal: #2FBBAE;
   --color-on-navy: #ffffff;
   --color-on-primary: #ffffff;
   --color-on-gold: #1a1505;
@@ -287,65 +287,83 @@ p {
 /* ── Institute Top Bar (mirrors iiit.ac.in) ── */
 .topbar {
   background: var(--color-navy);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 101;
 }
 
 .topbar__inner {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  height: 40px;
+  gap: 20px;
+  min-height: 60px;
 }
 
-.topbar__right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Leave 6.368% empty on the right (matches the official column math) */
+@media (min-width: 768px) {
+  .topbar__inner {
+    padding-right: 6.368%;
+  }
 }
 
 .topbar__socials {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
 }
 
+/* White circle, navy glyph (Elementor: icon 12px + 0.4em padding) */
 .topbar__socials a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 21.6px;
+  height: 21.6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  color: var(--color-on-navy);
-  transition: background 0.15s;
-}
-
-.topbar__socials a:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: #ffffff;
+  color: var(--color-navy);
 }
 
 .topbar__socials svg {
-  width: 12px;
-  height: 12px;
+  width: 15.6px;
+  height: 15.6px;
+  fill: currentColor;
 }
 
 .topbar__contact {
   display: inline-flex;
   align-items: center;
-  height: 28px;
-  padding: 0 18px;
-  border-radius: 4px;
+  justify-content: center;
+  min-height: 40px;
+  padding: 12px 24px;
   background: var(--color-institute-teal);
-  color: var(--color-on-navy);
-  font-size: 0.78rem;
+  border: 2px solid var(--color-institute-teal);
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: filter 0.15s;
+  line-height: 1;
+  letter-spacing: 0.02em;
 }
 
-.topbar__contact:hover {
-  filter: brightness(1.08);
+/* Mobile: Elementor stacks the columns -> centered icons, full-width button */
+@media (max-width: 767px) {
+  .topbar__inner {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+    min-height: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .topbar__socials {
+    justify-content: center;
+  }
+  .topbar__contact {
+    width: 100%;
+  }
 }
 
 /* ── Navigation ── */
