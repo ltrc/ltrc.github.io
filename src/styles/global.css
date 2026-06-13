@@ -227,8 +227,9 @@ p {
 }
 
 [data-theme="dark"] .site-header__logo {
-  filter: invert(1);
-  opacity: 0.9;
+  background: #FFFFFF;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
 }
 
 .site-header__title {
@@ -752,8 +753,9 @@ p {
 .site-footer__brand-logo {
   max-height: 56px;
   width: auto;
-  filter: invert(1);
-  opacity: 0.9;
+  background: #FFFFFF;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
 }
 
 .site-footer__brand-name {
