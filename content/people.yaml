@@ -36,7 +36,6 @@ members:
     area: "Responsible & Safe AI, Applied Machine Learning, Graph Theory, Data Science, NLP"
     email: "pk.guru@iiit.ac.in"
     page: "https://www.iiit.ac.in/faculty/ponnurangam-kumaraguru/"
-    labs: ["IREL"]
 
   - name: "Radhika Mamidi"
     type: faculty
@@ -56,7 +55,7 @@ members:
 
   - name: "Anil Kumar Vuppala"
     type: faculty
-    role: "Professor"
+    role: "Assistant Professor"
     qualification: "Ph.D (IIT Kharagpur)"
     area: "Speech Recognition, Speaker Recognition, Language Identification, Emotion & Pathological Speech Processing"
     email: "anil.vuppala@iiit.ac.in"
@@ -94,7 +93,6 @@ members:
     qualification: "Ph.D (University of Stavanger, Norway)"
     area: "NLP, Representation Learning, Information Retrieval"
     email: "rahul.mishra@iiit.ac.in"
-    labs: ["IREL"]
 
   - name: "Vineet Chaitanya"
     type: faculty
@@ -109,12 +107,14 @@ members:
     type: faculty
     role: "Visiting Faculty"
     qualification: "Ph.D (University of Delhi)"
+    email: "aditi.mukherjee@iiit.ac.in"
 
   - name: "Bharat Ram Ambati"
     type: faculty
     role: "Adjunct Faculty"
     qualification: "Ph.D (University of Edinburgh)"
     area: "Syntactic Parsing, CCG Parsing, Neural Network Models, Speech Recognition and TTS"
+    email: "ambati@students.iiit.ac.in"
 
   - name: "Kishore S Prahallad"
     type: faculty
@@ -136,6 +136,8 @@ members:
     role: "Adjunct Faculty"
     qualification: "Ph.D (University of Maryland Baltimore County)"
     area: "Effective Computing, Computational Linguistics, NLP, Machine Learning"
+    email: "Nchhaya@adobe.com"
+    labs: ["IREL"]
 
   - name: "Peter M Scharf"
     type: faculty
@@ -150,83 +152,799 @@ members:
     role: "Adjunct Faculty"
     qualification: "Ph.D (Dublin City University, Ireland)"
     area: "Natural Language Processing, Large Language Models, Artificial Intelligence"
+    email: "sandipandandapat@gmail.com"
 
   # ── Staff ──
-  - name: "Anil Singh"
+  - name: "A. Lakshmi Narayana"
     type: staff
-    role: "Research Scientist/Engineer"
-    email: "anil.singh@iiit.ac.in"
+    role: "Office Assistant"
+
+  - name: "Kasyap"
+    type: staff
+    role: "Consultant"
+
+  - name: "Praveen"
+    type: staff
+    role: "Project Assistant"
 
   # ── PhD Students ──
-  - name: "Saumitra Yadav"
+  - name: "Purva Barche"
     type: phd
     role: "Research Scholar"
-    area: "Machine Translation, Low-Resource NLP"
-    labs: ["MT-NLP Lab"]
-    page: "https://researchweb.iiit.ac.in/~saumitra.yadav/"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "Mirishkar Sai Ganesh"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "Narasinga Vamshiraghusimha"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "KNRK Raju Alluri"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Anil Kumar Vuppala"
 
   - name: "Vandan Mujadia"
     type: phd
-    role: "Researcher"
-    area: "Machine Translation, BhashaVerse"
-    labs: ["MT-NLP Lab"]
+    role: "Research Scholar"
+    area: "Advisor: Dipti Misra Sharma"
+
+  - name: "Pruthwik Mishra"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Dipti Misra Sharma"
+
+  - name: "Alefiah Mubeen"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Kodali Prashant"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Payal Kullar"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Pushpa Yadav"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Saumitra Yadav"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Ananya Mukherjee"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Katrapati Ganesh Sasank"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Nirmal Surange"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Mounika Marreddy"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Radhika Mamidi"
+
+  - name: "Dowlagar Suman"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Radhika Mamidi"
+
+  - name: "Shastri Vaishampayan Mohapatra"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Soma Paul"
+
+  - name: "Kishori Kailasrao Pawar"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Soma Paul"
+
+  - name: "D Likith Sai"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "T. Sushmita"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Botsa Kishore Kumar"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Banothu Rambabu"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Bhima Sankar Manthina"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "P. Chandrasekhar"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Amrit Chatterjee"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Rashmi Kethireddy"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Rashmi"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Naveen N. Kulkarni"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "I Vijayasaradhi"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Savita Bhat"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Harika Abburi"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Deepthi Karnam"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Nitin Ramrakhiyani"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Parikh Pulkit Trushant Kumar"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Litton J Kurisinkel"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Patha Sreedhar"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Yegnanarayana Bayya"
+
+  - name: "P. Vishala"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Yegnanarayana Bayya"
+
+  - name: "Srinivasa Rao Chalamala"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Yegnanarayana Bayya"
+
+  - name: "Anand Joseph Xavier M"
+    type: phd
+    role: "Research Scholar"
+    area: "Advisor: Yegnanarayana Bayya"
+
+  # ── MS Students ──
+  - name: "Nayan Anand Vats"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "Ala Hema"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Dipti Misra Sharma"
 
   - name: "Arafat Ahsan"
-    type: phd
-    role: "Researcher"
-    area: "Machine Translation Evaluation"
-    labs: ["MT-NLP Lab"]
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Dipti Misra Sharma"
+
+  - name: "Urlana Ashok"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Rakesh Kumar Vemula"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Ravva Priyanka"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Mani Kanta Sai Nuthi"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Hiranmai Sri Adibhatla"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Pawan Sasanka Ammanamanchi"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Mounika K"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Dhakras Pranav Ashok"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Manish Kumar Singh"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Manish Shrivastava"
+
+  - name: "Gundapu Sunil"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Radhika Mamidi"
+
+  - name: "Haala Deeba Abbas"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Suryakanth Gangashetty"
+
+  - name: "Tushar Abhishek"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Sagar Sandeep Joshi"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Sagare Shivprasad Rajendra"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Agrawal Yash Chandrakant"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Vivek Anand"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Vasudeva Varma"
+
+  - name: "Bhanu Teja Nellore"
+    type: ms
+    role: "MS by Research"
+    area: "Advisor: Yegnanarayana Bayya"
 
   # ── Alumni ──
-  - name: "Prashanth Mannem"
+  - name: "A Vinay Bhargav Reddy"
     type: alumni
-    role: "Past Faculty / Past Lecturer"
+    role: "Alumni"
 
-  - name: "Sriram Venkatapathy"
+  - name: "Abhijeet Gupta"
     type: alumni
-    role: "Past Faculty"
+    role: "Alumni"
+
+  - name: "Abhilash Inumella"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Aditya Mogadala"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ajay Dubey"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Akshat Bakliwal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Akula Arjun Reddy"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Aman Mahajan"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Aman Kumar Bahl"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Anil Kumar Singh"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Aniruddha Tammewar"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ankit Patil"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ankush Gupta"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Arpit Sood"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ashok Vardhan"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ashwini Vaidya"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Aswarth Abhilash"
+    type: alumni
+    role: "Alumni"
+
+  - name: "B Krishna Chaitanya"
+    type: alumni
+    role: "Alumni"
+
+  - name: "B Indupriya"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Chandan Kumar"
+    type: alumni
+    role: "Alumni"
+
+  - name: "D Nithin"
+    type: alumni
+    role: "Alumni"
+
+  - name: "D V Sri Ram"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Deepti Aggarwal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Devadath Vasudevan"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Dharmesh Kakadia"
+    type: alumni
+    role: "Alumni"
+
+  - name: "G S K Chaitanya"
+    type: alumni
+    role: "Alumni"
+
+  - name: "G.R.J. Srinivas"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Gowri Dev"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Gupta Jayant"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Harshit Jain"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Hemant Sagar"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Hitesh Kumar"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Jagadeesh Jagarlamudi"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Jaideep Dhok"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Jayant Gupta"
+    type: alumni
+    role: "Alumni"
+
+  - name: "K V S Nikhil"
+    type: alumni
+    role: "Alumni"
+
+  - name: "K Sruthilaya Reddy"
+    type: alumni
+    role: "Alumni"
+
+  - name: "K Sudheer"
+    type: alumni
+    role: "Alumni"
+
+  - name: "K. Pavan Kumar"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Kalyan Deepak"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Karan Singla"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Karan Jindal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Karthik Gali"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Katkar Geeta Mallappa"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Kiran Sarvabhotla"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Kranthi Reddy"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Kula Kukeba"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Kushal Dave"
+    type: alumni
+    role: "Alumni"
+
+  - name: "M A Rafiya Begum"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Mahathi Bhagavatula"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Manish Agarwal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Manisha Verma"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Manohar Reddy"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Meher Vijay"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nadeem Moidu"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nagaraju Yedlapalli"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Navni Bhojwani"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nihar Sharma"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nikhil Priyatam"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Niraj Kumar"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nitesh Surtani"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nitesh Maheshwari"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nithin Kumar M"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Nitin Kumar Hardeniya"
+    type: alumni
+    role: "Alumni"
+
+  - name: "P Kiran Mayee"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Padmini Priyadarshini"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Phani Gadde"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Piyush Shukla"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Piyush Arora"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Pranav Goyal"
+    type: alumni
+    role: "Alumni"
 
   - name: "Prasad Pingali"
     type: alumni
     role: "Alumni"
-    area: "CEO, Borderfree Financial"
 
-  - name: "Mounika Marreddy"
+  - name: "Prasanth Kolachina"
     type: alumni
     role: "Alumni"
-    area: "Postdoc, University of Bonn"
 
-  - name: "Sai Ganesh"
+  - name: "Prashant Mathur"
     type: alumni
     role: "Alumni"
-    area: "Sony Research India"
 
-  - name: "Divya Sai Jitta"
+  - name: "Prashant Ullegaddi"
     type: alumni
     role: "Alumni"
-    area: "Shell"
 
-  - name: "Bhavyajeet Singh"
+  - name: "Prashanth Mannem"
     type: alumni
     role: "Alumni"
-    area: "Microsoft"
+
+  - name: "Praveen Bysani"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Prudhvi Kosaraju"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Puneeth Kukkadapu"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Pvs Avinesh"
+    type: alumni
+    role: "Alumni"
+
+  - name: "R S Sruti"
+    type: alumni
+    role: "Alumni"
+
+  - name: "R D Chinmayananda Reddy"
+    type: alumni
+    role: "Alumni"
+
+  - name: "R Ravi Teja"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Radheshyam Nanduri"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Raghu Pujitha Gade"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Rahul Agrawal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Rahul Goutam"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Rahul Katragadda"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Rakshit Shah"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ravikiran Vadlapudi Vadlapudi"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Renjini Narendranath"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ritu Notani"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Rohini U"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Rohit Bharadwaj"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Romil Bansal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ronak Kogta"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sai Krishna"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sambhav Jain"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sandeep Panem"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Santosh Raju"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sapna Sharma"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sarvesh Ajit Ranade"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Serajul Afreen"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sethuramalingam S"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Shashikant Muktyar"
+    type: alumni
+    role: "Alumni"
 
   - name: "Siva Reddy"
     type: alumni
     role: "Alumni"
-    area: "Assistant Professor, McGill University"
 
-  - name: "Anoop Kunchukuttan"
+  - name: "Sowmya Vb"
     type: alumni
     role: "Alumni"
-    area: "Microsoft, AI4Bharat"
 
-  - name: "Monojit Choudhury"
+  - name: "Srinivas Rao"
     type: alumni
     role: "Alumni"
-    area: "MBZUAI"
 
-  - name: "Mitesh Khapra"
+  - name: "Sriram Anuroop"
     type: alumni
     role: "Alumni"
-    area: "Associate Professor, IIT Madras"
+
+  - name: "Sriram Venkatapathy"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sudheer Kolachina"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sudheer Kovelamudi"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Sudip Datta"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Suman Yelati"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Tanmoy Mukherjee"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Ujjaval Verma"
+    type: alumni
+    role: "Alumni"
+
+  - name: "V Surya Ganesh"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Vigneshwaran Muralidaran"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Vijay Bharat"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Vipul Mittal"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Viswanath Naidu"
+    type: alumni
+    role: "Alumni"
+
+  - name: "Y Sriharsha"
+    type: alumni
+    role: "Alumni"

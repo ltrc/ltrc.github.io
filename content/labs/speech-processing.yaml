@@ -6,15 +6,15 @@ icon: "speech"
 
 overview:
   about: |
-    The objective of the Speech and Vision Lab is to conduct goal oriented basic research, addressing fundamental issues involved in building robust speech-to-text systems, natural sounding text-to-speech systems, spoken/audio information retrieval and biometrics using speech and video.
+    The objective of the Speech and Vision Lab (SVL) is to conduct goal oriented basic research, addressing fundamental issues involved in building robust speech-to-text systems, natural sounding text-to-speech systems, spoken/audio information retrieval and biometrics using speech and video.
 
-    The lab works on speech processing in wireless environments, speaker recognition, language identification, emotion-aware speech processing, and pathological speech processing.
+    Towards these goals the lab works on a speech translation system from one Indian language to another, secure access to information using speech mode, biometrics involving speech, image, text and audio-visual information, content-based information storage and retrieval, and the development of a phonetic engine for Indian languages.
   highlights:
-    - "Speech-to-text and text-to-speech systems"
-    - "Speaker and language identification"
-    - "Speech processing in emotion conditions"
-    - "Pathological speech processing"
-    - "Speech-to-speech machine translation"
+    - "Speech translation between Indian languages"
+    - "Secure access to information using speech"
+    - "Biometrics using speech, image and audio-visual information"
+    - "Content-based information storage and retrieval"
+    - "Phonetic engine for Indian languages"
 
 research_areas:
   - title: "Speech Recognition"

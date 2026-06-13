@@ -33,6 +33,16 @@ past:
     venue: "IIIT Hyderabad"
     link: "https://ltrc.iiit.ac.in/silver-jubilee/"
 
+  - title: "IASNLP 2024"
+    subtitle: "12th IIIT Advanced Summer School on NLP"
+    date: "2024-06-21"
+    end_date: "2024-07-06"
+    month: "Jun"
+    day: "21"
+    description: "The 12th edition of the Advanced Summer School on NLP with the theme Natural Language Generation. Included a 2-day pre-school session, expert lectures, hands-on sessions, and project work on Indian language NLP."
+    venue: "LTRC, IIIT Hyderabad"
+    link: "https://ltrc.iiit.ac.in/iasnlp2024/"
+
   - title: "IASNLP 2022"
     subtitle: "11th IIIT Advanced Summer School on NLP"
     date: "2022-06-20"
