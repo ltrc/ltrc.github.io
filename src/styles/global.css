@@ -230,12 +230,15 @@ p {
   gap: 10px;
   padding: 7px 7px 7px 20px;
   border-radius: var(--radius-pill);
-  background: var(--color-surface);
+  background: rgba(0, 36, 82, 0.07);
   color: var(--color-text);
   font-weight: 600;
   font-size: 0.9375rem;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+[data-theme="dark"] .pill-link {
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .pill-link__arrow {
@@ -253,7 +256,8 @@ p {
 
 [data-theme="dark"] .pill-link__arrow { color: #07172e; }
 .pill-link__arrow svg { width: 15px; height: 15px; }
-.pill-link:hover { box-shadow: var(--shadow-md); color: var(--color-primary); }
+.pill-link:hover { background: rgba(0, 36, 82, 0.12); }
+[data-theme="dark"] .pill-link:hover { background: rgba(255, 255, 255, 0.15); }
 .pill-link:hover .pill-link__arrow { transform: translateX(2px); }
 
 /* ── Theme Toggle ── */
