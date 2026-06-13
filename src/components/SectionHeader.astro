@@ -1,16 +1,25 @@
 ---
 interface Props {
   title: string;
+  kicker?: string;
   linkHref?: string;
   linkLabel?: string;
 }
 
-const { title, linkHref, linkLabel } = Astro.props;
+const { title, kicker, linkHref, linkLabel } = Astro.props;
 ---
 
 <div class="home-section__header">
-  <h2>{title}</h2>
+  <div class="home-section__heading">
+    {kicker && <span class="kicker">{kicker}</span>}
+    <h2>{title}</h2>
+  </div>
   {linkHref && linkLabel && (
-    <a href={linkHref} class="events__view-all">{linkLabel}</a>
+    <a href={linkHref} class="pill-link">
+      {linkLabel}
+      <span class="pill-link__arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </span>
+    </a>
   )}
 </div>

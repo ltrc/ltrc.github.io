@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import PersonCard from '../components/PersonCard.astro';
-import EventCard from '../components/EventCard.astro';
 
 const homepageEntries = await getCollection('homepage');
 const homepage = homepageEntries[0].data;
@@ -62,57 +60,63 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
   </section>
 
   <!-- Labs -->
-  <section class="home-section">
+  <section class="home-section home-section--surface">
     <div class="container">
-      <SectionHeader title="Labs" linkHref="/labs" linkLabel="All labs" />
-      {labs.map((lab) => (
-        <div class="home-lab">
-          <h3 class="home-lab__name">
-            <a href={`/labs/${lab.data.slug}`}>{lab.data.name}</a>
-          </h3>
-          <div class="home-lab__tagline">{lab.data.tagline}</div>
-          {lab.data.image && (
-            <img src={lab.data.image} alt={lab.data.name} class="home-lab__image" />
-          )}
-          <p class="home-lab__about">
-            {lab.data.overview.about.split('\n\n')[0]}
-          </p>
-          {lab.data.research_areas && lab.data.research_areas.length > 0 && (
-            <p class="home-lab__areas">
-              {lab.data.research_areas.map(a => a.title).join(' · ')}
-            </p>
-          )}
-        </div>
-      ))}
+      <SectionHeader kicker="Research labs" title="Where the work happens" linkHref="/labs" linkLabel="All labs" />
+      <div class="lab-cards">
+        {labs.map((lab) => (
+          <a href={`/labs/${lab.data.slug}`} class="lab-card-home">
+            <span class="lab-card-home__tag">{lab.data.tagline}</span>
+            <h3 class="lab-card-home__name">{lab.data.name}</h3>
+            <p class="lab-card-home__about">{lab.data.overview.about.split('\n\n')[0]}</p>
+            {lab.data.research_areas && lab.data.research_areas.length > 0 && (
+              <p class="lab-card-home__areas">{lab.data.research_areas.map(a => a.title).join(' · ')}</p>
+            )}
+            <span class="lab-card-home__cta">
+              Explore lab
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- News -->
   <section class="home-section">
     <div class="container">
-      <SectionHeader title="News" linkHref="/news" linkLabel="All news" />
-      {recentNews.map((item) => (
-        <div class="home-news-item">
-          <div class="home-news-item__date">
-            {new Date(item.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </div>
-          <div class="home-news-item__title">{item.title}</div>
-          <p class="home-news-item__desc">{item.description}</p>
-        </div>
-      ))}
+      <SectionHeader kicker="Latest" title="News & updates" linkHref="/news" linkLabel="All news" />
+      <div class="news-feed">
+        {recentNews.map((item) => (
+          <a href="/news" class="news-feed__item">
+            <time class="news-feed__date">
+              {new Date(item.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            <h3 class="news-feed__title">{item.title}</h3>
+            <p class="news-feed__desc">{item.description}</p>
+            {item.category && <span class="news-feed__tag">{item.category}</span>}
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- People -->
-  <section class="home-section">
+  <section class="home-section home-section--surface">
     <div class="container">
-      <SectionHeader title="People" linkHref="/people" linkLabel="All people" />
-      <p style="font-size: 0.9375rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 20px;">
-        LTRC has {facultyCount} faculty members and {studentCount} research students working across its labs.
+      <SectionHeader kicker="The people" title="Faculty & researchers" linkHref="/people" linkLabel="All people" />
+      <p class="home-section__lead">
+        A community of {facultyCount} faculty and {studentCount} research students working across our labs.
       </p>
-      <div class="people-grid">
+      <div class="faculty-row">
         {faculty.map((person) => (
-          <PersonCard {...person} />
+          <a href={person.page || '/people/faculty'} class="faculty-chip" target={person.page ? '_blank' : undefined} rel={person.page ? 'noopener noreferrer' : undefined}>
+            <span class="faculty-chip__avatar">{person.name.charAt(0)}</span>
+            <span class="faculty-chip__text">
+              <span class="faculty-chip__name">{person.name}</span>
+              <span class="faculty-chip__role">{person.role}</span>
+            </span>
+          </a>
         ))}
       </div>
     </div>
@@ -122,14 +126,51 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
   {upcomingEvents.length > 0 && (
     <section class="home-section">
       <div class="container">
-        <SectionHeader title="Upcoming Events" linkHref="/events" linkLabel="All events" />
-        <div class="events__content">
+        <SectionHeader kicker="What's on" title="Upcoming events" linkHref="/events" linkLabel="All events" />
+        <div class="event-cards">
           {upcomingEvents.map((event) => (
-            <EventCard {...event} />
+            <article class="event-tile">
+              <div class="event-tile__date">
+                <span class="event-tile__month">{event.month}</span>
+                <span class="event-tile__day">{event.day}</span>
+              </div>
+              <div class="event-tile__body">
+                {event.subtitle && <span class="event-tile__subtitle">{event.subtitle}</span>}
+                <h3 class="event-tile__title">{event.title}</h3>
+                <p class="event-tile__desc">{event.description}</p>
+                {event.venue && <p class="event-tile__venue">{event.venue}</p>}
+                {event.link && (
+                  <a href={event.link} class="event-tile__link" target="_blank" rel="noopener noreferrer">
+                    Learn more
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </a>
+                )}
+              </div>
+            </article>
           ))}
         </div>
       </div>
     </section>
   )}
+
+  <!-- Closing CTA band -->
+  <section class="home-cta">
+    <div class="container">
+      <div class="home-cta__panel">
+        <div class="home-cta__text">
+          <span class="kicker kicker--light">Join us</span>
+          <h2>Interested in language technology?</h2>
+          <p>Explore our research, meet the people behind it, or get in touch with the centre.</p>
+        </div>
+        <div class="home-cta__actions">
+          <a href="/research" class="btn btn--light">
+            Our research
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="/people" class="btn btn--ghost-light">People</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </Base>
