@@ -164,7 +164,7 @@ p {
   font-size: 0.9375rem;
   font-weight: 600;
   border-radius: var(--radius-pill);
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -193,7 +193,6 @@ p {
 .btn--primary:hover {
   background: var(--color-primary-light);
   border-color: var(--color-primary-light);
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
@@ -206,7 +205,6 @@ p {
 .btn--outline:hover {
   border-color: var(--color-primary);
   background: var(--color-bg-subtle);
-  transform: translateY(-2px);
 }
 
 .btn--accent {
@@ -217,7 +215,6 @@ p {
 
 .btn--accent:hover {
   background: var(--color-accent-light);
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
@@ -233,7 +230,7 @@ p {
   font-weight: 600;
   font-size: 0.9375rem;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, color 0.2s ease;
 }
 
 .pill-link__arrow {
@@ -251,7 +248,7 @@ p {
 
 [data-theme="dark"] .pill-link__arrow { color: #07172e; }
 .pill-link__arrow svg { width: 15px; height: 15px; }
-.pill-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.pill-link:hover { box-shadow: var(--shadow-md); color: var(--color-primary); }
 .pill-link:hover .pill-link__arrow { transform: translateX(2px); }
 
 /* ── Theme Toggle ── */
@@ -917,11 +914,10 @@ p {
   padding: 28px;
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
 
@@ -1555,11 +1551,10 @@ p {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .person-card:hover {
-  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
 
@@ -1723,12 +1718,11 @@ p {
   padding: 32px;
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  transition: box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 @media (hover: hover) {
   .lab-listing-card:hover {
-    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
   }
 }
@@ -1853,7 +1847,7 @@ p {
   background: var(--color-bg);
   border-radius: 10px 28px 10px 28px;
   padding: 32px;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  transition: box-shadow 0.22s ease, background 0.22s ease;
 }
 
 .home-section--surface .lab-card-home {
@@ -1861,8 +1855,12 @@ p {
 }
 
 .lab-card-home:hover {
-  transform: translateY(-4px);
+  background: var(--color-bg-muted);
   box-shadow: var(--shadow-md);
+}
+
+.home-section--surface .lab-card-home:hover {
+  background: var(--color-surface);
 }
 
 .lab-card-home__tag {
@@ -1974,11 +1972,11 @@ p {
   padding: 16px 18px;
   border-radius: var(--radius-pill);
   background: var(--color-bg-muted);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .faculty-chip:hover {
-  transform: translateY(-2px);
+  background: var(--color-border-light);
   box-shadow: var(--shadow-sm);
 }
 
@@ -2164,7 +2162,6 @@ p {
 .btn--light:hover {
   background: var(--color-accent-light);
   border-color: var(--color-accent-light);
-  transform: translateY(-2px);
 }
 
 .btn--ghost-light {
@@ -2176,7 +2173,6 @@ p {
 .btn--ghost-light:hover {
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 860px) {
