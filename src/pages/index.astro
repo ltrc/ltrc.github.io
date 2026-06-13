@@ -25,22 +25,38 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
 
 <Base title="Home" description="LTRC conducts cutting-edge research in Natural Language Processing, Speech Processing, and Information Retrieval at IIIT Hyderabad.">
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- Hero (Version 2: editorial split with navy labs-index panel) -->
+  <section class="hero hero--editorial">
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content">
-          {homepage.hero.tag && <div class="hero__tag">{homepage.hero.tag}</div>}
+          {homepage.hero.tag && <div class="hero__kicker">{homepage.hero.tag}</div>}
           <h1 class="hero__title">{homepage.hero.title}</h1>
           <p class="hero__subtitle">{homepage.hero.subtitle}</p>
           <div class="hero__cta">
             {homepage.hero.cta_buttons.map((btn) => (
               <a href={btn.href} class:list={['btn', btn.primary ? 'btn--primary' : 'btn--outline']}>
                 {btn.label}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
             ))}
           </div>
         </div>
+
+        <aside class="hero__panel">
+          <span class="hero__panel-badge">Est. 1999</span>
+          <span class="hero__panel-label">Four research labs</span>
+          <ul class="hero__panel-list">
+            {labs.map((lab) => (
+              <li>
+                <a href={`/labs/${lab.data.slug}`}>
+                  <span>{lab.data.name}</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
     </div>
   </section>
