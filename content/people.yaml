@@ -154,6 +154,15 @@ members:
     area: "Natural Language Processing, Large Language Models, Artificial Intelligence"
     email: "sandipandandapat@gmail.com"
 
+  - name: "Anil Kumar Nelakanti"
+    type: faculty
+    role: "Assistant Professor"
+    qualification: "Ph.D (Universite de Paris VI and INRIA, Paris)"
+    area: "Algorithm Design, Machine Learning for Language and Speech Processing"
+    email: "akn@iiit.ac.in"
+    page: "https://www.iiit.ac.in/faculty/anil-nelakanti/"
+    labs: ["MT-NLP Lab"]
+
   # ── Staff ──
   - name: "A. Lakshmi Narayana"
     type: staff
@@ -463,6 +472,67 @@ members:
     type: ms
     role: "MS by Research"
     area: "Advisor: Yegnanarayana Bayya"
+
+  # ── BTech Students ──
+  - name: "Abhyudit Singh"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Archit Choudhary"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Hrishiraj Mitra"
+    type: btech
+    role: "Dual Degree (CSD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Virat Garg"
+    type: btech
+    role: "B.Tech (CSE)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Ojas Kataria"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Mohit Sriram"
+    type: btech
+    role: "B.Tech (CSE)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Eashaan Thakur"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Abhiraj Ratna"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Naman Singhal"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Parth Sharma"
+    type: btech
+    role: "Dual Degree (CLD)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]
 
   # ── Alumni ──
   - name: "A Vinay Bhargav Reddy"
