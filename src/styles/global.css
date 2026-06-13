@@ -14,6 +14,7 @@
   --color-navy-grad-bottom: #001834;
   --color-navy: #002452;
   --color-navy-glow: rgba(46, 111, 196, 0.45);
+  --color-institute-teal: #2bb3a4;
   --color-on-navy: #ffffff;
   --color-on-primary: #ffffff;
   --color-on-gold: #1a1505;
@@ -283,94 +284,68 @@ p {
 [data-theme="dark"] .theme-toggle__moon { display: block; }
 [data-theme="dark"] .theme-toggle__sun { display: none; }
 
-/* ── Institute Top Bar ── */
+/* ── Institute Top Bar (mirrors iiit.ac.in) ── */
 .topbar {
   background: var(--color-navy);
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .topbar__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  height: 42px;
-}
-
-.topbar__home {
-  font-size: 0.78rem;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.62);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.15s;
-}
-
-.topbar__home:hover {
-  color: rgba(255, 255, 255, 0.95);
+  justify-content: flex-end;
+  height: 40px;
 }
 
 .topbar__right {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
+  gap: 12px;
 }
 
 .topbar__socials {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .topbar__socials a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 0.82);
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--color-on-navy);
+  transition: background 0.15s;
 }
 
 .topbar__socials a:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.45);
-  color: var(--color-on-navy);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .topbar__socials svg {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
 }
 
 .topbar__contact {
   display: inline-flex;
   align-items: center;
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  height: 28px;
+  padding: 0 18px;
+  border-radius: 4px;
+  background: var(--color-institute-teal);
   color: var(--color-on-navy);
   font-size: 0.78rem;
   font-weight: 600;
-  transition: background 0.15s, border-color 0.15s;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: filter 0.15s;
 }
 
 .topbar__contact:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.6);
-}
-
-@media (max-width: 640px) {
-  .topbar__home {
-    display: none;
-  }
-  .topbar__inner {
-    justify-content: flex-end;
-  }
+  filter: brightness(1.08);
 }
 
 /* ── Navigation ── */
@@ -741,26 +716,22 @@ p {
   font-size: 1.375rem;
   font-weight: 500;
   color: var(--color-on-navy);
-  transition: color 0.18s ease, padding 0.18s ease;
+  transition: color 0.18s ease;
 }
 
 .hero__panel-list a svg {
-  width: 20px;
-  height: 20px;
-  color: var(--color-accent-light);
-  opacity: 0;
-  transform: translate(-6px, 6px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.18s ease;
 }
 
 .hero__panel-list a:hover {
   color: var(--color-accent-light);
-  padding-left: 8px;
 }
 
 .hero__panel-list a:hover svg {
-  opacity: 1;
-  transform: translate(0, 0);
+  color: var(--color-accent-light);
 }
 
 @media (max-width: 900px) {
@@ -1758,20 +1729,10 @@ p {
   background: var(--color-bg);
   border-radius: 10px 28px 10px 28px;
   padding: 32px;
-  transition: box-shadow 0.22s ease, background 0.22s ease;
 }
 
 .home-section--surface .lab-card-home {
   background: var(--color-bg-muted);
-}
-
-.lab-card-home:hover {
-  background: var(--color-bg-muted);
-  box-shadow: var(--shadow-md);
-}
-
-.home-section--surface .lab-card-home:hover {
-  background: var(--color-surface);
 }
 
 .lab-card-home__tag {
@@ -1784,6 +1745,12 @@ p {
 .lab-card-home__name {
   font-size: 1.5rem;
   margin-bottom: 12px;
+  color: var(--color-text);
+  transition: color 0.18s ease;
+}
+
+.lab-card-home:hover .lab-card-home__name {
+  color: var(--color-accent);
 }
 
 .lab-card-home__about {
