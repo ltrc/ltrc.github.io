@@ -1,9 +1,11 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PersonCard from '../../components/PersonCard.astro';
+
+type Member = CollectionEntry<'people'>['data']['members'][number];
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const typeConfig: Record<string, { label: string; description: string }> = {
@@ -27,6 +29,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }));
 };
 
+interface Props {
+  members: Member[];
+  config: { label: string; description: string };
+}
+
 const { members, config } = Astro.props;
 ---
 
@@ -42,7 +49,7 @@ const { members, config } = Astro.props;
     <div class="container">
       {members.length > 0 ? (
         <div class="people-grid">
-          {members.map((person: any) => (
+          {members.map((person) => (
             <PersonCard {...person} />
           ))}
         </div>
