@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
+import { getSingle } from '../lib/content';
+import { formatDate } from '../lib/format';
 import '../styles/pages/news.css';
 
-const newsEntries = await getCollection('news');
-const news = newsEntries[0].data;
+const news = await getSingle('news');
 ---
 
 <Base title="News" description="Latest news and updates from LTRC, IIIT Hyderabad.">
@@ -22,7 +22,7 @@ const news = newsEntries[0].data;
         {news.items.map((item) => (
           <article class="news-card">
             <div class="news-card__meta">
-              <time>{new Date(item.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              <time>{formatDate(item.date)}</time>
               {item.category && <span class="news-card__category">{item.category}</span>}
             </div>
             <h2 class="news-card__title">{item.title}</h2>

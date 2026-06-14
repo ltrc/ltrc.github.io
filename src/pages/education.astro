@@ -1,11 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
+import { getSingle } from '../lib/content';
 import '../styles/pages/education.css';
 
-const educationEntries = await getCollection('education');
-const education = educationEntries[0].data;
+const education = await getSingle('education');
 
 const courses = education.programs.filter((p) => p.level !== 'Annual');
 const featured = education.programs.find((p) => p.level === 'Annual');

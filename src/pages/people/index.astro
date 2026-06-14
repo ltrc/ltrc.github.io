@@ -1,27 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import PersonCard from '../../components/PersonCard.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
+import { getSingle } from '../../lib/content';
+import { PEOPLE_CATEGORIES, membersByType } from '../../lib/people';
 
-const peopleEntries = await getCollection('people');
-const allMembers = peopleEntries[0].data.members;
+const allMembers = (await getSingle('people')).members;
 
-const categories = [
-  { type: 'faculty', label: 'Faculty', href: '/people/faculty' },
-  { type: 'staff', label: 'Staff', href: '/people/staff' },
-  { type: 'phd', label: 'PhD Students', href: '/people/phd' },
-  { type: 'ms', label: 'MS Students', href: '/people/ms' },
-  { type: 'btech', label: 'BTech Students', href: '/people/btech' },
-  { type: 'alumni', label: 'Alumni', href: '/people/alumni' },
-];
-
-const grouped = categories
-  .map((cat) => ({
-    ...cat,
-    members: allMembers.filter((m) => m.type === cat.type),
-  }))
+const grouped = PEOPLE_CATEGORIES
+  .map((cat) => ({ ...cat, members: membersByType(allMembers, cat.type) }))
   .filter((cat) => cat.members.length > 0);
 ---
 

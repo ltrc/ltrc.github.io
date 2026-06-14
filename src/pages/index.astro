@@ -3,29 +3,27 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Calendar from '../components/Calendar.astro';
+import { getSingle } from '../lib/content';
 import { getCalendarData } from '../lib/calendar';
+import { countPeople, membersByType } from '../lib/people';
+import { formatDate } from '../lib/format';
 import '../styles/pages/home.css';
 
-const homepageEntries = await getCollection('homepage');
-const homepage = homepageEntries[0].data;
+const homepage = await getSingle('homepage');
 
 const labs = await getCollection('labs');
 
-const newsEntries = await getCollection('news');
-const recentNews = newsEntries[0].data.items.slice(0, 3);
+const recentNews = (await getSingle('news')).items.slice(0, 3);
 
-const peopleEntries = await getCollection('people');
-const allMembers = peopleEntries[0].data.members;
-const facultyCount = allMembers.filter(m => m.type === 'faculty').length;
-const studentCount = allMembers.filter(m => ['phd', 'ms', 'btech'].includes(m.type || '')).length;
-const faculty = allMembers.filter(m => m.type === 'faculty').slice(0, 6);
+const allMembers = (await getSingle('people')).members;
+const { faculty: facultyCount, students: studentCount } = countPeople(allMembers);
+const faculty = membersByType(allMembers, 'faculty').slice(0, 6);
 
-const eventsEntries = await getCollection('events');
-const upcomingEvents = eventsEntries[0].data.upcoming || [];
-const { calEvents, initialYear, initialMonth } = getCalendarData(eventsEntries[0].data);
+const eventsData = await getSingle('events');
+const upcomingEvents = eventsData.upcoming || [];
+const { calEvents, initialYear, initialMonth } = getCalendarData(eventsData);
 
-const educationEntries = await getCollection('education');
-const education = educationEntries[0].data;
+const education = await getSingle('education');
 const programs = education.programs.slice(0, 6);
 ---
 
@@ -97,9 +95,7 @@ const programs = education.programs.slice(0, 6);
       <div class="news-feed">
         {recentNews.map((item) => (
           <a href="/news" class="news-feed__item">
-            <time class="news-feed__date">
-              {new Date(item.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </time>
+            <time class="news-feed__date">{formatDate(item.date)}</time>
             <h3 class="news-feed__title">{item.title}</h3>
             <p class="news-feed__desc">{item.description}</p>
             {item.category && <span class="news-feed__tag">{item.category}</span>}

@@ -4,7 +4,7 @@
   Required fields: name, nav, footer
   Optional fields: logo, short_name
 */
-import { getCollection } from 'astro:content';
+import { getSingle } from '../lib/content';
 import '../styles/global.css';
 
 interface Props {
@@ -13,8 +13,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const siteEntries = await getCollection('site');
-const site = siteEntries[0].data;
+const site = await getSingle('site');
 ---
 
 <html lang="en">
