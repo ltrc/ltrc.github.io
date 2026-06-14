@@ -19,6 +19,10 @@ const faculty = allMembers.filter(m => m.type === 'faculty').slice(0, 6);
 
 const eventsEntries = await getCollection('events');
 const upcomingEvents = eventsEntries[0].data.upcoming || [];
+
+const educationEntries = await getCollection('education');
+const education = educationEntries[0].data;
+const programs = education.programs.slice(0, 6);
 ---
 
 <Base title="Home" description="LTRC conducts cutting-edge research in Natural Language Processing, Speech Processing, and Information Retrieval at IIIT Hyderabad.">
@@ -152,6 +156,22 @@ const upcomingEvents = eventsEntries[0].data.upcoming || [];
       </div>
     </section>
   )}
+
+  <!-- Education -->
+  <section class="home-section home-section--surface">
+    <div class="container">
+      <SectionHeader title="Education" linkHref="/education" linkLabel="All programs" />
+      <p class="home-section__lead">{education.description}</p>
+      <div class="home-edu">
+        {programs.map((program) => (
+          <a href="/education" class="home-edu__item">
+            <span class="home-edu__title">{program.title}</span>
+            {program.level && <span class="home-edu__level">{program.level}</span>}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- Closing CTA band -->
   <section class="home-cta">

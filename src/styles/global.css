@@ -1729,6 +1729,47 @@ p {
   margin: -16px 0 32px;
 }
 
+/* Education (editorial two-column divider list) */
+.home-edu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 56px;
+}
+
+.home-edu__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.home-edu__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.home-edu__item:hover .home-edu__title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.home-edu__level {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+}
+
+@media (max-width: 640px) {
+  .home-edu {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+}
+
 /* Lab cards (borderless, soft, varied radius) */
 .lab-cards {
   display: grid;
@@ -1996,6 +2037,7 @@ p {
 /* Closing CTA band */
 .home-cta {
   padding: 0 0 84px;
+  background: var(--color-surface);
 }
 
 .home-cta__panel {
