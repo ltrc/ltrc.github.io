@@ -137,4 +137,18 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { site, homepage, labs, people, events, news };
+const education = defineCollection({
+  loader: glob({ pattern: "education.yaml", base: "./content" }),
+  schema: z.object({
+    heading: z.string(),
+    description: z.string(),
+    programs: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+      level: z.string().optional(),
+      link: z.string().optional(),
+    })),
+  }),
+});
+
+export const collections = { site, homepage, labs, people, events, news, education };

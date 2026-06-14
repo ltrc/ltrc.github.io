@@ -24,6 +24,8 @@ nav:
         href: /research/publications
       - label: Projects
         href: /research/projects
+  - label: Education
+    href: /education
   - label: People
     href: /people
     children:
