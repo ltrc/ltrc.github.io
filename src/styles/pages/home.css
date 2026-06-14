@@ -401,15 +401,19 @@
 }
 
 /* Event tiles */
-.event-cards {
+/* Two columns: compact calendar on one side, a stacked list of the next
+   few events on the other. */
+.home-events {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px 44px;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: start;
 }
 
-/* The embedded compact calendar sits in the grid as the first tile. */
-.event-cards > .cal {
-  align-self: start;
+.home-events__list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .event-tile {
@@ -535,7 +539,7 @@
 @media (max-width: 860px) {
   .home-section { padding: 56px 0; }
   .lab-cards,
-  .event-cards,
+  .home-events,
   .news-feed,
   .faculty-row {
     grid-template-columns: 1fr;
