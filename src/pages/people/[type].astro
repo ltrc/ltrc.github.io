@@ -34,7 +34,7 @@ const { members, config } = Astro.props;
     breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'People', href: '/people' }, { label: config.label }]}
   />
 
-  <section style="padding: 64px 0 80px;">
+  <section class="page-section">
     <div class="container">
       {members.length > 0 ? (
         <div class="people-grid">
@@ -43,7 +43,7 @@ const { members, config } = Astro.props;
           ))}
         </div>
       ) : (
-        <p style="color: var(--color-text-secondary);">No members listed in this category yet.</p>
+        <p class="muted-note">No members listed in this category yet.</p>
       )}
     </div>
   </section>

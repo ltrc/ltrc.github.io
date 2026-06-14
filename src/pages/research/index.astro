@@ -15,7 +15,7 @@ const labs = await getCollection('labs');
     breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Research' }]}
   />
 
-  <section class="research-areas" style="padding-top: 64px;">
+  <section class="research-areas">
     <div class="container">
       <div class="section-heading">
         <h2>Research Areas across Labs</h2>
@@ -23,9 +23,9 @@ const labs = await getCollection('labs');
 
       {labs.map((lab) => (
         lab.data.research_areas && lab.data.research_areas.length > 0 && (
-          <div style="margin-bottom: 48px;">
-            <h3 style="font-size: 1.25rem; margin-bottom: 16px;">
-              <a href={`/labs/${lab.data.slug}`} style="color: var(--color-primary); border-bottom: 2px solid var(--color-accent); padding-bottom: 2px;">
+          <div class="research-group">
+            <h3 class="research-group__title">
+              <a href={`/labs/${lab.data.slug}`} class="research-group__link">
                 {lab.data.name}
               </a>
             </h3>
@@ -41,9 +41,9 @@ const labs = await getCollection('labs');
         )
       ))}
 
-      <div style="text-align: center; margin-top: 32px;">
+      <div class="research-cta">
         <a href="/research/publications" class="btn btn--primary">View Publications</a>
-        <a href="/research/projects" class="btn btn--outline" style="margin-left: 12px;">View Projects</a>
+        <a href="/research/projects" class="btn btn--outline">View Projects</a>
       </div>
     </div>
   </section>

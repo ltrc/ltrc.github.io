@@ -21,7 +21,7 @@ const grouped = PEOPLE_CATEGORIES
     breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'People' }]}
   />
 
-  <section style="padding: 64px 0 80px;">
+  <section class="page-section">
     <div class="container">
       <nav class="people-nav">
         {grouped.map((cat) => (
@@ -33,7 +33,7 @@ const grouped = PEOPLE_CATEGORIES
       </nav>
 
       {grouped.map((cat) => (
-        <div id={cat.type} style="margin-bottom: 48px;">
+        <div id={cat.type} class="people-group">
           <SectionHeader title={cat.label} linkHref={cat.href} linkLabel="View all" />
           <div class="people-grid">
             {cat.members.slice(0, 6).map((person) => (
@@ -41,8 +41,8 @@ const grouped = PEOPLE_CATEGORIES
             ))}
           </div>
           {cat.members.length > 6 && (
-            <div style="margin-top: 16px;">
-              <a href={cat.href} style="color: var(--color-accent); font-size: 0.875rem; font-weight: 500;">
+            <div class="people-group__more">
+              <a href={cat.href} class="people-group__more-link">
                 + {cat.members.length - 6} more
               </a>
             </div>

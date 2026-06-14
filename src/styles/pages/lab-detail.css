@@ -199,6 +199,10 @@
   margin-bottom: 16px;
 }
 
+.lab-about--spaced {
+  margin-top: 32px;
+}
+
 .lab-about p {
   font-size: 1rem;
   color: var(--color-text-secondary);

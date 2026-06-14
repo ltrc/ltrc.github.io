@@ -912,11 +912,48 @@ p {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* ── Events List Page (consumed by events.astro, which is left untouched) ── */
+/* ── Events List Page ── */
 .events-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.events-heading {
+  font-size: 1.375rem;
+  margin-bottom: 24px;
+}
+
+.events-heading--past {
+  margin-top: 48px;
+}
+
+/* ── Generic inner-page section padding ── */
+.page-section {
+  padding: 64px 0 80px;
+}
+
+.page-section--tight {
+  padding: 48px 0 80px;
+}
+
+.muted-note {
+  color: var(--color-text-secondary);
+}
+
+/* ── People overview groups ── */
+.people-group {
+  margin-bottom: 48px;
+}
+
+.people-group__more {
+  margin-top: 16px;
+}
+
+.people-group__more-link {
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 /* ── Reduced motion ── */
