@@ -1,0 +1,321 @@
+---
+/*
+  Interactive month calendar. Events are passed as plain date strings and
+  rendered/navigated client-side, with each event laid out as a horizontal
+  bar spanning the days it covers (multi-event stacking + overlapping ranges).
+*/
+import '../styles/components/calendar.css';
+
+interface CalEvent {
+  title: string;
+  start: string;
+  end: string;
+  link: string | null;
+}
+
+interface Props {
+  events: CalEvent[];
+  initialYear: number;
+  initialMonth: number;
+}
+
+const { events, initialYear, initialMonth } = Astro.props;
+---
+
+<section class="cal-section">
+  <div class="container">
+    <div class="cal-head">
+      <h2 class="cal-head__title">Lab Calendar</h2>
+      <p class="cal-head__caption">Browse events by month</p>
+    </div>
+
+    <div
+      class="cal"
+      id="cal"
+      role="group"
+      aria-label="Event calendar"
+      data-events={JSON.stringify(events)}
+      data-year={initialYear}
+      data-month={initialMonth}
+    >
+      <div class="cal__title">
+        <span class="cal__heading" data-cal-heading aria-live="polite">&nbsp;</span>
+        <div class="cal__nav-group">
+          <button class="cal__nav" type="button" data-cal-prev aria-label="Previous month">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="cal__today" type="button" data-cal-today>Today</button>
+          <button class="cal__nav" type="button" data-cal-next aria-label="Next month">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="cal__weekdays" aria-hidden="true">
+        <span class="cal__wd"><span class="cal__wd-full">Sun</span><span class="cal__wd-min">S</span></span>
+        <span class="cal__wd"><span class="cal__wd-full">Mon</span><span class="cal__wd-min">M</span></span>
+        <span class="cal__wd"><span class="cal__wd-full">Tue</span><span class="cal__wd-min">T</span></span>
+        <span class="cal__wd"><span class="cal__wd-full">Wed</span><span class="cal__wd-min">W</span></span>
+        <span class="cal__wd"><span class="cal__wd-full">Thu</span><span class="cal__wd-min">T</span></span>
+        <span class="cal__wd"><span class="cal__wd-full">Fri</span><span class="cal__wd-min">F</span></span>
+        <span class="cal__wd"><span class="cal__wd-full">Sat</span><span class="cal__wd-min">S</span></span>
+      </div>
+
+      <div class="cal__grid" data-cal-grid></div>
+
+      <p class="cal__empty" data-cal-empty hidden>No events scheduled this month.</p>
+
+      <div class="cal__agenda-wrap" data-cal-agenda-wrap hidden>
+        <p class="cal__agenda-label" data-cal-agenda-label>This month</p>
+        <ul class="cal__agenda" data-cal-agenda></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  type CalEvent = {
+    title: string;
+    start: string;
+    end: string;
+    link: string | null;
+    startD: Date;
+    endD: Date;
+    color: string;
+  };
+
+  const root = document.getElementById('cal');
+  if (root) {
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    // Distinct, theme-aware bar colours derived from brand tokens.
+    const PALETTE = [
+      'var(--color-accent)',
+      'var(--color-gold)',
+      'var(--color-primary-light)',
+      'color-mix(in srgb, var(--color-accent) 55%, var(--color-primary))',
+      'color-mix(in srgb, var(--color-gold) 60%, var(--color-accent))',
+    ];
+    // Fixed number of event lanes every week row reserves, so all rows are
+    // the same height regardless of how many events fall in the week. Weeks
+    // with more events collapse the surplus into a "+N more" affordance.
+    const VISIBLE_LANES = 3;
+
+    const raw = JSON.parse(root.dataset.events || '[]') as Omit<CalEvent, 'startD' | 'endD' | 'color'>[];
+    const events: CalEvent[] = raw.map((e, i) => ({
+      ...e,
+      startD: new Date(`${e.start}T00:00:00`),
+      endD: new Date(`${e.end}T00:00:00`),
+      color: PALETTE[i % PALETTE.length],
+    }));
+
+    let year = parseInt(root.dataset.year || '', 10);
+    let month = parseInt(root.dataset.month || '', 10);
+    if (Number.isNaN(year)) year = new Date().getFullYear();
+    if (Number.isNaN(month)) month = new Date().getMonth();
+
+    const headingEl = root.querySelector('[data-cal-heading]') as HTMLElement;
+    const gridEl = root.querySelector('[data-cal-grid]') as HTMLElement;
+    const emptyEl = root.querySelector('[data-cal-empty]') as HTMLElement;
+    const agendaWrap = root.querySelector('[data-cal-agenda-wrap]') as HTMLElement;
+    const agendaLabel = root.querySelector('[data-cal-agenda-label]') as HTMLElement;
+    const agendaEl = root.querySelector('[data-cal-agenda]') as HTMLElement;
+
+    // Weeks the user expanded past the "+N more" cap (cleared on nav).
+    let expanded = new Set<number>();
+
+    const esc = (s: string) =>
+      s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+    const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+    const fmtRange = (e: CalEvent) => {
+      const s = `${MONTHS_SHORT[e.startD.getMonth()]} ${e.startD.getDate()}`;
+      if (e.endD > e.startD) {
+        const sameYear = e.endD.getFullYear() === e.startD.getFullYear();
+        const end = `${MONTHS_SHORT[e.endD.getMonth()]} ${e.endD.getDate()}, ${e.endD.getFullYear()}`;
+        return sameYear ? `${s} – ${end}` : `${s}, ${e.startD.getFullYear()} – ${end}`;
+      }
+      return `${s}, ${e.startD.getFullYear()}`;
+    };
+
+    function render() {
+      headingEl.textContent = `${MONTHS[month]} ${year}`;
+
+      const today = startOfDay(new Date());
+      const first = new Date(year, month, 1);
+      const last = new Date(year, month + 1, 0);
+
+      // Full visible grid: back up to the Sunday on/before the 1st,
+      // forward to the Saturday on/after the last day.
+      const gridStart = new Date(first);
+      gridStart.setDate(1 - first.getDay());
+      const gridEnd = new Date(last);
+      gridEnd.setDate(last.getDate() + (6 - last.getDay()));
+
+      // Build week rows of 7 real dates.
+      const weeks: Date[][] = [];
+      const cursor = new Date(gridStart);
+      while (cursor <= gridEnd) {
+        const wk: Date[] = [];
+        for (let i = 0; i < 7; i++) {
+          wk.push(new Date(cursor));
+          cursor.setDate(cursor.getDate() + 1);
+        }
+        weeks.push(wk);
+      }
+
+      // Events touching the current month (for the empty state + agenda).
+      const monthEvents = events
+        .filter((e) => e.startD <= last && e.endD >= first)
+        .sort((a, b) => a.startD.getTime() - b.startD.getTime() || a.endD.getTime() - b.endD.getTime());
+
+      // Always render the date grid — even for months with no events.
+      gridEl.hidden = false;
+      let html = '';
+      weeks.forEach((wk, wi) => {
+        html += renderWeek(wk, wi, today);
+      });
+      gridEl.innerHTML = html;
+
+      if (monthEvents.length) {
+        emptyEl.hidden = true;
+        renderAgenda(monthEvents);
+      } else {
+        emptyEl.hidden = false;
+        agendaWrap.hidden = true;
+      }
+    }
+
+    function renderWeek(wk: Date[], wi: number, today: Date) {
+      const wkStart = wk[0];
+      const wkEnd = wk[6];
+
+      // Events overlapping this week, with their column span clamped to it.
+      const segs = events
+        .filter((e) => e.startD <= wkEnd && e.endD >= wkStart)
+        .map((e) => {
+          const clipStart = e.startD < wkStart;
+          const clipEnd = e.endD > wkEnd;
+          const startCol = clipStart ? 0 : e.startD.getDay();
+          const endCol = clipEnd ? 6 : e.endD.getDay();
+          return { e, startCol, endCol, clipStart, clipEnd, lane: 0 };
+        })
+        .sort((a, b) => a.startCol - b.startCol || (b.endCol - b.startCol) - (a.endCol - a.startCol));
+
+      // Greedy lane (track) assignment so overlapping events stack and a
+      // multi-day bar keeps a single continuous lane across its span.
+      const laneEnds: number[] = [];
+      for (const seg of segs) {
+        let lane = laneEnds.findIndex((end) => end < seg.startCol);
+        if (lane === -1) {
+          lane = laneEnds.length;
+          laneEnds.push(seg.endCol);
+        } else {
+          laneEnds[lane] = seg.endCol;
+        }
+        seg.lane = lane;
+      }
+
+      const usedLanes = laneEnds.length;
+      const isExpanded = expanded.has(wi);
+      const overflow = !isExpanded && usedLanes > VISIBLE_LANES;
+      // When overflowing, keep one row free for the "+N more" affordance.
+      const barLanes = overflow ? VISIBLE_LANES - 1 : usedLanes;
+      // Fixed body height for every non-expanded week (expanded shows all).
+      const bodyRows = isExpanded ? Math.max(usedLanes, VISIBLE_LANES) : VISIBLE_LANES;
+
+      let cells = '';
+
+      // Day-number background cells (each spans the full week-row height).
+      wk.forEach((d, col) => {
+        const inMonth = d.getMonth() === month;
+        const isToday = d.getTime() === today.getTime();
+        const cls = ['cal__day'];
+        if (!inMonth) cls.push('cal__day--muted');
+        if (isToday) cls.push('cal__day--today');
+        cells += `<div class="${cls.join(' ')}" style="grid-column:${col + 1};grid-row:1 / -1">`
+          + `<span class="cal__daynum">${d.getDate()}</span></div>`;
+      });
+
+      // Event bars.
+      for (const seg of segs) {
+        if (seg.lane >= barLanes) continue;
+        const { e } = seg;
+        const single = !seg.clipStart && !seg.clipEnd && seg.startCol === seg.endCol;
+        const cls = ['cal__bar'];
+        cls.push(single ? 'cal__bar--single' : 'cal__bar--span');
+        if (seg.clipStart) cls.push('cal__bar--clip-start');
+        if (seg.clipEnd) cls.push('cal__bar--clip-end');
+        const style = `--ev:${e.color};grid-column:${seg.startCol + 1} / ${seg.endCol + 2};grid-row:${seg.lane + 2}`;
+        const label = esc(`${e.title}, ${fmtRange(e)}`);
+        const dot = single ? '<span class="cal__bar-dot" aria-hidden="true"></span>' : '';
+        const inner = `${dot}<span class="cal__bar-label">${esc(e.title)}</span>`;
+        if (e.link) {
+          cells += `<a class="${cls.join(' ')}" style="${style}" href="${esc(e.link)}" target="_blank" rel="noopener noreferrer" aria-label="${label} (opens in new tab)">${inner}</a>`;
+        } else {
+          cells += `<span class="${cls.join(' ')}" style="${style}" aria-hidden="true">${inner}</span>`;
+        }
+      }
+
+      // "+N more" affordance per day when a week overflows the lane cap.
+      if (overflow) {
+        const moreRow = barLanes + 2;
+        for (let col = 0; col < 7; col++) {
+          const hidden = segs.filter(
+            (s) => s.lane >= barLanes && s.startCol <= col && s.endCol >= col,
+          ).length;
+          if (!hidden) continue;
+          cells += `<button type="button" class="cal__more" data-week="${wi}" style="grid-column:${col + 1};grid-row:${moreRow}" aria-label="Show ${hidden} more event${hidden > 1 ? 's' : ''}">+${hidden} more</button>`;
+        }
+      }
+
+      return `<div class="cal__week" style="grid-template-rows:var(--cal-head-h) repeat(${bodyRows}, var(--cal-lane-h))">${cells}</div>`;
+    }
+
+    function renderAgenda(monthEvents: CalEvent[]) {
+      agendaWrap.hidden = false;
+      agendaLabel.textContent = `${MONTHS[month]} ${year}`;
+      agendaEl.innerHTML = monthEvents
+        .map((e) => {
+          const dot = `<span class="cal__agenda-dot" style="--ev:${e.color}" aria-hidden="true"></span>`;
+          const date = `<span class="cal__agenda-date">${esc(fmtRange(e))}</span>`;
+          const title = e.link
+            ? `<a class="cal__agenda-title cal__agenda-title--link" href="${esc(e.link)}" target="_blank" rel="noopener noreferrer">${esc(e.title)}<span class="cal__agenda-arrow" aria-hidden="true">→</span></a>`
+            : `<span class="cal__agenda-title">${esc(e.title)}</span>`;
+          return `<li class="cal__agenda-item">${dot}<span class="cal__agenda-text">${date}${title}</span></li>`;
+        })
+        .join('');
+    }
+
+    function go(deltaMonths: number) {
+      month += deltaMonths;
+      while (month < 0) { month += 12; year -= 1; }
+      while (month > 11) { month -= 12; year += 1; }
+      expanded = new Set();
+      render();
+    }
+
+    root.querySelector('[data-cal-prev]')?.addEventListener('click', () => go(-1));
+    root.querySelector('[data-cal-next]')?.addEventListener('click', () => go(1));
+    root.querySelector('[data-cal-today]')?.addEventListener('click', () => {
+      const now = new Date();
+      year = now.getFullYear();
+      month = now.getMonth();
+      expanded = new Set();
+      render();
+    });
+
+    gridEl.addEventListener('click', (ev) => {
+      const btn = (ev.target as HTMLElement).closest('.cal__more') as HTMLElement | null;
+      if (!btn) return;
+      const wi = parseInt(btn.dataset.week || '', 10);
+      if (!Number.isNaN(wi)) {
+        expanded.add(wi);
+        render();
+      }
+    });
+
+    render();
+  }
+</script>
