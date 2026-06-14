@@ -144,8 +144,10 @@ const initialMonth = initialDate.getMonth();
         'color-mix(in srgb, var(--color-accent) 55%, var(--color-primary))',
         'color-mix(in srgb, var(--color-gold) 60%, var(--color-accent))',
       ];
-      // How many event lanes a week shows before collapsing to "+N more".
-      const LANE_CAP = 4;
+      // Fixed number of event lanes every week row reserves, so all rows are
+      // the same height regardless of how many events fall in the week. Weeks
+      // with more events collapse the surplus into a "+N more" affordance.
+      const VISIBLE_LANES = 3;
 
       const raw = JSON.parse(root.dataset.events || '[]') as Omit<CalEvent, 'startD' | 'endD' | 'color'>[];
       const events: CalEvent[] = raw.map((e, i) => ({
@@ -216,23 +218,21 @@ const initialMonth = initialDate.getMonth();
           .filter((e) => e.startD <= last && e.endD >= first)
           .sort((a, b) => a.startD.getTime() - b.startD.getTime() || a.endD.getTime() - b.endD.getTime());
 
-        if (!monthEvents.length) {
-          gridEl.innerHTML = '';
-          gridEl.hidden = true;
-          emptyEl.hidden = false;
-          agendaWrap.hidden = true;
-          return;
-        }
+        // Always render the date grid — even for months with no events.
         gridEl.hidden = false;
-        emptyEl.hidden = true;
-
         let html = '';
         weeks.forEach((wk, wi) => {
           html += renderWeek(wk, wi, today);
         });
         gridEl.innerHTML = html;
 
-        renderAgenda(monthEvents);
+        if (monthEvents.length) {
+          emptyEl.hidden = true;
+          renderAgenda(monthEvents);
+        } else {
+          emptyEl.hidden = false;
+          agendaWrap.hidden = true;
+        }
       }
 
       function renderWeek(wk: Date[], wi: number, today: Date) {
@@ -267,9 +267,11 @@ const initialMonth = initialDate.getMonth();
 
         const usedLanes = laneEnds.length;
         const isExpanded = expanded.has(wi);
-        const overflow = !isExpanded && usedLanes > LANE_CAP;
-        const barLanes = overflow ? LANE_CAP - 1 : usedLanes;
-        const bodyRows = Math.max(barLanes + (overflow ? 1 : 0), 2);
+        const overflow = !isExpanded && usedLanes > VISIBLE_LANES;
+        // When overflowing, keep one row free for the "+N more" affordance.
+        const barLanes = overflow ? VISIBLE_LANES - 1 : usedLanes;
+        // Fixed body height for every non-expanded week (expanded shows all).
+        const bodyRows = isExpanded ? Math.max(usedLanes, VISIBLE_LANES) : VISIBLE_LANES;
 
         let cells = '';
 
