@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import PubCard from '../../components/PubCard.astro';
+import LabGroupedList from '../../components/LabGroupedList.astro';
 
 const labs = await getCollection('labs');
 ---
@@ -15,23 +15,6 @@ const labs = await getCollection('labs');
     breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Research', href: '/research' }, { label: 'Publications' }]}
   />
 
-  <section style="padding: 64px 0 80px;">
-    <div class="container">
-      {labs.map((lab) => (
-        lab.data.publications && lab.data.publications.length > 0 && (
-          <div style="margin-bottom: 48px;">
-            <h2 style="font-size: 1.375rem; margin-bottom: 20px;">
-              <a href={`/labs/${lab.data.slug}`} style="color: var(--color-primary);">{lab.data.name}</a>
-            </h2>
-            <div class="lab-publications__list">
-              {lab.data.publications.map((pub) => (
-                <PubCard {...pub} />
-              ))}
-            </div>
-          </div>
-        )
-      ))}
-    </div>
-  </section>
+  <LabGroupedList labs={labs} field="publications" />
 
 </Base>

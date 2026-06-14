@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
+import LabGroupedList from '../../components/LabGroupedList.astro';
 
 const labs = await getCollection('labs');
 ---
@@ -15,23 +15,6 @@ const labs = await getCollection('labs');
     breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Research', href: '/research' }, { label: 'Projects' }]}
   />
 
-  <section style="padding: 64px 0 80px;">
-    <div class="container">
-      {labs.map((lab) => (
-        lab.data.projects && lab.data.projects.length > 0 && (
-          <div style="margin-bottom: 48px;">
-            <h2 style="font-size: 1.375rem; margin-bottom: 20px;">
-              <a href={`/labs/${lab.data.slug}`} style="color: var(--color-primary);">{lab.data.name}</a>
-            </h2>
-            <div class="projects-list">
-              {lab.data.projects.map((project) => (
-                <ProjectCard {...project} />
-              ))}
-            </div>
-          </div>
-        )
-      ))}
-    </div>
-  </section>
+  <LabGroupedList labs={labs} field="projects" />
 
 </Base>

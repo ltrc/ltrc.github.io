@@ -1,0 +1,39 @@
+---
+/*
+  Renders a lab-grouped list of either publications or projects, used by the
+  /research/publications and /research/projects pages. Each lab with entries
+  gets a heading (linking to its lab page) followed by the relevant cards.
+*/
+import type { CollectionEntry } from 'astro:content';
+import PubCard from './PubCard.astro';
+import ProjectCard from './ProjectCard.astro';
+import '../styles/components/lab-grouped-list.css';
+
+interface Props {
+  labs: CollectionEntry<'labs'>[];
+  field: 'publications' | 'projects';
+}
+
+const { labs, field } = Astro.props;
+const listClass = field === 'publications' ? 'lab-publications__list' : 'projects-list';
+---
+
+<section class="lab-grouped">
+  <div class="container">
+    {labs.map((lab) => {
+      const items = lab.data[field];
+      return items && items.length > 0 && (
+        <div class="lab-grouped__group">
+          <h2 class="lab-grouped__heading">
+            <a href={`/labs/${lab.data.slug}`}>{lab.data.name}</a>
+          </h2>
+          <div class={listClass}>
+            {field === 'publications'
+              ? lab.data.publications!.map((pub) => <PubCard {...pub} />)
+              : lab.data.projects!.map((project) => <ProjectCard {...project} />)}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
