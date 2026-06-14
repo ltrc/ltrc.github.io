@@ -23,3 +23,21 @@ const { title, kicker, linkHref, linkLabel } = Astro.props;
     </a>
   )}
 </div>
+
+<style>
+  .home-section__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .home-section__heading h2 {
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+  }
+
+  @media (max-width: 860px) {
+    .home-section__header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
