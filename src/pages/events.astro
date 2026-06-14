@@ -8,8 +8,10 @@ const eventsEntries = await getCollection('events');
 const events = eventsEntries[0].data;
 
 // ── Calendar data (rendered & navigated client-side) ──────────────
-// Pass every event to the client as plain date strings; the interactive
-// calendar handles month/year navigation and multi-event / overlapping ranges.
+// Every event is handed to the client as plain date strings; the
+// interactive month calendar handles navigation and lays each event out
+// as a horizontal bar spanning the days it covers (multi-event stacking
+// and overlapping ranges included).
 const calEvents = [...(events.upcoming ?? []), ...(events.past ?? [])].map((e: any) => ({
   title: e.title,
   start: e.date,
@@ -17,8 +19,8 @@ const calEvents = [...(events.upcoming ?? []), ...(events.past ?? [])].map((e: a
   link: e.link || null,
 }));
 
-// Initial month: the next upcoming event, else the most recent past event,
-// else the current month.
+// Initial month: the next upcoming event, else the most recent past
+// event, else the current month.
 const upcomingStarts = (events.upcoming ?? [])
   .map((e: any) => e.date)
   .sort();
@@ -51,28 +53,43 @@ const initialMonth = initialDate.getMonth();
         <div
           class="cal"
           id="cal"
+          role="group"
+          aria-label="Event calendar"
           data-events={JSON.stringify(calEvents)}
           data-year={initialYear}
           data-month={initialMonth}
         >
           <div class="cal__title">
-            <button class="cal__nav" type="button" data-cal-prev aria-label="Previous month">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
             <span class="cal__heading" data-cal-heading aria-live="polite">&nbsp;</span>
-            <button class="cal__nav" type="button" data-cal-next aria-label="Next month">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
+            <div class="cal__nav-group">
+              <button class="cal__nav" type="button" data-cal-prev aria-label="Previous month">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <button class="cal__today" type="button" data-cal-today>Today</button>
+              <button class="cal__nav" type="button" data-cal-next aria-label="Next month">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
           </div>
 
           <div class="cal__weekdays" aria-hidden="true">
-            <span class="cal__wd">Sun</span><span class="cal__wd">Mon</span><span class="cal__wd">Tue</span><span class="cal__wd">Wed</span><span class="cal__wd">Thu</span><span class="cal__wd">Fri</span><span class="cal__wd">Sat</span>
+            <span class="cal__wd"><span class="cal__wd-full">Sun</span><span class="cal__wd-min">S</span></span>
+            <span class="cal__wd"><span class="cal__wd-full">Mon</span><span class="cal__wd-min">M</span></span>
+            <span class="cal__wd"><span class="cal__wd-full">Tue</span><span class="cal__wd-min">T</span></span>
+            <span class="cal__wd"><span class="cal__wd-full">Wed</span><span class="cal__wd-min">W</span></span>
+            <span class="cal__wd"><span class="cal__wd-full">Thu</span><span class="cal__wd-min">T</span></span>
+            <span class="cal__wd"><span class="cal__wd-full">Fri</span><span class="cal__wd-min">F</span></span>
+            <span class="cal__wd"><span class="cal__wd-full">Sat</span><span class="cal__wd-min">S</span></span>
           </div>
 
-          <div class="cal__days" data-cal-days role="list"></div>
+          <div class="cal__grid" data-cal-grid></div>
 
-          <ul class="cal-legend" data-cal-legend></ul>
-          <p class="cal__empty" data-cal-empty hidden>No events this month.</p>
+          <p class="cal__empty" data-cal-empty hidden>No events scheduled this month.</p>
+
+          <div class="cal__agenda-wrap" data-cal-agenda-wrap hidden>
+            <p class="cal__agenda-label" data-cal-agenda-label>This month</p>
+            <ul class="cal__agenda" data-cal-agenda></ul>
+          </div>
         </div>
       </div>
     </section>
@@ -105,99 +122,244 @@ const initialMonth = initialDate.getMonth();
   </section>
 
   <script>
-    type CalEvent = { title: string; start: string; end: string; link: string | null };
+    type CalEvent = {
+      title: string;
+      start: string;
+      end: string;
+      link: string | null;
+      startD: Date;
+      endD: Date;
+      color: string;
+    };
 
     const root = document.getElementById('cal');
     if (root) {
       const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      const PALETTE = ['var(--color-accent)', 'var(--color-gold)', 'var(--color-primary-light)', 'var(--color-primary-lighter)'];
+      const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      // Distinct, theme-aware bar colours derived from brand tokens.
+      const PALETTE = [
+        'var(--color-accent)',
+        'var(--color-gold)',
+        'var(--color-primary-light)',
+        'color-mix(in srgb, var(--color-accent) 55%, var(--color-primary))',
+        'color-mix(in srgb, var(--color-gold) 60%, var(--color-accent))',
+      ];
+      // How many event lanes a week shows before collapsing to "+N more".
+      const LANE_CAP = 4;
 
-      const events: CalEvent[] = JSON.parse(root.dataset.events || '[]').map((e: CalEvent) => ({
+      const raw = JSON.parse(root.dataset.events || '[]') as Omit<CalEvent, 'startD' | 'endD' | 'color'>[];
+      const events: CalEvent[] = raw.map((e, i) => ({
         ...e,
         startD: new Date(`${e.start}T00:00:00`),
         endD: new Date(`${e.end}T00:00:00`),
-      })) as any;
+        color: PALETTE[i % PALETTE.length],
+      }));
 
       let year = parseInt(root.dataset.year || '', 10);
       let month = parseInt(root.dataset.month || '', 10);
       if (Number.isNaN(year)) year = new Date().getFullYear();
       if (Number.isNaN(month)) month = new Date().getMonth();
 
-      const heading = root.querySelector('[data-cal-heading]') as HTMLElement;
-      const daysEl = root.querySelector('[data-cal-days]') as HTMLElement;
-      const legendEl = root.querySelector('[data-cal-legend]') as HTMLElement;
+      const headingEl = root.querySelector('[data-cal-heading]') as HTMLElement;
+      const gridEl = root.querySelector('[data-cal-grid]') as HTMLElement;
       const emptyEl = root.querySelector('[data-cal-empty]') as HTMLElement;
+      const agendaWrap = root.querySelector('[data-cal-agenda-wrap]') as HTMLElement;
+      const agendaLabel = root.querySelector('[data-cal-agenda-label]') as HTMLElement;
+      const agendaEl = root.querySelector('[data-cal-agenda]') as HTMLElement;
 
-      const fmtRange = (e: any) => {
-        const opts = { month: 'short', day: 'numeric' } as const;
-        const s = e.startD.toLocaleDateString('en-US', opts);
-        if (e.endD > e.startD) return `${s} – ${e.endD.toLocaleDateString('en-US', opts)}, ${e.endD.getFullYear()}`;
+      // Weeks the user expanded past the "+N more" cap (cleared on nav).
+      let expanded = new Set<number>();
+
+      const esc = (s: string) =>
+        s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+      const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+      const fmtRange = (e: CalEvent) => {
+        const s = `${MONTHS_SHORT[e.startD.getMonth()]} ${e.startD.getDate()}`;
+        if (e.endD > e.startD) {
+          const sameYear = e.endD.getFullYear() === e.startD.getFullYear();
+          const end = `${MONTHS_SHORT[e.endD.getMonth()]} ${e.endD.getDate()}, ${e.endD.getFullYear()}`;
+          return sameYear ? `${s} – ${end}` : `${s}, ${e.startD.getFullYear()} – ${end}`;
+        }
         return `${s}, ${e.startD.getFullYear()}`;
       };
 
       function render() {
-        heading.textContent = `${MONTHS[month]} ${year}`;
+        headingEl.textContent = `${MONTHS[month]} ${year}`;
 
-        // Events overlapping this month, sorted by start; assign each a colour.
+        const today = startOfDay(new Date());
         const first = new Date(year, month, 1);
         const last = new Date(year, month + 1, 0);
-        const monthEvents = (events as any[])
-          .filter((e) => e.startD <= last && e.endD >= first)
-          .sort((a, b) => a.startD.getTime() - b.startD.getTime());
-        const colorOf = new Map<any, string>();
-        monthEvents.forEach((e, i) => colorOf.set(e, PALETTE[i % PALETTE.length]));
 
-        // Day grid
-        const startWeekday = first.getDay();
-        const daysInMonth = last.getDate();
-        let html = '';
-        for (let i = 0; i < startWeekday; i++) html += '<span class="cal__cell cal__cell--pad" aria-hidden="true"></span>';
-        for (let d = 1; d <= daysInMonth; d++) {
-          const date = new Date(year, month, d);
-          const active = monthEvents.filter((e) => date >= e.startD && date <= e.endD);
-          if (!active.length) {
-            html += `<span class="cal__cell" role="listitem"><span class="cal__num">${d}</span></span>`;
-            continue;
+        // Full visible grid: back up to the Sunday on/before the 1st,
+        // forward to the Saturday on/after the last day.
+        const gridStart = new Date(first);
+        gridStart.setDate(1 - first.getDay());
+        const gridEnd = new Date(last);
+        gridEnd.setDate(last.getDate() + (6 - last.getDay()));
+
+        // Build week rows of 7 real dates.
+        const weeks: Date[][] = [];
+        const cursor = new Date(gridStart);
+        while (cursor <= gridEnd) {
+          const wk: Date[] = [];
+          for (let i = 0; i < 7; i++) {
+            wk.push(new Date(cursor));
+            cursor.setDate(cursor.getDate() + 1);
           }
-          const dots = active
-            .slice(0, 4)
-            .map((e) => `<span class="cal__dot" style="background:${colorOf.get(e)}"></span>`)
-            .join('');
-          const sr = active.map((e) => `${e.title} (${fmtRange(e)})`).join('; ');
-          html += `<span class="cal__cell cal__cell--event" role="listitem"><span class="cal__num">${d}</span><span class="cal__dots">${dots}</span><span class="cal__sr">${sr}</span></span>`;
+          weeks.push(wk);
         }
-        daysEl.innerHTML = html;
 
-        // Legend (events in this month)
-        if (monthEvents.length) {
-          emptyEl.hidden = true;
-          legendEl.hidden = false;
-          legendEl.innerHTML = monthEvents
-            .map((e) => {
-              const swatch = `<span class="cal-legend__dot" style="background:${colorOf.get(e)}"></span>`;
-              const date = `<span class="cal-legend__date">${fmtRange(e)}</span>`;
-              const title = e.link
-                ? `<a class="cal-legend__title cal-legend__title--link" href="${e.link}" target="_blank" rel="noopener noreferrer">${e.title}<span class="cal-legend__arrow" aria-hidden="true">→</span></a>`
-                : `<span class="cal-legend__title">${e.title}</span>`;
-              return `<li class="cal-legend__item">${swatch}${date}${title}</li>`;
-            })
-            .join('');
-        } else {
-          legendEl.hidden = true;
-          legendEl.innerHTML = '';
+        // Events touching the current month (for the empty state + agenda).
+        const monthEvents = events
+          .filter((e) => e.startD <= last && e.endD >= first)
+          .sort((a, b) => a.startD.getTime() - b.startD.getTime() || a.endD.getTime() - b.endD.getTime());
+
+        if (!monthEvents.length) {
+          gridEl.innerHTML = '';
+          gridEl.hidden = true;
           emptyEl.hidden = false;
+          agendaWrap.hidden = true;
+          return;
         }
+        gridEl.hidden = false;
+        emptyEl.hidden = true;
+
+        let html = '';
+        weeks.forEach((wk, wi) => {
+          html += renderWeek(wk, wi, today);
+        });
+        gridEl.innerHTML = html;
+
+        renderAgenda(monthEvents);
       }
 
-      root.querySelector('[data-cal-prev]')?.addEventListener('click', () => {
-        month -= 1;
-        if (month < 0) { month = 11; year -= 1; }
+      function renderWeek(wk: Date[], wi: number, today: Date) {
+        const wkStart = wk[0];
+        const wkEnd = wk[6];
+
+        // Events overlapping this week, with their column span clamped to it.
+        const segs = events
+          .filter((e) => e.startD <= wkEnd && e.endD >= wkStart)
+          .map((e) => {
+            const clipStart = e.startD < wkStart;
+            const clipEnd = e.endD > wkEnd;
+            const startCol = clipStart ? 0 : e.startD.getDay();
+            const endCol = clipEnd ? 6 : e.endD.getDay();
+            return { e, startCol, endCol, clipStart, clipEnd, lane: 0 };
+          })
+          .sort((a, b) => a.startCol - b.startCol || (b.endCol - b.startCol) - (a.endCol - a.startCol));
+
+        // Greedy lane (track) assignment so overlapping events stack and a
+        // multi-day bar keeps a single continuous lane across its span.
+        const laneEnds: number[] = [];
+        for (const seg of segs) {
+          let lane = laneEnds.findIndex((end) => end < seg.startCol);
+          if (lane === -1) {
+            lane = laneEnds.length;
+            laneEnds.push(seg.endCol);
+          } else {
+            laneEnds[lane] = seg.endCol;
+          }
+          seg.lane = lane;
+        }
+
+        const usedLanes = laneEnds.length;
+        const isExpanded = expanded.has(wi);
+        const overflow = !isExpanded && usedLanes > LANE_CAP;
+        const barLanes = overflow ? LANE_CAP - 1 : usedLanes;
+        const bodyRows = Math.max(barLanes + (overflow ? 1 : 0), 2);
+
+        let cells = '';
+
+        // Day-number background cells (each spans the full week-row height).
+        wk.forEach((d, col) => {
+          const inMonth = d.getMonth() === month;
+          const isToday = d.getTime() === today.getTime();
+          const cls = ['cal__day'];
+          if (!inMonth) cls.push('cal__day--muted');
+          if (isToday) cls.push('cal__day--today');
+          cells += `<div class="${cls.join(' ')}" style="grid-column:${col + 1};grid-row:1 / -1">`
+            + `<span class="cal__daynum">${d.getDate()}</span></div>`;
+        });
+
+        // Event bars.
+        for (const seg of segs) {
+          if (seg.lane >= barLanes) continue;
+          const { e } = seg;
+          const single = !seg.clipStart && !seg.clipEnd && seg.startCol === seg.endCol;
+          const cls = ['cal__bar'];
+          cls.push(single ? 'cal__bar--single' : 'cal__bar--span');
+          if (seg.clipStart) cls.push('cal__bar--clip-start');
+          if (seg.clipEnd) cls.push('cal__bar--clip-end');
+          const style = `--ev:${e.color};grid-column:${seg.startCol + 1} / ${seg.endCol + 2};grid-row:${seg.lane + 2}`;
+          const label = esc(`${e.title}, ${fmtRange(e)}`);
+          const dot = single ? '<span class="cal__bar-dot" aria-hidden="true"></span>' : '';
+          const inner = `${dot}<span class="cal__bar-label">${esc(e.title)}</span>`;
+          if (e.link) {
+            cells += `<a class="${cls.join(' ')}" style="${style}" href="${esc(e.link)}" target="_blank" rel="noopener noreferrer" aria-label="${label} (opens in new tab)">${inner}</a>`;
+          } else {
+            cells += `<span class="${cls.join(' ')}" style="${style}" aria-hidden="true">${inner}</span>`;
+          }
+        }
+
+        // "+N more" affordance per day when a week overflows the lane cap.
+        if (overflow) {
+          const moreRow = barLanes + 2;
+          for (let col = 0; col < 7; col++) {
+            const hidden = segs.filter(
+              (s) => s.lane >= barLanes && s.startCol <= col && s.endCol >= col,
+            ).length;
+            if (!hidden) continue;
+            cells += `<button type="button" class="cal__more" data-week="${wi}" style="grid-column:${col + 1};grid-row:${moreRow}" aria-label="Show ${hidden} more event${hidden > 1 ? 's' : ''}">+${hidden} more</button>`;
+          }
+        }
+
+        return `<div class="cal__week" style="grid-template-rows:var(--cal-head-h) repeat(${bodyRows}, var(--cal-lane-h))">${cells}</div>`;
+      }
+
+      function renderAgenda(monthEvents: CalEvent[]) {
+        agendaWrap.hidden = false;
+        agendaLabel.textContent = `${MONTHS[month]} ${year}`;
+        agendaEl.innerHTML = monthEvents
+          .map((e) => {
+            const dot = `<span class="cal__agenda-dot" style="--ev:${e.color}" aria-hidden="true"></span>`;
+            const date = `<span class="cal__agenda-date">${esc(fmtRange(e))}</span>`;
+            const title = e.link
+              ? `<a class="cal__agenda-title cal__agenda-title--link" href="${esc(e.link)}" target="_blank" rel="noopener noreferrer">${esc(e.title)}<span class="cal__agenda-arrow" aria-hidden="true">→</span></a>`
+              : `<span class="cal__agenda-title">${esc(e.title)}</span>`;
+            return `<li class="cal__agenda-item">${dot}<span class="cal__agenda-text">${date}${title}</span></li>`;
+          })
+          .join('');
+      }
+
+      function go(deltaMonths: number) {
+        month += deltaMonths;
+        while (month < 0) { month += 12; year -= 1; }
+        while (month > 11) { month -= 12; year += 1; }
+        expanded = new Set();
+        render();
+      }
+
+      root.querySelector('[data-cal-prev]')?.addEventListener('click', () => go(-1));
+      root.querySelector('[data-cal-next]')?.addEventListener('click', () => go(1));
+      root.querySelector('[data-cal-today]')?.addEventListener('click', () => {
+        const now = new Date();
+        year = now.getFullYear();
+        month = now.getMonth();
+        expanded = new Set();
         render();
       });
-      root.querySelector('[data-cal-next]')?.addEventListener('click', () => {
-        month += 1;
-        if (month > 11) { month = 0; year += 1; }
-        render();
+
+      gridEl.addEventListener('click', (ev) => {
+        const btn = (ev.target as HTMLElement).closest('.cal__more') as HTMLElement | null;
+        if (!btn) return;
+        const wi = parseInt(btn.dataset.week || '', 10);
+        if (!Number.isNaN(wi)) {
+          expanded.add(wi);
+          render();
+        }
       });
 
       render();
@@ -206,7 +368,7 @@ const initialMonth = initialDate.getMonth();
 
 </Base>
 
-<style>
+<style is:global>
   .cal-section {
     padding: 64px 0 0;
   }
@@ -232,7 +394,10 @@ const initialMonth = initialDate.getMonth();
 
   /* ── Month panel ── */
   .cal {
-    max-width: 760px;
+    --cal-head-h: 30px;
+    --cal-lane-h: 22px;
+    --cal-gap: 0px;
+    max-width: 940px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 10px 28px 10px 28px;
@@ -244,18 +409,25 @@ const initialMonth = initialDate.getMonth();
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
+    gap: 12px 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
     border-bottom: 1px solid var(--color-border-light);
   }
 
   .cal__heading {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
+    font-size: clamp(1.45rem, 3.2vw, 1.75rem);
     font-weight: 600;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
     color: var(--color-text);
+  }
+
+  .cal__nav-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .cal__nav {
@@ -270,7 +442,7 @@ const initialMonth = initialDate.getMonth();
     background: var(--color-bg-subtle);
     color: var(--color-text);
     cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
 
   .cal__nav:hover {
@@ -283,21 +455,40 @@ const initialMonth = initialDate.getMonth();
     height: 18px;
   }
 
-  .cal__empty {
-    margin: 20px 0 0;
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
+  .cal__today {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-subtle);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
 
-  .cal__weekdays,
-  .cal__days {
+  .cal__today:hover {
+    background: var(--color-bg-muted);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .cal__nav:focus-visible,
+  .cal__today:focus-visible,
+  .cal__bar:focus-visible,
+  .cal__more:focus-visible,
+  .cal__agenda-title--link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Weekday header ── */
+  .cal__weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-  }
-
-  .cal__weekdays {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .cal__wd {
@@ -310,168 +501,317 @@ const initialMonth = initialDate.getMonth();
     color: var(--color-text-muted);
   }
 
-  /* ── Day cells ── */
-  .cal__cell {
-    position: relative;
-    min-height: 62px;
-    padding: 6px 8px;
+  .cal__wd-min {
+    display: none;
+  }
+
+  /* ── Month grid ── */
+  .cal__grid {
     border: 1px solid var(--color-border-light);
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--color-border-light);
+  }
+
+  .cal__week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    column-gap: var(--cal-gap);
+    row-gap: 2px;
+  }
+
+  /* Day-number cell: the background tile that draws the grid lines. */
+  .cal__day {
+    position: relative;
+    min-width: 0;
+    padding: 5px 7px 4px;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .cal__day--muted {
     background: var(--color-bg-subtle);
   }
 
-  .cal__cell--pad {
-    background: transparent;
-    border-color: transparent;
-    min-height: 0;
-  }
-
-  .cal__num {
-    font-size: 0.8rem;
+  .cal__daynum {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.6em;
+    height: 1.6em;
+    font-size: 0.78rem;
     font-weight: 600;
+    font-variant-numeric: tabular-nums;
     color: var(--color-text-secondary);
   }
 
-  /* Event days: subtle tint + a row of colour-coded dots (one per event). */
-  .cal__cell--event {
-    background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
-    border-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
+  .cal__day--muted .cal__daynum {
+    color: var(--color-text-muted);
+    opacity: 0.7;
   }
 
-  .cal__cell--event .cal__num {
-    color: var(--color-primary);
+  .cal__day--today .cal__daynum {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-radius: var(--radius-pill);
     font-weight: 700;
   }
 
-  .cal__dots {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
+  /* ── Event bars ── */
+  .cal__bar {
+    position: relative;
+    z-index: 1;
+    align-self: center;
     display: flex;
-    gap: 3px;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    height: calc(var(--cal-lane-h) - 4px);
+    margin: 0 3px;
+    padding: 0 8px;
+    border-radius: var(--radius-pill);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--ev) 22%, var(--color-surface));
+    border: 1px solid color-mix(in srgb, var(--ev) 42%, transparent);
+    transition: background 0.15s ease, border-color 0.15s ease;
   }
 
-  .cal__dot {
+  /* Filled (multi-day) bars read as a continuous solid band. */
+  .cal__bar--span {
+    background: color-mix(in srgb, var(--ev) 34%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--ev) 48%, transparent);
+  }
+
+  a.cal__bar:hover {
+    background: color-mix(in srgb, var(--ev) 46%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--ev) 60%, transparent);
+  }
+
+  .cal__bar-dot {
+    flex-shrink: 0;
     width: 7px;
     height: 7px;
     border-radius: 50%;
+    background: var(--ev);
   }
 
-  .cal__sr {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
+  .cal__bar-label {
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-    border: 0;
+    text-overflow: ellipsis;
   }
 
-  /* ── Legend ── */
-  .cal-legend {
+  /* Continuation cues when a bar runs off the start/end of a week row. */
+  .cal__bar--clip-start {
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: transparent;
+  }
+
+  .cal__bar--clip-end {
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-color: transparent;
+  }
+
+  /* ── "+N more" ── */
+  .cal__more {
+    align-self: center;
+    justify-self: start;
+    z-index: 1;
+    margin: 0 4px;
+    padding: 2px 6px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .cal__more:hover {
+    background: var(--color-bg-muted);
+    color: var(--color-primary);
+  }
+
+  .cal__empty {
+    margin: 18px 0 0;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Agenda (mobile title carrier + accessible month list) ── */
+  .cal__agenda-wrap {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .cal__agenda-label {
+    margin: 0 0 12px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .cal__agenda {
     list-style: none;
-    margin: 22px 0 0;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  .cal-legend__item {
+  .cal__agenda-item {
     display: flex;
     align-items: baseline;
-    flex-wrap: wrap;
-    gap: 6px 12px;
+    gap: 10px;
     font-size: 0.875rem;
   }
 
-  .cal-legend__dot {
+  .cal__agenda-dot {
     position: relative;
     top: 1px;
     flex-shrink: 0;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-gold);
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    background: var(--ev);
   }
 
-  .cal-legend__date {
+  .cal__agenda-text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+  }
+
+  .cal__agenda-date {
     flex-shrink: 0;
     font-weight: 600;
     color: var(--color-accent);
     font-variant-numeric: tabular-nums;
   }
 
-  .cal-legend__title {
+  .cal__agenda-title {
     font-weight: 600;
     color: var(--color-text);
   }
 
-  .cal-legend__title--link {
+  .cal__agenda-title--link {
     display: inline-flex;
     align-items: baseline;
     gap: 6px;
     color: var(--color-text);
+    text-decoration: none;
     transition: color 0.15s ease;
   }
 
-  .cal-legend__title--link:hover {
+  .cal__agenda-title--link:hover {
     color: var(--color-accent);
   }
 
-  .cal-legend__arrow {
+  .cal__agenda-arrow {
     transition: transform 0.18s ease;
   }
 
-  .cal-legend__title--link:hover .cal-legend__arrow {
+  .cal__agenda-title--link:hover .cal__agenda-arrow {
     transform: translateX(3px);
   }
 
-  @media (max-width: 560px) {
+  /* On wide screens the bars carry the titles; the agenda is mobile-only. */
+  @media (min-width: 721px) {
+    .cal__agenda-wrap {
+      display: none;
+    }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 720px) {
     .cal {
+      --cal-head-h: 26px;
+      --cal-lane-h: 9px;
       padding: 18px 14px 20px;
     }
 
-    .cal__days,
-    .cal__weekdays {
-      gap: 4px;
+    .cal__wd-full {
+      display: none;
     }
 
-    .cal__cell {
-      min-height: 44px;
-      padding: 4px;
+    .cal__wd-min {
+      display: inline;
     }
 
-    .cal__num {
-      font-size: 0.72rem;
+    .cal__day {
+      padding: 3px 4px;
     }
 
-    .cal__dots {
-      left: 5px;
-      bottom: 5px;
-      gap: 2px;
+    .cal__daynum {
+      font-size: 0.7rem;
+      min-width: 1.5em;
+      height: 1.5em;
     }
 
-    .cal__dot {
-      width: 6px;
-      height: 6px;
+    /* Bars collapse to thin colour segments; the agenda carries the titles. */
+    .cal__bar {
+      height: 5px;
+      margin: 0 2px;
+      padding: 0;
+      border-radius: var(--radius-pill);
+      background: var(--ev);
+      border-color: transparent;
     }
 
-    .cal__wd {
+    .cal__bar--span {
+      background: var(--ev);
+    }
+
+    .cal__bar-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .cal__bar-dot {
+      display: none;
+    }
+
+    .cal__more {
+      margin: 0 2px;
+      padding: 0 3px;
       font-size: 0.6rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .cal__cell--event,
-    .cal-legend__title--link,
-    .cal-legend__arrow {
+    .cal__nav,
+    .cal__today,
+    .cal__bar,
+    .cal__more,
+    .cal__agenda-title--link,
+    .cal__agenda-arrow {
       transition: none;
     }
 
-    .cal-legend__title--link:hover .cal-legend__arrow {
+    .cal__agenda-title--link:hover .cal__agenda-arrow {
       transform: none;
     }
   }
