@@ -621,15 +621,16 @@ p {
     margin-left: auto;
   }
 
-  /* Submenu reads as an indented accordion section */
+  /* Submenu: a soft recessed group, indented under its parent.
+     Hierarchy comes from indentation + a tinted panel + type — no side-stripe. */
   .site-nav__dropdown {
     position: static;
     box-shadow: none;
     border: none;
-    background: transparent;
-    margin: 0 0 8px;
-    padding: 2px 0 6px 14px;
-    border-left: 2px solid var(--color-border);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-sm);
+    margin: 2px 0 10px 14px;
+    padding: 6px 8px;
   }
 
   .site-nav__dropdown-link {
