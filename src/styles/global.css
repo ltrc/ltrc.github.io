@@ -484,7 +484,7 @@ p {
 }
 
 /* Desktop: show on hover AND click */
-@media (min-width: 901px) {
+@media (min-width: 1101px) {
   .site-nav__item:hover .site-nav__dropdown,
   .site-nav__item.is-open .site-nav__dropdown {
     display: block;
@@ -497,7 +497,7 @@ p {
 }
 
 /* Mobile: only on click */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .site-nav__item.is-open .site-nav__dropdown {
     display: block;
   }
@@ -542,7 +542,7 @@ p {
   margin-left: 4px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .site-header__toggle {
     display: flex;
   }
@@ -564,27 +564,67 @@ p {
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
     flex-direction: column;
-    padding: 12px 24px;
+    align-items: stretch;
+    padding: 8px 24px 16px;
     gap: 0;
     box-shadow: var(--shadow-lg);
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
   }
 
   .site-nav.is-open {
     display: flex;
   }
 
-  .site-nav__link,
-  .site-nav__link--parent {
-    padding: 12px 14px;
+  .site-nav__item {
     width: 100%;
+    border-top: 1px solid var(--color-border-light);
   }
 
+  .site-nav__item:first-child {
+    border-top: none;
+  }
+
+  .site-nav__link,
+  .site-nav__link--parent {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 14px 6px;
+    font-size: 1.0625rem;
+    border-radius: 0;
+  }
+
+  /* Parent row: label left, chevron pinned to the right edge */
+  .site-nav__link--parent {
+    justify-content: space-between;
+  }
+
+  .site-nav__chevron {
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+  }
+
+  /* Submenu reads as an indented accordion section */
   .site-nav__dropdown {
     position: static;
     box-shadow: none;
     border: none;
-    padding: 0 0 0 16px;
     background: transparent;
+    margin: 0 0 8px;
+    padding: 2px 0 6px 14px;
+    border-left: 2px solid var(--color-border);
+  }
+
+  .site-nav__dropdown-link {
+    padding: 10px 12px;
+  }
+
+  .site-nav__dropdown-link--overview {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    font-weight: 600;
   }
 
   .site-nav__link--cta {
