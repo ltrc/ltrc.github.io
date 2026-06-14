@@ -407,13 +407,9 @@
   gap: 28px 44px;
 }
 
-/* Embedded month calendar below the event tiles. */
-.home-cal {
-  margin-top: 44px;
-}
-
-.event-cards + .home-cal {
-  margin-top: 48px;
+/* The embedded compact calendar sits in the grid as the first tile. */
+.event-cards > .cal {
+  align-self: start;
 }
 
 .event-tile {

@@ -135,35 +135,31 @@ const programs = education.programs.slice(0, 6);
     <section class="home-section">
       <div class="container">
         <SectionHeader title="Upcoming events" linkHref="/events" linkLabel="All events" />
-        {upcomingEvents.length > 0 && (
-          <div class="event-cards">
-            {upcomingEvents.map((event) => (
-              <article class="event-tile">
-                <div class="event-tile__date">
-                  <span class="event-tile__month">{event.month}</span>
-                  <span class="event-tile__day">{event.day}</span>
-                </div>
-                <div class="event-tile__body">
-                  {event.subtitle && <span class="event-tile__subtitle">{event.subtitle}</span>}
-                  <h3 class="event-tile__title">{event.title}</h3>
-                  <p class="event-tile__desc">{event.description}</p>
-                  {event.venue && <p class="event-tile__venue">{event.venue}</p>}
-                  {event.link && (
-                    <a href={event.link} class="event-tile__link" target="_blank" rel="noopener noreferrer">
-                      Learn more
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-        {calEvents.length > 0 && (
-          <div class="home-cal">
+        <div class="event-cards">
+          {calEvents.length > 0 && (
             <Calendar events={calEvents} initialYear={initialYear} initialMonth={initialMonth} compact />
-          </div>
-        )}
+          )}
+          {upcomingEvents.map((event) => (
+            <article class="event-tile">
+              <div class="event-tile__date">
+                <span class="event-tile__month">{event.month}</span>
+                <span class="event-tile__day">{event.day}</span>
+              </div>
+              <div class="event-tile__body">
+                {event.subtitle && <span class="event-tile__subtitle">{event.subtitle}</span>}
+                <h3 class="event-tile__title">{event.title}</h3>
+                <p class="event-tile__desc">{event.description}</p>
+                {event.venue && <p class="event-tile__venue">{event.venue}</p>}
+                {event.link && (
+                  <a href={event.link} class="event-tile__link" target="_blank" rel="noopener noreferrer">
+                    Learn more
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )}
