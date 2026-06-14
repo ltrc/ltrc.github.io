@@ -1,0 +1,15 @@
+/* ── Section Headings ── */
+.section-heading {
+  margin-bottom: 32px;
+}
+
+.section-heading h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ── Research Areas (section wrapper for research/index) ── */
+.research-areas {
+  padding: 64px 0;
+}
