@@ -438,7 +438,7 @@ p {
   align-items: center;
   gap: 4px;
   padding: 8px 14px;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 450;
   color: var(--color-text-secondary);
   border-radius: var(--radius-sm);
@@ -510,7 +510,7 @@ p {
 .site-nav__dropdown-link {
   display: block;
   padding: 8px 14px;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   border-radius: var(--radius-sm);
   transition: background 0.15s, color 0.15s;
@@ -943,7 +943,7 @@ p {
 }
 
 .site-footer__heading {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   margin-bottom: 16px;
   color: var(--color-on-navy);
@@ -956,7 +956,7 @@ p {
 }
 
 .site-footer__links a {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 
 .site-footer__contact {
@@ -969,7 +969,7 @@ p {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -1052,14 +1052,14 @@ p {
 .lab-hero__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  gap: 9px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 24px;
 }
 
 .lab-hero__breadcrumb a {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .lab-hero__breadcrumb a:hover {
@@ -1079,8 +1079,8 @@ p {
 }
 
 .lab-hero__breadcrumb svg {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   opacity: 0.5;
 }
 
@@ -1112,8 +1112,8 @@ p {
 }
 
 .lab-hero__desc {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.68);
   max-width: 500px;
 }
 
@@ -1242,7 +1242,7 @@ p {
 }
 
 .lab-about p {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
   margin-bottom: 12px;
   line-height: 1.7;
@@ -1544,14 +1544,14 @@ p {
 .page-header__breadcrumb {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  gap: 9px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 16px;
 }
 
 .page-header__breadcrumb a {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .page-header__breadcrumb a:hover {
@@ -1571,8 +1571,8 @@ p {
 }
 
 .page-header__breadcrumb svg {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   opacity: 0.5;
 }
 
@@ -1587,14 +1587,14 @@ p {
 
 .page-header h1 {
   color: var(--color-on-navy);
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
-  margin-bottom: 12px;
+  font-size: clamp(2.5rem, 4.4vw, 3.5rem);
+  margin-bottom: 14px;
 }
 
 .page-header p {
-  font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.72);
-  max-width: 560px;
+  font-size: 1.1875rem;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 62ch;
   line-height: 1.7;
 }
 
@@ -1762,7 +1762,7 @@ p {
 }
 
 .lab-card-home__about {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: 14px;
@@ -1832,7 +1832,7 @@ p {
 }
 
 .news-feed__desc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
   flex-grow: 1;
