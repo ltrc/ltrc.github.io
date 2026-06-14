@@ -89,8 +89,31 @@ const site = await getSingle('site');
 
         <nav class="site-nav" id="site-nav">
           {site.nav.map((item) => (
-            <div class="site-nav__item" data-has-children={item.children ? 'true' : undefined}>
-              {item.children ? (
+            <div class="site-nav__item" data-has-children={(item.children || item.sections) ? 'true' : undefined}>
+              {item.sections ? (
+                <>
+                  <button class="site-nav__link site-nav__link--parent" aria-expanded="false" data-dropdown-trigger>
+                    {item.label}
+                    <svg class="site-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+                  <div class="site-nav__dropdown site-nav__dropdown--sections">
+                    <div class="site-nav__dropdown-grid">
+                      {item.sections.map((section) => (
+                        <div class="site-nav__dropdown-section">
+                          <a href={section.href} class="site-nav__dropdown-link site-nav__dropdown-link--overview">
+                            {section.label}
+                          </a>
+                          {section.children.map((child) => (
+                            <a href={child.href} class="site-nav__dropdown-link">{child.label}</a>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : item.children ? (
                 <>
                   <button class="site-nav__link site-nav__link--parent" aria-expanded="false" data-dropdown-trigger>
                     {item.label}

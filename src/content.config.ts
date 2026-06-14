@@ -15,6 +15,14 @@ const site = defineCollection({
         label: z.string(),
         href: z.string(),
       })).optional(),
+      sections: z.array(z.object({
+        label: z.string(),
+        href: z.string(),
+        children: z.array(z.object({
+          label: z.string(),
+          href: z.string(),
+        })),
+      })).optional(),
     })),
     footer: z.object({
       address_lines: z.array(z.string()).optional(),

@@ -530,6 +530,22 @@ p {
   padding-bottom: 10px;
 }
 
+/* Sectioned dropdown: two groups side by side (e.g. Labs + Research) */
+.site-nav__dropdown--sections {
+  min-width: 440px;
+}
+
+.site-nav__dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  gap: 2px 20px;
+}
+
+.site-nav__dropdown-section {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Mobile nav toggle */
 .site-header__toggle {
   display: none;
@@ -625,6 +641,20 @@ p {
     margin-bottom: 0;
     padding-bottom: 10px;
     font-weight: 600;
+  }
+
+  /* Stack the two sections in the accordion */
+  .site-nav__dropdown--sections {
+    min-width: 0;
+  }
+
+  .site-nav__dropdown-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .site-nav__dropdown-section + .site-nav__dropdown-section {
+    margin-top: 6px;
   }
 
   .site-nav__link--cta {

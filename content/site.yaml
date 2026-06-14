@@ -6,24 +6,27 @@ favicon: "/assets/ltrc-logo.png"
 nav:
   - label: Home
     href: /
-  - label: Labs
-    href: /labs
-    children:
-      - label: MT-NLP Lab
-        href: /labs/mt-nlp
-      - label: Anusaaraka Lab
-        href: /labs/anusaaraka
-      - label: Speech Processing Lab
-        href: /labs/speech-processing
-      - label: IREL
-        href: /labs/irel
   - label: Research
     href: /research
-    children:
-      - label: Publications
-        href: /research/publications
-      - label: Projects
-        href: /research/projects
+    sections:
+      - label: Labs
+        href: /labs
+        children:
+          - label: MT-NLP Lab
+            href: /labs/mt-nlp
+          - label: Anusaaraka Lab
+            href: /labs/anusaaraka
+          - label: Speech Processing Lab
+            href: /labs/speech-processing
+          - label: IREL
+            href: /labs/irel
+      - label: Research
+        href: /research
+        children:
+          - label: Publications
+            href: /research/publications
+          - label: Projects
+            href: /research/projects
   - label: Education
     href: /education
   - label: People
