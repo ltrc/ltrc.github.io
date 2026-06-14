@@ -1,0 +1,60 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { formatDate } from '../../lib/format';
+import '../../styles/pages/blog.css';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+};
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { Content } = await render(post);
+
+const meta = [
+  post.data.category,
+  formatDate(post.data.date),
+  post.data.author,
+].filter(Boolean) as string[];
+---
+
+<Base title={post.data.title} description={post.data.excerpt}>
+
+  <PageHeader
+    title={post.data.title}
+    breadcrumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Blog', href: '/blog' },
+      { label: post.data.title },
+    ]}
+  />
+
+  <section class="page-section">
+    <div class="container blog-post">
+      <p class="blog-post__meta">
+        {meta.map((part, i) => (
+          <>
+            {i > 0 && <span class="blog-post__meta-sep" aria-hidden="true">·</span>}
+            <span>{part}</span>
+          </>
+        ))}
+      </p>
+
+      <article class="prose">
+        <Content />
+      </article>
+
+      <a href="/blog" class="blog-post__back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        Back to blog
+      </a>
+    </div>
+  </section>
+
+</Base>

@@ -45,6 +45,8 @@ nav:
     href: /events
   - label: News
     href: /news
+  - label: Blog
+    href: /blog
 
 footer:
   address_lines:

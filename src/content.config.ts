@@ -151,4 +151,16 @@ const education = defineCollection({
   }),
 });
 
-export const collections = { site, homepage, labs, people, events, news, education };
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./content/blog" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.string(),
+    author: z.string().optional(),
+    excerpt: z.string(),
+    category: z.string().optional(),
+    image: z.string().optional(),
+  }),
+});
+
+export const collections = { site, homepage, labs, people, events, news, education, blog };
