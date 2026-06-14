@@ -5,73 +5,60 @@
   bar spanning the days it covers (multi-event stacking + overlapping ranges).
 */
 import '../styles/components/calendar.css';
-
-interface CalEvent {
-  title: string;
-  start: string;
-  end: string;
-  link: string | null;
-}
+import type { CalEvent } from '../lib/calendar';
 
 interface Props {
   events: CalEvent[];
   initialYear: number;
   initialMonth: number;
+  /** Tighter sizing for embedding in a narrower context (e.g. homepage). */
+  compact?: boolean;
 }
 
-const { events, initialYear, initialMonth } = Astro.props;
+const { events, initialYear, initialMonth, compact = false } = Astro.props;
 ---
 
-<section class="cal-section">
-  <div class="container">
-    <div class="cal-head">
-      <h2 class="cal-head__title">Lab Calendar</h2>
-      <p class="cal-head__caption">Browse events by month</p>
-    </div>
-
-    <div
-      class="cal"
-      id="cal"
-      role="group"
-      aria-label="Event calendar"
-      data-events={JSON.stringify(events)}
-      data-year={initialYear}
-      data-month={initialMonth}
-    >
-      <div class="cal__title">
-        <span class="cal__heading" data-cal-heading aria-live="polite">&nbsp;</span>
-        <div class="cal__nav-group">
-          <button class="cal__nav" type="button" data-cal-prev aria-label="Previous month">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-          </button>
-          <button class="cal__today" type="button" data-cal-today>Today</button>
-          <button class="cal__nav" type="button" data-cal-next aria-label="Next month">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="cal__weekdays" aria-hidden="true">
-        <span class="cal__wd"><span class="cal__wd-full">Sun</span><span class="cal__wd-min">S</span></span>
-        <span class="cal__wd"><span class="cal__wd-full">Mon</span><span class="cal__wd-min">M</span></span>
-        <span class="cal__wd"><span class="cal__wd-full">Tue</span><span class="cal__wd-min">T</span></span>
-        <span class="cal__wd"><span class="cal__wd-full">Wed</span><span class="cal__wd-min">W</span></span>
-        <span class="cal__wd"><span class="cal__wd-full">Thu</span><span class="cal__wd-min">T</span></span>
-        <span class="cal__wd"><span class="cal__wd-full">Fri</span><span class="cal__wd-min">F</span></span>
-        <span class="cal__wd"><span class="cal__wd-full">Sat</span><span class="cal__wd-min">S</span></span>
-      </div>
-
-      <div class="cal__grid" data-cal-grid></div>
-
-      <p class="cal__empty" data-cal-empty hidden>No events scheduled this month.</p>
-
-      <div class="cal__agenda-wrap" data-cal-agenda-wrap hidden>
-        <p class="cal__agenda-label" data-cal-agenda-label>This month</p>
-        <ul class="cal__agenda" data-cal-agenda></ul>
-      </div>
+<div
+  class:list={['cal', { 'cal--compact': compact }]}
+  id="cal"
+  role="group"
+  aria-label="Event calendar"
+  data-events={JSON.stringify(events)}
+  data-year={initialYear}
+  data-month={initialMonth}
+>
+  <div class="cal__title">
+    <span class="cal__heading" data-cal-heading aria-live="polite">&nbsp;</span>
+    <div class="cal__nav-group">
+      <button class="cal__nav" type="button" data-cal-prev aria-label="Previous month">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="cal__today" type="button" data-cal-today>Today</button>
+      <button class="cal__nav" type="button" data-cal-next aria-label="Next month">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </div>
   </div>
-</section>
+
+  <div class="cal__weekdays" aria-hidden="true">
+    <span class="cal__wd"><span class="cal__wd-full">Sun</span><span class="cal__wd-min">S</span></span>
+    <span class="cal__wd"><span class="cal__wd-full">Mon</span><span class="cal__wd-min">M</span></span>
+    <span class="cal__wd"><span class="cal__wd-full">Tue</span><span class="cal__wd-min">T</span></span>
+    <span class="cal__wd"><span class="cal__wd-full">Wed</span><span class="cal__wd-min">W</span></span>
+    <span class="cal__wd"><span class="cal__wd-full">Thu</span><span class="cal__wd-min">T</span></span>
+    <span class="cal__wd"><span class="cal__wd-full">Fri</span><span class="cal__wd-min">F</span></span>
+    <span class="cal__wd"><span class="cal__wd-full">Sat</span><span class="cal__wd-min">S</span></span>
+  </div>
+
+  <div class="cal__grid" data-cal-grid></div>
+
+  <p class="cal__empty" data-cal-empty hidden>No events scheduled this month.</p>
+
+  <div class="cal__agenda-wrap" data-cal-agenda-wrap hidden>
+    <p class="cal__agenda-label" data-cal-agenda-label>This month</p>
+    <ul class="cal__agenda" data-cal-agenda></ul>
+  </div>
+</div>
 
 <script>
   type CalEvent = {

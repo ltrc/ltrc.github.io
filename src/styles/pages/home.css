@@ -407,6 +407,15 @@
   gap: 28px 44px;
 }
 
+/* Embedded month calendar below the event tiles. */
+.home-cal {
+  margin-top: 44px;
+}
+
+.event-cards + .home-cal {
+  margin-top: 48px;
+}
+
 .event-tile {
   display: flex;
   gap: 20px;

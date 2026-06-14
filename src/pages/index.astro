@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import Calendar from '../components/Calendar.astro';
+import { getCalendarData } from '../lib/calendar';
 import '../styles/pages/home.css';
 
 const homepageEntries = await getCollection('homepage');
@@ -20,6 +22,7 @@ const faculty = allMembers.filter(m => m.type === 'faculty').slice(0, 6);
 
 const eventsEntries = await getCollection('events');
 const upcomingEvents = eventsEntries[0].data.upcoming || [];
+const { calEvents, initialYear, initialMonth } = getCalendarData(eventsEntries[0].data);
 
 const educationEntries = await getCollection('education');
 const education = educationEntries[0].data;
@@ -128,32 +131,39 @@ const programs = education.programs.slice(0, 6);
   </section>
 
   <!-- Events -->
-  {upcomingEvents.length > 0 && (
+  {(upcomingEvents.length > 0 || calEvents.length > 0) && (
     <section class="home-section">
       <div class="container">
         <SectionHeader title="Upcoming events" linkHref="/events" linkLabel="All events" />
-        <div class="event-cards">
-          {upcomingEvents.map((event) => (
-            <article class="event-tile">
-              <div class="event-tile__date">
-                <span class="event-tile__month">{event.month}</span>
-                <span class="event-tile__day">{event.day}</span>
-              </div>
-              <div class="event-tile__body">
-                {event.subtitle && <span class="event-tile__subtitle">{event.subtitle}</span>}
-                <h3 class="event-tile__title">{event.title}</h3>
-                <p class="event-tile__desc">{event.description}</p>
-                {event.venue && <p class="event-tile__venue">{event.venue}</p>}
-                {event.link && (
-                  <a href={event.link} class="event-tile__link" target="_blank" rel="noopener noreferrer">
-                    Learn more
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
+        {upcomingEvents.length > 0 && (
+          <div class="event-cards">
+            {upcomingEvents.map((event) => (
+              <article class="event-tile">
+                <div class="event-tile__date">
+                  <span class="event-tile__month">{event.month}</span>
+                  <span class="event-tile__day">{event.day}</span>
+                </div>
+                <div class="event-tile__body">
+                  {event.subtitle && <span class="event-tile__subtitle">{event.subtitle}</span>}
+                  <h3 class="event-tile__title">{event.title}</h3>
+                  <p class="event-tile__desc">{event.description}</p>
+                  {event.venue && <p class="event-tile__venue">{event.venue}</p>}
+                  {event.link && (
+                    <a href={event.link} class="event-tile__link" target="_blank" rel="noopener noreferrer">
+                      Learn more
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+        {calEvents.length > 0 && (
+          <div class="home-cal">
+            <Calendar events={calEvents} initialYear={initialYear} initialMonth={initialMonth} compact />
+          </div>
+        )}
       </div>
     </section>
   )}

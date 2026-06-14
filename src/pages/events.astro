@@ -1,31 +1,15 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import EventCard from '../components/EventCard.astro';
 import Calendar from '../components/Calendar.astro';
-
-type EventItem = NonNullable<CollectionEntry<'events'>['data']['upcoming']>[number];
+import { getCalendarData } from '../lib/calendar';
 
 const eventsEntries = await getCollection('events');
 const events = eventsEntries[0].data;
 
-// Shape events for the calendar (plain date strings; client renders them).
-const calEvents = [...(events.upcoming ?? []), ...(events.past ?? [])].map((e: EventItem) => ({
-  title: e.title,
-  start: e.date,
-  end: e.end_date || e.date,
-  link: e.link || null,
-}));
-
-// Initial month: the next upcoming event, else the most recent past event,
-// else the current month.
-const upcomingStarts = (events.upcoming ?? []).map((e: EventItem) => e.date).sort();
-const pastStarts = (events.past ?? []).map((e: EventItem) => e.date).sort().reverse();
-const initialDateStr = upcomingStarts[0] || pastStarts[0] || new Date().toISOString().slice(0, 10);
-const initialDate = new Date(`${initialDateStr}T00:00:00`);
-const initialYear = initialDate.getFullYear();
-const initialMonth = initialDate.getMonth();
+const { calEvents, initialYear, initialMonth } = getCalendarData(events);
 ---
 
 <Base title="Events" description="Conferences, workshops, summer schools, and talks at LTRC.">
@@ -37,7 +21,15 @@ const initialMonth = initialDate.getMonth();
   />
 
   {calEvents.length > 0 && (
-    <Calendar events={calEvents} initialYear={initialYear} initialMonth={initialMonth} />
+    <section class="cal-section">
+      <div class="container">
+        <div class="cal-head">
+          <h2 class="cal-head__title">Lab Calendar</h2>
+          <p class="cal-head__caption">Browse events by month</p>
+        </div>
+        <Calendar events={calEvents} initialYear={initialYear} initialMonth={initialMonth} />
+      </div>
+    </section>
   )}
 
   <section style="padding: 48px 0 80px;">
