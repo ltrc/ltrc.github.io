@@ -29,14 +29,6 @@ members:
     email: "dipti@iiit.ac.in"
     labs: ["MT-NLP Lab"]
 
-  - name: "Ponnurangam Kumaraguru"
-    type: faculty
-    role: "Professor"
-    qualification: "Ph.D (Carnegie Mellon University)"
-    area: "Responsible & Safe AI, Applied Machine Learning, Graph Theory, Data Science, NLP"
-    email: "pk.guru@iiit.ac.in"
-    page: "https://www.iiit.ac.in/faculty/ponnurangam-kumaraguru/"
-
   - name: "Radhika Mamidi"
     type: faculty
     role: "Associate Professor"
@@ -55,7 +47,7 @@ members:
 
   - name: "Anil Kumar Vuppala"
     type: faculty
-    role: "Assistant Professor"
+    role: "Professor"
     qualification: "Ph.D (IIT Kharagpur)"
     area: "Speech Recognition, Speaker Recognition, Language Identification, Emotion & Pathological Speech Processing"
     email: "anil.vuppala@iiit.ac.in"
@@ -64,7 +56,7 @@ members:
 
   - name: "Manish Shrivastava"
     type: faculty
-    role: "Assistant Professor"
+    role: "Associate Professor"
     qualification: "Ph.D (IIT Bombay)"
     area: "Natural Language Processing, Machine Learning, Machine Translation, NLP for Indian Languages"
     email: "m.shrivastava@iiit.ac.in"
