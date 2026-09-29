@@ -210,6 +210,11 @@
   line-height: 1.7;
 }
 
+.lab-about p a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 .lab-about .btn {
   margin-top: 12px;
 }
