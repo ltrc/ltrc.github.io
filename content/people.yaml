@@ -49,7 +49,9 @@ members:
     type: faculty
     role: "Professor"
     qualification: "Ph.D (IIT Kharagpur)"
-    area: "Speech Recognition, Speaker Recognition, Language Identification, Emotion & Pathological Speech Processing"
+    area: | 
+      Head of Speech Processing Lab. 
+      Speech Recognition, Speaker Recognition, Language Identification, Emotion & Pathological Speech Processing
     email: "anil.vuppala@iiit.ac.in"
     page: "https://sites.google.com/view/welcome-to-anils-world/Home"
     labs: ["Speech Processing Lab"]

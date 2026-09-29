@@ -1,14 +1,15 @@
 name: "Speech Processing Lab"
 slug: speech-processing
 tagline: "Speech and Vision Research"
-description: "Building robust speech systems for recognition, synthesis, and retrieval."
+description: "Building speech systems for recognition, synthesis and retrieval in Indian languages."
 icon: "speech"
 
 overview:
   about: |
-    The objective of the Speech and Vision Lab (SVL) is to conduct goal oriented basic research, addressing fundamental issues involved in building robust speech-to-text systems, natural sounding text-to-speech systems, spoken/audio information retrieval and biometrics using speech and video.
+    The Speech Processing Lab (SPL) conducts goal-led research in speech and spoken language technologies, with a focus on Indian languages. The lab builds intelligent systems for automatic speech recognition (ASR), text-to-speech synthesis (TTS), speech translation, spoken and audio retrieval, speech biometrics, speaker and language identification, and emotion recognition, including a phonetic engine and secure voice-based access to information. Its research addresses the challenges of multilinguality, diverse accents, low-resource languages, and real-world acoustic conditions. By combining fundamental research with practical applications, the lab aims to build accessible and inclusive speech technologies for education, healthcare, digital governance, and human-computer interaction. 
 
-    Towards these goals the lab works on a speech translation system from one Indian language to another, secure access to information using speech mode, biometrics involving speech, image, text and audio-visual information, content-based information storage and retrieval, and the development of a phonetic engine for Indian languages.
+    More details at the (SPL website)[speech.iiit.ac.in].
+    
   highlights:
     - "Speech translation between Indian languages"
     - "Secure access to information using speech"
