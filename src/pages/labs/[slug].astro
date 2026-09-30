@@ -103,7 +103,7 @@ const tabs = [
             <div class="lab-about">
               <h2>About the Lab</h2>
               {data.overview.about.split('\n\n').map((para: string) => (
-                <p>{para.trim()}</p>
+                <p set:html = {para.trim()}></p>
               ))}
               <a href="#" class="btn btn--primary" onclick="document.querySelector('[data-tab=research]')?.click(); return false;">Our Research</a>
             </div>
