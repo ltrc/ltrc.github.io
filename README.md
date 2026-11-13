@@ -15,6 +15,10 @@ Requires Node 18+.
 
 ## Editing content
 
+To update your own profile, add yourself, or move your listing to alumni, follow
+the [contribution guide](CONTRIBUTING.md). It explains where to edit your entry
+and what each profile field controls.
+
 All site content lives in YAML files under `content/`. No code changes needed for routine updates.
 
 | File | What it controls |
