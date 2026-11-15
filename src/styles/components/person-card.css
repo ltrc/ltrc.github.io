@@ -55,3 +55,9 @@
 .person-card__name a:hover {
   border-bottom-color: var(--color-accent);
 }
+
+.person-card__graduation-year {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}

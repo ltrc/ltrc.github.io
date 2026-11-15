@@ -63,6 +63,7 @@ const personSchema = z.object({
   type: z.enum(['faculty', 'staff', 'phd', 'ms', 'btech', 'alumni']).optional(),
   role: z.string(),
   qualification: z.string().optional(),
+  graduation_year: z.number().int().min(1000).max(9999).optional(),
   area: z.string().optional(),
   email: z.string().optional(),
   page: z.string().optional(),
