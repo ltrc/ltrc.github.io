@@ -1,0 +1,154 @@
+---
+import PersonCard from './PersonCard.astro';
+import SectionHeader from './SectionHeader.astro';
+import type { Member } from '../lib/people';
+
+interface Props {
+  groups: { type?: string; label?: string; href?: string; members: Member[] }[];
+}
+const { groups } = Astro.props;
+const members = groups.flatMap((group) => group.members);
+const years = [...new Set(members.flatMap((member) => member.graduation_year ? [member.graduation_year] : []))].sort((a, b) => b - a);
+---
+
+<people-directory>
+  <div class="directory-controls" hidden>
+    <label>
+      Graduation year
+      <select data-year>
+        <option value="all">All years</option>
+        {years.map((year) => <option value={year}>{year}</option>)}
+        <option value="unknown">Year not listed</option>
+      </select>
+    </label>
+    <label>
+      Sort by
+      <select data-sort>
+        <option value="default">Default order</option>
+        <option value="year-desc">Newest first</option>
+        <option value="year-asc">Oldest first</option>
+        <option value="name">Name: A–Z</option>
+      </select>
+    </label>
+    <button type="button" data-reset hidden>Reset</button>
+    <p class="directory-status" role="status" aria-live="polite" data-status></p>
+  </div>
+  {groups.length > 1 && <p class="muted-note">Sorting applies within each category.</p>}
+  {years.length === 0 && <p class="muted-note">Graduation years have not been added to these profiles yet.</p>}
+  {groups.map((group) => (
+    <div id={group.type} class:list={{ 'people-group': !!group.label }} data-group>
+      {group.label && <SectionHeader title={group.label} linkHref={group.href} linkLabel="View all" />}
+      <div class="people-grid">
+        {group.members.map((person) => <PersonCard {...person} />)}
+      </div>
+    </div>
+  ))}
+  <p class="muted-note" data-empty hidden>No people match this graduation year.</p>
+</people-directory>
+
+<script>
+  class PeopleDirectory extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.initialized) return;
+      this.dataset.initialized = 'true';
+      const year = this.querySelector<HTMLSelectElement>('[data-year]')!;
+      const sort = this.querySelector<HTMLSelectElement>('[data-sort]')!;
+      const groups = Array.from(this.querySelectorAll<HTMLElement>('[data-group]')).map((group) => ({
+        group,
+        grid: group.querySelector<HTMLElement>('.people-grid')!,
+        cards: Array.from(group.querySelectorAll<HTMLElement>('.person-card')),
+      }));
+      const total = groups.reduce((count, group) => count + group.cards.length, 0);
+      const update = () => {
+        let visible = 0;
+        for (const { group, grid, cards } of groups) {
+          const ordered = [...cards];
+          ordered.sort((a, b) => {
+            if (sort.value === 'name') return a.dataset.personName!.localeCompare(b.dataset.personName!);
+            if (!sort.value.startsWith('year-')) return 0;
+            const aYear = Number(a.dataset.graduationYear) || 0;
+            const bYear = Number(b.dataset.graduationYear) || 0;
+            // Missing years follow known years in either direction.
+            if (!aYear || !bYear) return Number(!aYear) - Number(!bYear);
+            return sort.value === 'year-asc' ? aYear - bYear : bYear - aYear;
+          });
+          let groupVisible = 0;
+          for (const card of ordered) {
+            const value = card.dataset.graduationYear;
+            card.hidden = !(year.value === 'all' || (year.value === 'unknown' ? !value : value === year.value));
+            if (!card.hidden) groupVisible++;
+            grid.append(card);
+          }
+          group.hidden = groupVisible === 0;
+          visible += groupVisible;
+        }
+        this.querySelector<HTMLButtonElement>('[data-reset]')!.hidden = year.value === 'all' && sort.value === 'default';
+        this.querySelector('[data-status]')!.textContent = `Showing ${visible} of ${total} people`;
+        this.querySelector<HTMLElement>('[data-empty]')!.hidden = visible !== 0;
+      };
+      year.addEventListener('change', update);
+      sort.addEventListener('change', update);
+      this.querySelector('[data-reset]')!.addEventListener('click', () => {
+        year.value = 'all';
+        sort.value = 'default';
+        update();
+      });
+      this.querySelector<HTMLElement>('.directory-controls')!.hidden = false;
+      update();
+    }
+  }
+  customElements.define('people-directory', PeopleDirectory);
+</script>
+
+<style>
+  people-directory { display: block; }
+  .directory-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 150px) minmax(0, 180px) auto 1fr;
+    align-items: end;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .directory-controls[hidden] { display: none; }
+  label { display: grid; gap: 4px; font-size: 0.75rem; font-weight: 600; min-width: 0; }
+  select {
+    width: 100%;
+    min-width: 0;
+    font: inherit;
+    font-weight: 400;
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    min-height: 36px;
+  }
+  button {
+    grid-column: 3;
+    font: inherit;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    background: none;
+    border: 0;
+    padding: 8px 0;
+    min-height: 36px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  select:focus-visible, button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .directory-status {
+    grid-column: 4;
+    justify-self: end;
+    align-self: center;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    margin: 16px 0 0;
+  }
+  @media (max-width: 600px) {
+    .directory-controls { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; }
+    select { min-height: 44px; }
+    button { grid-column: 1; justify-self: start; min-height: 44px; }
+    .directory-status { grid-column: 2; margin: 0; }
+  }
+</style>

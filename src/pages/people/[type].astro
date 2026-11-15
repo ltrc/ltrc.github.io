@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import PersonCard from '../../components/PersonCard.astro';
+import PeopleDirectory from '../../components/PeopleDirectory.astro';
 import { getSingle } from '../../lib/content';
 import { PEOPLE_CATEGORIES, membersByType, type Member } from '../../lib/people';
 
@@ -37,11 +37,7 @@ const { members, config } = Astro.props;
   <section class="page-section">
     <div class="container">
       {members.length > 0 ? (
-        <div class="people-grid">
-          {members.map((person) => (
-            <PersonCard {...person} />
-          ))}
-        </div>
+        <PeopleDirectory groups={[{ members }]} />
       ) : (
         <p class="muted-note">No members listed in this category yet.</p>
       )}

@@ -17,6 +17,7 @@ example values with your own details and omit optional fields you do not need.
     type: phd
     role: "Research Scholar"
     qualification: "M.Tech in Computer Science"
+    graduation_year: 2025
     area: "Machine Translation; Advisor: Your Advisor's Name"
     email: "your-address@students.iiit.ac.in"
     page: "https://example.com/"
@@ -29,6 +30,7 @@ example values with your own details and omit optional fields you do not need.
 | `type` | Your category: `faculty`, `staff`, `phd`, `ms`, `btech`, or `alumni`. Set this so your entry appears on the correct People page. |
 | `role` | Your title or programme, such as `Assistant Professor`, `Research Scholar`, `MS by Research`, `Dual Degree (CLD)`, or `Alumni`. Required. |
 | `qualification` | Your qualifications, if you want them displayed. Optional. |
+| `graduation_year` | Your year of graduation as an unquoted four-digit integer, such as `2025`. Optional; omit it if unknown or you have not graduated. Shown on your profile and used by the People year filter and sort controls. |
 | `area` | Research interests and/or advisor information. Existing student entries commonly use `"Advisor: Full Name"`. Optional. |
 | `email` | The email address you want displayed publicly. Optional. |
 | `page` | A full URL to your personal or institutional webpage, including `https://`. Your name becomes a link to this page. Optional. |
@@ -82,8 +84,8 @@ section.
 
 Edit your existing entry to use `type: alumni` and update `role` to `"Alumni"`
 or an appropriate description. Move the entire entry under the Alumni comment
-to keep the file organized. Review your contact details, webpage, and lab
-affiliations at the same time. Keeping a lab in `labs` keeps your entry on that
+to keep the file organized. Add `graduation_year` if known. Review your contact
+details, webpage, and lab affiliations at the same time. Keeping a lab in `labs` keeps your entry on that
 lab's member list, including after you change your type to `alumni`.
 
 ## YAML formatting tips
