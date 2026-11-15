@@ -56,3 +56,25 @@ The lab detail page at `/labs/<slug>` and the labs index page are generated auto
 ## Deployment
 
 `npm run build` produces a fully static site in `dist/`. Deploy to any static host (Netlify, Vercel, GitHub Pages, a plain web server, etc.).
+
+### Publishing to the IIIT server
+
+The server source checkout is `/srv/ltrc/website`; Nginx serves the built files
+from `/var/www/ltrc`. Run `scripts/deploy-server.sh` **on that server** as `dan`
+or a maintainer who can write both locations:
+
+```bash
+bash /srv/ltrc/website/scripts/deploy-server.sh --dry-run
+bash /srv/ltrc/website/scripts/deploy-server.sh
+```
+
+The script requires a clean `main` checkout, pulls `origin/main` with fast-forward
+only, installs locked dependencies, builds, and syncs the output. It refuses to
+publish local commits ahead of `origin/main`, and a lock prevents overlapping
+runs. A failed install or build stops before publishing. Dry run still pulls
+and builds, but only previews changes to published files.
+
+Publishing preserves `/plo`, `/sambhashana`, and `/vi_plo_test`, including their
+contents. Other stale Astro files are removed. Nginx needs no restart for static
+file updates. This is a manual deployment command, separate from the GitHub
+Pages workflow; no CI or automatic server deployment is configured by it.
