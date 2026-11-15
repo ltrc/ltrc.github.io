@@ -85,8 +85,9 @@ section.
 Edit your existing entry to use `type: alumni` and update `role` to `"Alumni"`
 or an appropriate description. Move the entire entry under the Alumni comment
 to keep the file organized. Add `graduation_year` if known. Review your contact
-details, webpage, and lab affiliations at the same time. Keeping a lab in `labs` keeps your entry on that
-lab's member list, including after you change your type to `alumni`.
+details, webpage, and lab affiliations at the same time. You may retain `labs`
+to record a past affiliation, but alumni do not appear among a lab's current
+researchers. Their entries appear in the Alumni directory.
 
 ## YAML formatting tips
 
