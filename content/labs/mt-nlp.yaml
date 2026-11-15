@@ -1,14 +1,12 @@
 name: "MT-NLP Lab"
 slug: mt-nlp
 tagline: "Machine Translation and Natural Language Processing"
-description: "We work on building intelligent systems that understand, interpret and generate human language."
+description: "Building systems that understand, interpret, and generate human language, with a focus on Indian languages."
 icon: "mt-nlp"
 
 overview:
   about: |
-    The MT-NLP Lab at LTRC, IIIT-H, focuses on a wide range of NLP problems including syntax and parsing, semantics, discourse processing, machine translation, and computational models inspired by linguistics and machine learning.
-
-    We also develop resources and tools for Indian languages and contribute to open-source NLP ecosystem.
+    The MT-NLP Lab works across a wide span of natural language processing: syntax and parsing, semantics, discourse, and machine translation. Its models draw on both linguistics and machine learning, with a steady focus on Indian languages. The lab also builds datasets and tools for Indian languages and contributes to the open-source community. Work here has long fed national machine translation efforts and the centre's wider language-resource output.
   highlights:
     - "Developing computational models for Indian languages"
     - "Semantic parsing and discourse representation"
@@ -17,15 +15,15 @@ overview:
 
 research_areas:
   - title: "Computational Grammatical Model"
-    description: "Development of the Computational Paninian Grammar framework, treebanks for Hindi and Urdu, and studies in language typology."
+    description: "Paninian grammar models, treebanks for Hindi and Urdu, language typology."
   - title: "Parsing"
-    description: "Constraint-based and data-driven parsers for Indian languages, along with shallow parsers, part-of-speech taggers, and morphological analyzers."
+    description: "Constraint-based and data-driven parsers, taggers, and morphological analysers for Indian languages."
   - title: "Machine Translation"
-    description: "Transfer-based approaches, automatic learning of transfer rules, and statistical machine translation from English to Indian languages."
+    description: "Transfer-based and statistical translation, including English to Indian languages."
   - title: "Semantics"
-    description: "Purpose-net and unsupervised/semi-supervised word category disambiguation."
+    description: "Purpose-net and word-category disambiguation."
   - title: "Dialogue and Discourse Analysis"
-    description: "Anaphora resolution in text and generation of sentences from words."
+    description: "Anaphora resolution and sentence generation."
 
 projects:
   - title: "Indian Language to Indian Language MT (ILMT) Phase-II"
