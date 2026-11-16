@@ -191,66 +191,6 @@ members:
     role: "Research Scholar"
     area: "Advisor: Anil Kumar Vuppala"
 
-  - name: "Vandan Mujadia"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Dipti Misra Sharma"
-
-  - name: "Pruthwik Mishra"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Dipti Misra Sharma"
-
-  - name: "Alefiah Mubeen"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Kodali Prashant"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Payal Kullar"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Pushpa Yadav"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Saumitra Yadav"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Ananya Mukherjee"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Katrapati Ganesh Sasank"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Nirmal Surange"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Mounika Marreddy"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Radhika Mamidi"
-
-  - name: "Dowlagar Suman"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Radhika Mamidi"
-
   - name: "Shastri Vaishampayan Mohapatra"
     type: phd
     role: "Research Scholar"
@@ -372,66 +312,6 @@ members:
     role: "MS by Research"
     area: "Advisor: Anil Kumar Vuppala"
 
-  - name: "Ala Hema"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Dipti Misra Sharma"
-
-  - name: "Arafat Ahsan"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Dipti Misra Sharma"
-
-  - name: "Urlana Ashok"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Rakesh Kumar Vemula"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Ravva Priyanka"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Mani Kanta Sai Nuthi"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Hiranmai Sri Adibhatla"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Pawan Sasanka Ammanamanchi"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Mounika K"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Dhakras Pranav Ashok"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Manish Kumar Singh"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Manish Shrivastava"
-
-  - name: "Gundapu Sunil"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Radhika Mamidi"
-
   - name: "Haala Deeba Abbas"
     type: ms
     role: "MS by Research"
@@ -466,67 +346,6 @@ members:
     type: ms
     role: "MS by Research"
     area: "Advisor: Yegnanarayana Bayya"
-
-  # ── BTech Students ──
-  - name: "Abhyudit Singh"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Archit Choudhary"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Hrishiraj Mitra"
-    type: btech
-    role: "Dual Degree (CSD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Virat Garg"
-    type: btech
-    role: "B.Tech (CSE)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Ojas Kataria"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Mohit Sriram"
-    type: btech
-    role: "B.Tech (CSE)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Eashaan Thakur"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Abhiraj Ratna"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Naman Singhal"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
-
-  - name: "Parth Sharma"
-    type: btech
-    role: "Dual Degree (CLD)"
-    area: "Advisor: Anil Kumar Nelakanti"
-    labs: ["MT-NLP Lab"]
 
   # ── Alumni ──
   - name: "A Vinay Bhargav Reddy"
@@ -1012,3 +831,316 @@ members:
   - name: "Y Sriharsha"
     type: alumni
     role: "Alumni"
+
+  # ── MT-NLP Students (MTNLP.docx) ──
+  - name: "Arafat Ahsan"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Dipti Misra Sharma"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Sakhil Taneja"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Radhika Mamidi"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Ishank"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Radhika Mamidi"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Anshul Sharma"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Radhika Mamidi"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Rallabandi Samvaran Kashyap"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Radhika Mamidi"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Kaveri Anuranjana"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Radhika Mamidi"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Anagha Pradeep"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Radhika Mamidi"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Madduru Sai Chandra Nikhil"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Rajakrishnan P Rajkumar"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Aadya Ranjan"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Rajakrishnan P Rajkumar"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Vansh Nawander"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Karthik Mikkilineni"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Srivatsa Sinha"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Akanksha Srivastava"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Hiranmai Sri Adibhatla"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "A Aparajitha"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Sabyasachi Muhopadhyay"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Pushpa Yadav"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Alefiah Mubeen"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Saumitra Yadav"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Nirmal Surange"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Katrapati Ganesh Sasank"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Manish Shrivastava"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Abhinav P M"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Dasari Priyanka"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Rajarshi Chatterjee"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Surtani Monica"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisors: Parameswari Krishnamurthy; Chiranjeevi Yarra"
+    labs: ["MT-NLP Lab", "Speech Processing Lab"]
+
+  - name: "Aditya"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Jenil"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Vasamsetti Mahesh"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Surya Teja Thodupunuri"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Sushvin Marimuthu"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Vennela Bairi"
+    type: alumni
+    role: "MS by Research (CSE) (Completed)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Vishnuraj"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Yuvrajsinh Bodana"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Aaryan Kashyap"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Akshit Kumar"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Amisha"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Aryan Chaudhary"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Hari Shankar"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Jerrin John Thomas"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Ketaki Mangesh Shetye"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Saketh Reddy Vemula"
+    type: btech
+    role: "CLD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Sankalp Sanjay Bahad"
+    type: alumni
+    role: "CLD (Completed)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Yash Bhaskar"
+    type: alumni
+    role: "CLD (Completed)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Modumudi Naga Sai Ritvik"
+    type: btech
+    role: "CSD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Surisetty Tulasi Rushwik"
+    type: btech
+    role: "CSD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Udith Krishna M Nair"
+    type: btech
+    role: "CSD"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Kurumeti Sri Sai Nikhil Sri Vastava"
+    type: btech
+    role: "CSE"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Mupparapu Sohan Gupta"
+    type: btech
+    role: "Honors (CSE)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Pasumarthy Deepak"
+    type: btech
+    role: "CSE"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Abhinaba Bala"
+    type: alumni
+    role: "M.S. (Completed)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Aradhya Gupta"
+    type: alumni
+    role: "CLD (Completed)"
+    area: "Advisor: Parameswari Krishnamurthy"
+    labs: ["MT-NLP Lab"]
+
+  - name: "Nilanjan Sarkar"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Anil Kumar Nelakanti"
+    labs: ["MT-NLP Lab"]

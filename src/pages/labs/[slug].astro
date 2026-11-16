@@ -38,7 +38,7 @@ interface Props {
 const { data, labPeople } = Astro.props;
 
 const labFaculty = labPeople.filter(p => p.type === 'faculty');
-const labStudents = labPeople.filter(p => p.type !== 'faculty' && p.type !== 'staff');
+const labStudents = labPeople.filter(p => ['phd', 'ms', 'btech'].includes(p.type || ''));
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: 'overview' },
