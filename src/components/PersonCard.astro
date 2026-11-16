@@ -10,9 +10,10 @@ interface Props {
   email?: string;
   page?: string;
   labs?: string[];
+  research_group?: { name: string; url: string };
 }
 
-const { name, role, qualification, graduation_year, area, email, page, labs } = Astro.props;
+const { name, role, qualification, graduation_year, area, email, page, labs, research_group } = Astro.props;
 ---
 
 <div class="person-card" data-graduation-year={graduation_year} data-person-name={name}>
@@ -25,4 +26,9 @@ const { name, role, qualification, graduation_year, area, email, page, labs } = 
   {area && <div class="person-card__area">{area}</div>}
   {email && <div class="person-card__email">{email}</div>}
   {labs && labs.length > 0 && <div class="person-card__lab">{labs.join(', ')}</div>}
+  {research_group && (
+    <div class="person-card__lab">
+      Research Group: <a href={research_group.url} target="_blank" rel="noopener noreferrer">{research_group.name}</a>
+    </div>
+  )}
 </div>

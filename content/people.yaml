@@ -88,6 +88,17 @@ members:
     area: "NLP, Representation Learning, Information Retrieval"
     email: "rahul.mishra@iiit.ac.in"
 
+  - name: "Hrishikesh Terdalkar"
+    type: faculty
+    role: "Assistant Professor"
+    qualification: "Ph.D (IIT Kanpur)"
+    area: "Natural Language Processing, Computational Linguistics, Sanskrit and Indian-language computing, Large Language Models, Knowledge Graphs, Information Retrieval, and Question Answering"
+    email: "hrishikeshrt@iiit.ac.in"
+    page: "https://hrishikeshrt.github.io/"
+    research_group:
+      name: "Saṁbhāṣaṇa"
+      url: "https://ltrc.iiit.ac.in/sambhashana/"
+
   - name: "Vineet Chaitanya"
     type: faculty
     role: "Distinguished Faculty"
