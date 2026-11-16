@@ -98,8 +98,9 @@ const labs = defineCollection({
     })).optional(),
     publications: z.array(z.object({
       title: z.string(),
-      authors: z.string(),
+      authors: z.string().optional(),
       venue: z.string(),
+      url: z.string().url().optional(),
     })).optional(),
   }),
 });

@@ -182,26 +182,6 @@ members:
     role: "Project Assistant"
 
   # ── PhD Students ──
-  - name: "Purva Barche"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
-
-  - name: "Mirishkar Sai Ganesh"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
-
-  - name: "Narasinga Vamshiraghusimha"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
-
-  - name: "KNRK Raju Alluri"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
-
   - name: "Vandan Mujadia"
     type: phd
     role: "Research Scholar"
@@ -378,11 +358,6 @@ members:
     area: "Advisor: Yegnanarayana Bayya"
 
   # ── MS Students ──
-  - name: "Nayan Anand Vats"
-    type: ms
-    role: "MS by Research"
-    area: "Advisor: Anil Kumar Vuppala"
-
   - name: "Ala Hema"
     type: ms
     role: "MS by Research"
@@ -539,7 +514,152 @@ members:
     area: "Advisor: Anil Kumar Nelakanti"
     labs: ["MT-NLP Lab"]
 
+  # ── Current Speech Processing Lab Students ──
+  - name: "Anindita Mondal"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Anuprabha"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Akkiraju V. N. S. Bhavana"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Aishwarya Pothula"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Sri Charan D"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Ravi Sastry K"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Radhe Shyam Salopanthula"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Venkata Thipparaju"
+    type: phd
+    role: "Ph.D"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Kanthi Wurity"
+    type: phd
+    role: "Ph.D"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Reshma"
+    type: ms
+    role: "MS (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Puneeth"
+    type: ms
+    role: "MS (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Doshik Rahul"
+    type: ms
+    role: "MS (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Sirigiraju Meenakshi"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Mallela Jhansi"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Surtani Monica"
+    type: phd
+    role: "Ph.D (ECE)"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Namrata Mokshagundam"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Jyothika Goparaju"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Atharva Naitam"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Sayyad Ameer"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Vamsi Krishna"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
   # ── Alumni ──
+  - name: "Purva Barche"
+    type: alumni
+    role: "Alumni"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "Mirishkar Sai Ganesh"
+    type: alumni
+    role: "Alumni"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "Narasinga Vamshiraghusimha"
+    type: alumni
+    role: "Alumni"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "KNRK Raju Alluri"
+    type: alumni
+    role: "Alumni"
+    area: "Advisor: Anil Kumar Vuppala"
+
+  - name: "Nayan Anand Vats"
+    type: alumni
+    role: "Alumni"
+    area: "Advisor: Anil Kumar Vuppala"
+
   - name: "A Vinay Bhargav Reddy"
     type: alumni
     role: "Alumni"

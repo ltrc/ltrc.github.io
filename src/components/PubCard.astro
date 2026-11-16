@@ -3,15 +3,16 @@ import '../styles/components/pub-card.css';
 
 interface Props {
   title: string;
-  authors: string;
+  authors?: string;
   venue: string;
+  url?: string;
 }
 
-const { title, authors, venue } = Astro.props;
+const { title, authors, venue, url } = Astro.props;
 ---
 
 <div class="pub-card">
-  <div class="pub-card__title">{title}</div>
-  <div class="pub-card__authors">{authors}</div>
+  <div class="pub-card__title">{url ? <a href={url}>{title}</a> : title}</div>
+  {authors && <div class="pub-card__authors">{authors}</div>}
   <div class="pub-card__venue">{venue}</div>
 </div>
