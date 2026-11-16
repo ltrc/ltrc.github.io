@@ -68,6 +68,10 @@ const personSchema = z.object({
   email: z.string().optional(),
   page: z.string().optional(),
   labs: z.array(z.string()).optional(),
+  research_group: z.object({
+    name: z.string(),
+    url: z.string().url(),
+  }).optional(),
 });
 
 const labs = defineCollection({
