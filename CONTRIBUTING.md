@@ -30,7 +30,7 @@ example values with your own details and omit optional fields you do not need.
 | `type` | Your category: `faculty`, `staff`, `phd`, `ms`, `btech`, or `alumni`. Set this so your entry appears on the correct People page. |
 | `role` | Your title or programme, such as `Assistant Professor`, `Research Scholar`, `MS by Research`, `Dual Degree (CLD)`, or `Alumni`. Required. |
 | `qualification` | Your qualifications, if you want them displayed. Optional. |
-| `graduation_year` | Your year of graduation as an unquoted four-digit integer, such as `2025`. Optional; omit it if unknown or you have not graduated. Shown on your profile and used by the People year filter and sort controls. |
+| `graduation_year` | Your year of graduation as an unquoted four-digit integer, such as `2025`. Optional; omit it if unknown or you have not graduated. Shown on your profile and used by the Alumni year filter and sort controls. |
 | `area` | Research interests and/or advisor information. Existing student entries commonly use `"Advisor: Full Name"`. Optional. |
 | `email` | The email address you want displayed publicly. Optional. |
 | `page` | A full URL to your personal or institutional webpage, including `https://`. Your name becomes a link to this page. Optional. |

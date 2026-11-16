@@ -4,15 +4,16 @@ import SectionHeader from './SectionHeader.astro';
 import type { Member } from '../lib/people';
 
 interface Props {
+  showControls?: boolean;
   groups: { type?: string; label?: string; href?: string; members: Member[] }[];
 }
-const { groups } = Astro.props;
+const { groups, showControls = false } = Astro.props;
 const members = groups.flatMap((group) => group.members);
 const years = [...new Set(members.flatMap((member) => member.graduation_year ? [member.graduation_year] : []))].sort((a, b) => b - a);
 ---
 
 <people-directory>
-  <div class="directory-controls" hidden>
+  {showControls && <div class="directory-controls" hidden>
     <label>
       Graduation year
       <select data-year>
@@ -32,9 +33,9 @@ const years = [...new Set(members.flatMap((member) => member.graduation_year ? [
     </label>
     <button type="button" data-reset hidden>Reset</button>
     <p class="directory-status" role="status" aria-live="polite" data-status></p>
-  </div>
-  {groups.length > 1 && <p class="muted-note">Sorting applies within each category.</p>}
-  {years.length === 0 && <p class="muted-note">Graduation years have not been added to these profiles yet.</p>}
+  </div>}
+  {showControls && groups.length > 1 && <p class="muted-note">Sorting applies within each category.</p>}
+  {showControls && years.length === 0 && <p class="muted-note">Graduation years have not been added to these profiles yet.</p>}
   {groups.map((group) => (
     <div id={group.type} class:list={{ 'people-group': !!group.label }} data-group>
       {group.label && <SectionHeader title={group.label} linkHref={group.href} linkLabel="View all" />}
@@ -43,7 +44,7 @@ const years = [...new Set(members.flatMap((member) => member.graduation_year ? [
       </div>
     </div>
   ))}
-  <p class="muted-note" data-empty hidden>No people match this graduation year.</p>
+  {showControls && <p class="muted-note" data-empty hidden>No people match this graduation year.</p>}
 </people-directory>
 
 <script>
@@ -51,8 +52,9 @@ const years = [...new Set(members.flatMap((member) => member.graduation_year ? [
     connectedCallback() {
       if (this.dataset.initialized) return;
       this.dataset.initialized = 'true';
-      const year = this.querySelector<HTMLSelectElement>('[data-year]')!;
-      const sort = this.querySelector<HTMLSelectElement>('[data-sort]')!;
+      const year = this.querySelector<HTMLSelectElement>('[data-year]');
+      const sort = this.querySelector<HTMLSelectElement>('[data-sort]');
+      if (!year || !sort) return;
       const groups = Array.from(this.querySelectorAll<HTMLElement>('[data-group]')).map((group) => ({
         group,
         grid: group.querySelector<HTMLElement>('.people-grid')!,
@@ -112,6 +114,7 @@ const years = [...new Set(members.flatMap((member) => member.graduation_year ? [
   .directory-controls[hidden] { display: none; }
   label { display: grid; gap: 4px; font-size: 0.75rem; font-weight: 600; min-width: 0; }
   select {
+    color-scheme: light;
     width: 100%;
     min-width: 0;
     font: inherit;
@@ -122,6 +125,28 @@ const years = [...new Set(members.flatMap((member) => member.graduation_year ? [
     border-radius: var(--radius-sm);
     padding: 8px 10px;
     min-height: 36px;
+  }
+  :global([data-theme="dark"]) select { color-scheme: dark; }
+  option {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+  /* Keep the open picker in the site's theme instead of the desktop theme.
+     Browsers without customizable selects retain the native select above. */
+  @supports (appearance: base-select) {
+    select, select::picker(select) { appearance: base-select; }
+    select::picker(select) {
+      color: var(--color-text);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 4px;
+    }
+    option { padding: 6px 10px; }
+    option:checked, option:hover, option:focus {
+      color: var(--color-on-primary);
+      background-color: var(--color-primary);
+    }
   }
   button {
     grid-column: 3;
