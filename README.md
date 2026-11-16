@@ -36,9 +36,9 @@ Each YAML file is validated against a Zod schema in `src/content.config.ts`. The
 
 `content/people.yaml` is the single source of truth for all person data. Each person has a `type` (faculty, staff, phd, ms, btech, alumni) and an optional `labs` array linking them to one or more labs. Lab detail pages pull their people section from this file -- there is no duplication.
 
-People listings can be filtered by graduation year and sorted by year or name.
+The Alumni listing can be filtered by graduation year and sorted by year or name.
 Add an optional `graduation_year: 2025` (an unquoted four-digit integer) to a
-profile to include it in year filtering. Omit unknown years; they appear last
+alumni profile to include it in year filtering. Omit unknown years; they appear last
 when sorting by year. See the contribution guide for details.
 
 ### Events

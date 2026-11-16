@@ -37,7 +37,7 @@ const { members, config } = Astro.props;
   <section class="page-section">
     <div class="container">
       {members.length > 0 ? (
-        <PeopleDirectory groups={[{ members }]} />
+        <PeopleDirectory groups={[{ members }]} showControls={Astro.params.type === 'alumni'} />
       ) : (
         <p class="muted-note">No members listed in this category yet.</p>
       )}
