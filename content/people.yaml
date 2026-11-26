@@ -45,6 +45,13 @@ members:
     email: "raja@iiit.ac.in"
     labs: ["MT-NLP Lab"]
 
+  - name: "Yegnanarayana Bayya"
+    type: faculty
+    role: "INSA Honorary Scientist & Emeritus Professor"
+    qualification: "Ph.D (IISc, Bangalore)"
+    area: "Speech Signal Processing, Speech Enhancement, Speaker Recognition, Group-Delay Processing, Zero Frequency Filtering, Single Frequency Filtering"
+    labs: ["Speech Processing Lab"]
+
   - name: "Anil Kumar Vuppala"
     type: faculty
     role: "Professor"
@@ -126,7 +133,6 @@ members:
     role: "Adjunct Faculty"
     qualification: "Ph.D (Carnegie Mellon University)"
     area: "Text-to-Speech, Voice Conversion, Speaker Recognition"
-    labs: ["Speech Processing Lab"]
 
   - name: "Manish Gupta"
     type: faculty
@@ -182,26 +188,70 @@ members:
     role: "Project Assistant"
 
   # ── PhD Students ──
-  - name: "Purva Barche"
-    type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
 
-  - name: "Mirishkar Sai Ganesh"
+  - name: "Mallela Jhansi"
     type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
+    role: "Ph.D (ECE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
 
-  - name: "Narasinga Vamshiraghusimha"
+  - name: "Sirigiraju Meenakshi"
     type: phd
-    role: "Research Scholar"
-    area: "Advisor: Anil Kumar Vuppala"
+    role: "Ph.D (ECE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
 
-  - name: "KNRK Raju Alluri"
+  
+  - name: "Anindita Mondal"
     type: phd
-    role: "Research Scholar"
+    role: "Ph.D (ECE)"
     area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
 
+  - name: "Anuprabha"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Akkiraju V. N. S. Bhavana"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Aishwarya Pothula"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Sri Charan Devarakonda"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Ravi Sastry Kolluru"
+    type: phd
+    role: "Ph.D (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Radhe Shyam Salopanthula"
+    type: phd
+    role: "Ph.D (CL)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+
+  - name: "Surtani Monica"
+    type: phd
+    role: "Ph.D (ECE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  
   - name: "Vandan Mujadia"
     type: phd
     role: "Research Scholar"
@@ -378,6 +428,54 @@ members:
     area: "Advisor: Yegnanarayana Bayya"
 
   # ── MS Students ──
+  - name: "Reshma"
+    type: ms
+    role: "MS (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Puneeth"
+    type: ms
+    role: "MS (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Doshik Rahul"
+    type: ms
+    role: "MS (CSE)"
+    area: "Advisor: Anil Kumar Vuppala"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Namrata Mokshagundam"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Jyothika Goparaju"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Atharva Naitam"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Sayyad Ameer"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
+  - name: "Vamsi Krishna"
+    type: ms
+    role: "MS by Research (CSE)"
+    area: "Advisor: Chiranjeevi Yarra"
+    labs: ["Speech Processing Lab"]
+
   - name: "Nayan Anand Vats"
     type: ms
     role: "MS by Research"
