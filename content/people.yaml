@@ -45,6 +45,13 @@ members:
     email: "raja@iiit.ac.in"
     labs: ["MT-NLP Lab"]
 
+  - name: "Yegnanarayana Bayya"
+    type: faculty
+    role: "INSA Honorary Scientist & Emeritus Professor"
+    qualification: "Ph.D (IISc, Bangalore)"
+    area: "Speech Signal Processing, Speech Enhancement, Speaker Recognition, Group-Delay Processing, Zero Frequency Filtering, Single Frequency Filtering"
+    labs: ["Speech Processing Lab"]
+
   - name: "Anil Kumar Vuppala"
     type: faculty
     role: "Professor"
